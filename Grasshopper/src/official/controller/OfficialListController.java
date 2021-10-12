@@ -1,4 +1,4 @@
-package controller;
+package official.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.Official;
-import service.OfficialService;
-import service.OfficialServiceImpl;
+import official.dto.Official;
+import official.service.OfficialService;
+import official.service.OfficialServiceImpl;
 import util.Paging;
 
 /**

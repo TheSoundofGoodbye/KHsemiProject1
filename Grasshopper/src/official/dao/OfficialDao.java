@@ -1,9 +1,9 @@
-package dao;
+package official.dao;
 
 import java.sql.Connection;
 import java.util.List;
 
-import dto.Official;
+import official.dto.Official;
 import util.Paging;
 
 public interface OfficialDao {

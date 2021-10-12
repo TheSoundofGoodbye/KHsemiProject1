@@ -1,4 +1,4 @@
-package dao;
+package official.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
-import dto.Official;
+import official.dto.Official;
 import util.Paging;
 
 public class OfficialDaoImpl implements OfficialDao{

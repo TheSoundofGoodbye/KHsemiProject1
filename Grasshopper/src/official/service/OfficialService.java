@@ -1,10 +1,10 @@
-package service;
+package official.service;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import dto.Official;
+import official.dto.Official;
 import util.Paging;
 
 public interface OfficialService {

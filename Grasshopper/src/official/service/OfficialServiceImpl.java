@@ -1,4 +1,4 @@
-package service;
+package official.service;
 
 import java.sql.Connection;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
-import dao.OfficialDao;
-import dao.OfficialDaoImpl;
-import dto.Official;
+import official.dao.OfficialDao;
+import official.dao.OfficialDaoImpl;
+import official.dto.Official;
 import util.Paging;
 
 public class OfficialServiceImpl implements OfficialService{
