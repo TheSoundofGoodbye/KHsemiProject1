@@ -1,6 +1,7 @@
 package official.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -28,11 +29,21 @@ public class OfficialListController extends HttpServlet {
 		System.out.println("/official/list [GET]");
 		
 		String search = null;
+		String category = null;
 		Paging paging;
 		List<Official> list;
 		
 		//검색어 전달받기
 		search = req.getParameter("search");
+		category = req.getParameter("category");
+		
+		ArrayList<String> categorySearch = new ArrayList<>();
+		
+		categorySearch.add(category);
+		categorySearch.add(search);
+		
+		//카테고리, 찾는것 순서대로 categorySearch 에 담기
+		System.out.println(categorySearch);
 		
 		//get 메소드로 넘어온 파라미터확인
 //		System.out.println("[TEST] search(get) : " + search);

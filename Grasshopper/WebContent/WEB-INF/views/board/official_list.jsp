@@ -10,11 +10,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<script type="text/javascript">
-
-
-</script>
-
 <link rel="stylesheet" type="text/css" href="/resources/css/cards.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -25,6 +20,11 @@
 <!-- 검색창 -->
 <div class="search-bar">
 	<form name="searchForm" action="/official/list" method="get">
+	<select id="category" name="category">
+   		<option value="name">이름</option>
+   		<option value="detail">내용</option>
+   		<option value="ingred">재료</option>
+  	</select>
 	<input type="text" name="search" value="${search }" autocomplete="off" 
 	id="search" onkeyup="searchFunction()" placeholder="검색어를 입력하세요">
 	<input type="submit" id="btnSearch" value="찾기">
@@ -93,7 +93,29 @@ function toTheTop(){
 	window.scrollTo(0,0);
 }
 
+<!-- 검색어 하이라이트 -->
+//검색어 파라메터 받기
+// const urlParams = new URLSearchParams(window.location.search);
+// const search = urlParams.get('search');
 
+//파라메터 확인
+// console.log(search);
+
+//검색어를 <span class='highlight' >검색어</span>으로 교체하는 function highlight(text)
+//그림파일까지 바꿔버려서 일단 이 기능은추후 개발하는걸로
+// function highlight(text) {
+// 	var inputText = document.getElementsByClassName('card_title');
+// 	var innerHTML = inputText.innerHTML;
+// 	var index = innerHTML.indexOf(text);
+// 	if (index >= 0) {
+// 		innerHTML = innerHTML.substring(0, index)
+// 				+ "<span class='highlight'>"
+// 				+ innerHTML.substring(index, index + text.length)
+// 				+ "</span>" + innerHTML.substring(index + text.length);
+// 		inputText.innerHTML = innerHTML;
+// 	}
+// }
+// window.highlight(search)
 </script>
 
 </html>

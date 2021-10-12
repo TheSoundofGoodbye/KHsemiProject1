@@ -88,7 +88,7 @@ body {
 	transform: translateX(-50%);
 	width: 250px;
 	height: 40px;
-	left: 172px;
+	left: 200px;
 	margin: 4px 0;
 	border: 0px;
 	border-radius: 0px;
@@ -108,6 +108,18 @@ body {
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 20px;
+	font-size: 15px;
 	margin: 4px 2px;
-	cursor: pointer;}
+	cursor: pointer;
+}
+
+#category {
+	position: absolute;
+	left: 6px;
+	height: 40px;
+	margin: 4px;
+}
+	
+.highlight {
+  background-color: yellow !important;
+}
