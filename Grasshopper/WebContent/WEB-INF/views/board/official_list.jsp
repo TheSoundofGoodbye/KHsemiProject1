@@ -25,7 +25,7 @@
 <!-- 검색창 -->
 <div class="search-bar">
 	<form name="searchForm" action="/official/list" method="get">
-	<input type="text" name="search" value="" autocomplete="off" 
+	<input type="text" name="search" value="${search }" autocomplete="off" 
 	id="search" onkeyup="searchFunction()" placeholder="검색어를 입력하세요">
 	<input type="submit" id="btnSearch" value="찾기">
 	</form>

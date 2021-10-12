@@ -47,14 +47,15 @@ public class OfficialListController extends HttpServlet {
 		list = officialService.getList(paging, search); // 페이징 정보를 입력하여 조회
 		
 		System.out.println("OfficialListController [GET] - " + paging);
-		
-		
-		
+			
 		//조회결과 MODEL값 전달
 		req.setAttribute("list", list);
 		
 		//페이징 정보 MODEL값 전달
 		req.setAttribute("paging", paging);
+		
+		//검색어 다시 전달
+		req.setAttribute("search", search);
 		
 		//포워딩
 		req.getRequestDispatcher("/WEB-INF/views/board/official_list.jsp").forward(req, resp);

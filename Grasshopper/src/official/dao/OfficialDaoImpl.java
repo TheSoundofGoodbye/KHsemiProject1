@@ -46,12 +46,11 @@ public class OfficialDaoImpl implements OfficialDao{
 	@Override
 	public int selectCntSearch(Connection connection, String search) {
 		String sql = "";
-		sql += "SELECT * FROM (";
-	    sql += " SELECT ROWNUM rnum, O.* FROM (";
-	    sql += "    SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote, official_write_date";
-	    sql += "     FROM officialcocktail ORDER BY official_cocktail_no ) O";
-	    sql += "   ) officialcocktail";
-	    sql += " WHERE rnum BETWEEN ? AND ?";
+		sql += "SELECT count(*) FROM officialcocktail";
+		sql += " WHERE 1=1 AND";
+		sql += "      upper(official_cocktail_name) LIKE upper(?)";
+		sql += "    OR upper(official_cocktail_detail) LIKE upper(?)";
+		sql += "    OR upper(official_cocktail_ingred) LIKE upper(?)";
 	    
 		//총 레시피 숫자
 		int cnt = 0;
