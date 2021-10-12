@@ -22,7 +22,7 @@
 	<c:forEach var="o" items="${list }">
 	<div class="card">
 	<div class="card_image">
-		<img src="/resources/img/martini_800px.jpg" />
+		<img src="/resources/img/${o.official_cocktail_name }.jpg" />
 	</div>
 	<div class="card_title">
 		<h3>${o.official_cocktail_name }</h3>
@@ -47,6 +47,9 @@
 
 
 </body>
+
+<%-- 맨위로 버튼 --%>
+<button id="topButton" onclick="toTheTop()">맨 위로</button>
 
 <!-- 최상단으로 버튼 스크립트 -->
 <script type="text/javascript">

@@ -142,7 +142,7 @@ public class OfficialDaoImpl implements OfficialDao{
 				viewRecipe.setOfficial_cocktail_no(rs.getInt("official_cocktail_no"));
 				viewRecipe.setOfficial_cocktail_name(rs.getString("official_cocktail_name"));
 				viewRecipe.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
-				viewRecipe.setOfficial_cocktail_ingred(rs.getString("official_cocktail_no"));
+				viewRecipe.setOfficial_cocktail_ingred(rs.getString("official_cocktail_ingred"));
 				viewRecipe.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
 				viewRecipe.setOfficial_write_date(rs.getDate("official_write_date"));
 

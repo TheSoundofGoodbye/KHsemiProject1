@@ -32,6 +32,9 @@ public class OfficialViewController extends HttpServlet {
 		//상세보기 결과 조회
 		Official viewOfficial = officialService.view(official_no);
 		
+		//official 객체 전달 테스트
+//		System.out.println("[TEST] viewOFficial : " + viewOfficial);
+		
 		//조회결과 MODEL값 전달
 		req.setAttribute("viewOfficial", viewOfficial);
 		
@@ -46,7 +49,7 @@ public class OfficialViewController extends HttpServlet {
 //		req.setAttribute("boardFile", boardFile);
 
 		//VIEW 지정 및 응답 - forward
-		req.getRequestDispatcher("/WEB-INF/views/board/official_list.jsp").forward(req, resp);	
+		req.getRequestDispatcher("/WEB-INF/views/board/official_view.jsp").forward(req, resp);	
 		
 	}
 	
