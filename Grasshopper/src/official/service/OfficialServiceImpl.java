@@ -38,9 +38,36 @@ public class OfficialServiceImpl implements OfficialService{
 	}
 	
 	@Override
+	public Paging getPaging(HttpServletRequest req, String search) {
+		
+		//전달 파라미터 curPage 파싱
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if(param != null && !"".equals(param)) {
+			curPage = Integer.parseInt(param);
+		} else {
+			System.out.println("[CAUTION] curPage값이 null 또는 비어있습니다");
+		}
+		
+		//검색어로 검색한 Offical 테이블의 반환 데이터 수(레시피 숫자)를 조회
+		int totalCount = officialDao.selectCntSearch(JDBCTemplate.getConnection(), search);
+		
+		//Paging 객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;		
+	}
+	
+	@Override
 	public List<Official> getList(Paging paging) {
 
 		return officialDao.selectAll(JDBCTemplate.getConnection(), paging);
+	}
+	
+	@Override
+	public List<Official> getList(Paging paging, String search) {
+
+		return officialDao.selectSearch(JDBCTemplate.getConnection(), paging, search);
 	}
 	
 	@Override

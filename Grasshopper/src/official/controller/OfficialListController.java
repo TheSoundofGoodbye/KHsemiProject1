@@ -27,11 +27,28 @@ public class OfficialListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/official/list [GET]");
 		
+		String search = null;
+		Paging paging;
+		List<Official> list;
+		
+		//검색어 전달받기
+		search = req.getParameter("search");
+		
+		//get 메소드로 넘어온 파라미터확인
+//		System.out.println("[TEST] search(get) : " + search);
+		
+//		List<Official> list = officialService.getList(paging, search); // 페이징 정보를 입력하여 조회
+				
 		//요청 파라미터를 전달하여 paging 객체생성
-		Paging paging = officialService.getPaging(req);
+//		paging = officialService.getPaging(req);
+//		list = officialService.getList(paging); // 페이징 정보를 입력하여 조회
+		
+		paging = officialService.getPaging(req, search);
+		list = officialService.getList(paging, search); // 페이징 정보를 입력하여 조회
+		
 		System.out.println("OfficialListController [GET] - " + paging);
 		
-		List<Official> list = officialService.getList(paging); // 페이징 정보를 입력하여 조회
+		
 		
 		//조회결과 MODEL값 전달
 		req.setAttribute("list", list);

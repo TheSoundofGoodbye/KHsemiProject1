@@ -37,12 +37,12 @@ $(document).ready(function(){
 <div class="main-content">
 	<div class="grid-container">
 		<div class="grid">
-			<a href="/official/recipe/1/martini" class="">
 				<div class="imgBox-container">
-					<img src="imgofmartini" class="imgBox" alt="Shaken, not stirred"> 
+					<a href="/official/recipe/1/martini" class=""> <img
+						src="imgofmartini" class="imgBox" alt="Shaken, not stirred">
+					</a>
 				</div>
-			</a>
-		</div>
+			</div>
 	</div>
 </div>
 

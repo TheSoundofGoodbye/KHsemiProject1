@@ -8,6 +8,13 @@
 
 <title>Insert title here</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+</script>
+
 <link rel="stylesheet" type="text/css" href="/resources/css/cards.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -15,10 +22,23 @@
 </head>
 <body>
 
+<!-- 검색창 -->
+<div class="search-bar">
+	<form name="searchForm" action="/official/list" method="get">
+	<input type="text" name="search" value="" autocomplete="off" 
+	id="search" onkeyup="searchFunction()" placeholder="검색어를 입력하세요">
+	<input type="submit" id="btnSearch" value="찾기">
+	</form>
+</div>
+
+
 <div class="main">
 
+<br>
+<br><br><br><br><br>
+
 <!-- 카드보드형태 -->
-<div class="cards">
+<div class="cards" id="card">
 	<c:forEach var="o" items="${list }">
 	<div class="card">
 	<div class="card_image">
@@ -60,7 +80,7 @@ window.onscroll = function() {
 };
 //버튼이 나타나게 함
 function scrollFunction(){
-	console.log("You are scrolling!") //테스트용
+	console.log("[TEST] You are scrolling!") //테스트용
 	//스크롤을 통해 20줄 이상 내려가면 
 	if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
 		topButton.style.display = "block";	
@@ -72,6 +92,8 @@ function scrollFunction(){
 function toTheTop(){
 	window.scrollTo(0,0);
 }
+
+
 </script>
 
 </html>

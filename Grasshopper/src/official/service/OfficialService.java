@@ -13,12 +13,24 @@ public interface OfficialService {
 	 * 페이징 객체 생성
 	 * 
 	 * 요청 파라미터 curPage를 구한다
-	 * Official테이블과 curPage값을 이용해 Paging객체를 구하여 반환한다 
+	 * 전체 Official테이블과 curPage값을 이용해 Paging객체를 구하여 반환한다 
 	 * 
 	 * @param req - 요청정보 객체
 	 * @return 페이징 계산이 완료된 Paging 객체
 	 */
 	Paging getPaging(HttpServletRequest req);
+	
+	/**
+	 * 페이징 객체 생성
+	 * 
+	 * 요청 파라미터 curPage를 구한다
+	 * 특정 검색어로 조회한 Official테이블의 데이터와 curPage값을 이용해 Paging객체를 구하여 반환한다 
+	 * 
+	 * @param req - 요청정보 객체
+	 * @param search - 검색어
+	 * @return 페이징 계산이 완료된 Paging 객체
+	 */
+	Paging getPaging(HttpServletRequest req, String search);
 	
 	/**
 	 * 레시피 목록을 조회하는 기능
@@ -28,6 +40,16 @@ public interface OfficialService {
 	 * @return 게시글 목록을 List<Official>형태로 가져온다
 	 */
 	List<Official> getList(Paging paging);
+	
+	/**
+	 * 레시피 목록을 조회하는 기능
+	 * 페이징 정보를 고려하여 조회한다
+	 * 
+	 * @param paging - 현재 페이징 정보
+	 * @param search - 검색어
+	 * @return 게시글 목록을 List<Official>형태로 가져온다
+	 */
+	List<Official> getList(Paging paging, String search);
 	
 	/**
 	 * 요청파라미터 얻기
@@ -45,5 +67,7 @@ public interface OfficialService {
 	 * @return Official - 조회된 레시피
 	 */
 	Official view(Official official_no);
+
+
 
 }
