@@ -12,7 +12,7 @@ import official.dto.Official;
 import util.Paging;
 
 public class OfficialDaoImpl implements OfficialDao{
-
+	
 	PreparedStatement ps = null; //SQL 수행객체 생성
 	ResultSet rs = null; //결과값을 담을 객체 생성
 	
@@ -44,37 +44,77 @@ public class OfficialDaoImpl implements OfficialDao{
 	}
 	
 	@Override
-	public int selectCntSearch(Connection connection, String search) {
+	public int selectCntSearchAll(Connection connection, String search) {
+		
+		//총 레시피 숫자
+		int cnt = 0;
+		
 		String sql = "";
 		sql += "SELECT count(*) FROM officialcocktail";
 		sql += " WHERE 1=1 AND";
 		sql += "      upper(official_cocktail_name) LIKE upper(?)";
 		sql += "    OR upper(official_cocktail_detail) LIKE upper(?)";
 		sql += "    OR upper(official_cocktail_ingred) LIKE upper(?)";
-	    
-		//총 레시피 숫자
-		int cnt = 0;
-		
+
 		try {
 			ps = connection.prepareStatement(sql);
-			
+
 			//변수 채우기
 			ps.setString(1, "%" + search + "%");
 			ps.setString(2, "%" + search + "%");
 			ps.setString(3, "%" + search + "%");
-			
+
 			rs = ps.executeQuery();
-			
+
 			while(rs.next()) {
 				cnt = rs.getInt(1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
+
+		return cnt;
+	}
+	
+	public int selectCntSearch(Connection connection, String search, String category) {
+				
+		//총 레시피 숫자
+		int cnt = 0;
+		
+		String sql = "";
+		sql += "SELECT count(*) FROM officialcocktail";
+		sql += " WHERE 1=1 ";
+		if( "name".equals(category) ) {
+			sql += "    AND upper(official_cocktail_name) LIKE upper(?)";
+		} else if ("detail".equals(category) ) {
+			sql += "    AND upper(official_cocktail_detail) LIKE upper(?)";
+		} else { //if (category == "ingred" )
+			sql += "    AND upper(official_cocktail_ingred) LIKE upper(?)";
+		} 
+		
+		try {
+			ps = connection.prepareStatement(sql);
+
+			//변수 채우기
+			ps.setString(1, "%" + search + "%");
+
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
 		return cnt;
 	}
 	
@@ -124,25 +164,25 @@ public class OfficialDaoImpl implements OfficialDao{
 	}
 	
 	@Override
-	public List<Official> selectSearch(Connection connection, Paging paging, String search) {
+	public List<Official> selectSearchAll(Connection connection, Paging paging, String search) {
 		
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "	SELECT ROWNUM rnum, O.* FROM (";
-	    sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote, official_write_date";	                        
-	    sql += "		FROM officialcocktail";
-	    sql += "		WHERE 1=1";
-	    sql += "		AND upper(official_cocktail_name) LIKE upper(?)";
-	    sql += "		OR upper(official_cocktail_detail) LIKE upper(?)";
-	    sql += "		OR upper(official_cocktail_ingred) LIKE upper(?)";
-	    sql += "		ORDER BY official_cocktail_no ) O";
+		sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote, official_write_date";	                        
+		sql += "		FROM officialcocktail";
+		sql += "		WHERE 1=1";
+		sql += "		AND upper(official_cocktail_name) LIKE upper(?)";
+		sql += "		OR upper(official_cocktail_detail) LIKE upper(?)";
+		sql += "		OR upper(official_cocktail_ingred) LIKE upper(?)";
+		sql += "		ORDER BY official_cocktail_no ) O";
 		sql += " 		) officialcocktail";
 		sql += " WHERE rnum BETWEEN 1 AND 10";
-	    
+		
 		//결과 저장 리스트
 		List<Official> officialList = new ArrayList<>();
-	    
-	    try {
+		
+		try {
 			ps = connection.prepareStatement(sql);
 			
 			//변수 채우기
@@ -170,9 +210,64 @@ public class OfficialDaoImpl implements OfficialDao{
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
+		
+		return officialList;
+	}
+	
+	@Override
+	public List<Official> selectSearch(Connection connection, Paging paging, String search, String category) {
+		
+		String sql = ""; //SQL 작성
+		sql += "SELECT * FROM (";
+		sql += "	SELECT ROWNUM rnum, O.* FROM (";
+	    sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote, official_write_date";	                        
+	    sql += "		FROM officialcocktail";
+	    sql += "		WHERE 1=1";
+	    if( "name".equals(category) ) {
+			sql += "		AND upper(official_cocktail_name) ";
+	    } else if ( "detail".equals(category) ) {
+			sql += "		AND upper(official_cocktail_detail) ";
+	    } else {
+			sql += "		AND upper(official_cocktail_ingred) ";
+		}
+	    sql += " 			LIKE upper(?)";
+	    sql += "		ORDER BY official_cocktail_no ) O";
+		sql += " 		) officialcocktail";
+		sql += " WHERE rnum BETWEEN 1 AND 10";
+	    
+		//결과 저장 리스트
+		List<Official> officialList = new ArrayList<>();
+	    
+	    try {
+			ps = connection.prepareStatement(sql);
+			
+			//변수 채우기
+			ps.setString(1, "%" + search + "%");
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Official official = new Official();
+				official.setOfficial_cocktail_no(rs.getInt("official_cocktail_no"));
+				official.setOfficial_cocktail_name(rs.getString("official_cocktail_name"));
+				official.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
+				official.setOfficial_cocktail_ingred(rs.getString("official_cocktail_no"));
+				official.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
+				official.setOfficial_write_date(rs.getDate("official_write_date"));
+				
+				//리스트에 official 객체로 저장
+				officialList.add(official);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
 	    		
 		return officialList;
 	}
+	
 	
 	@Override
 	public int updateHit(Connection connection, Official official_no) {

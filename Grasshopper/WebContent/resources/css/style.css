@@ -2,3 +2,50 @@ h3.semi_title {
 	text-decoration: underline;
 	font-weight: bold;
 }
+
+.container {
+	margin: 0 auto;
+	max-width: 1000px;
+	display: grid;
+	font-family: Arial;
+}
+
+.pic-container{
+	position: fixed;
+	display: inline-block;
+	left: 50%;
+	top: 8px;
+}
+
+.pic-container img {
+	width: 400px;
+	height: 400px;	
+}
+
+.btn {
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.comment-container{
+	margin-top: 50px;
+}
+
+.comment-container textarea {
+	width:98%;
+	min-height: 100px;
+	padding:10px;
+	margin-block: 10px;	
+}
+
+.comment-container input {
+	float: right;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.commnet-container input:hover {
+	text-decoration: underline;
+}

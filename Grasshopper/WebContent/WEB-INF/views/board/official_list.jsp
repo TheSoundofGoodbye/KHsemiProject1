@@ -20,7 +20,8 @@
 <!-- 검색창 -->
 <div class="search-bar">
 	<form name="searchForm" action="/official/list" method="get">
-	<select id="category" name="category">
+	<select id="category" name="category" value="${category }">
+   		<option value="all">전체</option>
    		<option value="name">이름</option>
    		<option value="detail">내용</option>
    		<option value="ingred">재료</option>

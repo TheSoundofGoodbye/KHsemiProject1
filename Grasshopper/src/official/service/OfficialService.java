@@ -1,5 +1,6 @@
 package official.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +28,10 @@ public interface OfficialService {
 	 * 특정 검색어로 조회한 Official테이블의 데이터와 curPage값을 이용해 Paging객체를 구하여 반환한다 
 	 * 
 	 * @param req - 요청정보 객체
-	 * @param search - 검색어
+	 * @param category, search - 검색범위 + 검색어
 	 * @return 페이징 계산이 완료된 Paging 객체
 	 */
-	Paging getPaging(HttpServletRequest req, String search);
+	Paging getPaging(HttpServletRequest req, String search, String category);
 	
 	/**
 	 * 레시피 목록을 조회하는 기능
@@ -46,10 +47,10 @@ public interface OfficialService {
 	 * 페이징 정보를 고려하여 조회한다
 	 * 
 	 * @param paging - 현재 페이징 정보
-	 * @param search - 검색어
+	 * @param categorySearch - 검색범위 + 검색어
 	 * @return 게시글 목록을 List<Official>형태로 가져온다
 	 */
-	List<Official> getList(Paging paging, String search);
+	List<Official> getList(Paging paging, String search, String category);
 	
 	/**
 	 * 요청파라미터 얻기

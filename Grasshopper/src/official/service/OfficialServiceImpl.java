@@ -1,6 +1,7 @@
 package official.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +39,7 @@ public class OfficialServiceImpl implements OfficialService{
 	}
 	
 	@Override
-	public Paging getPaging(HttpServletRequest req, String search) {
-		
+	public Paging getPaging(HttpServletRequest req, String search, String category) {
 		//전달 파라미터 curPage 파싱
 		String param = req.getParameter("curPage");
 		int curPage = 0;
@@ -49,8 +49,14 @@ public class OfficialServiceImpl implements OfficialService{
 			System.out.println("[CAUTION] curPage값이 null 또는 비어있습니다");
 		}
 		
+		int totalCount = 0;
+		
 		//검색어로 검색한 Offical 테이블의 반환 데이터 수(레시피 숫자)를 조회
-		int totalCount = officialDao.selectCntSearch(JDBCTemplate.getConnection(), search);
+		if( "all".equals(category) ) {
+			totalCount = officialDao.selectCntSearchAll(JDBCTemplate.getConnection(), search);
+		} else {
+			totalCount = officialDao.selectCntSearch(JDBCTemplate.getConnection(), search, category);
+		}
 		
 		//Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
@@ -65,9 +71,17 @@ public class OfficialServiceImpl implements OfficialService{
 	}
 	
 	@Override
-	public List<Official> getList(Paging paging, String search) {
-
-		return officialDao.selectSearch(JDBCTemplate.getConnection(), paging, search);
+	public List<Official> getList(Paging paging, String search, String category) {
+		
+		List<Official> list = new ArrayList<>();
+		
+		if( "all".equals(category)) {
+			list = officialDao.selectSearchAll(JDBCTemplate.getConnection(), paging, search);
+		} else {
+			list = officialDao.selectSearch(JDBCTemplate.getConnection(), paging, search, category);
+		}
+		
+		return list;
 	}
 	
 	@Override
