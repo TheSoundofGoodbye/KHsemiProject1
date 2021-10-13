@@ -178,7 +178,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		sql += "		OR upper(official_cocktail_ingred) LIKE upper(?)";
 		sql += "		ORDER BY official_cocktail_no ) O";
 		sql += " 		) officailcocktail";
-		sql += " WHERE rnum BETWEEN 1 AND 10";
+		sql += " WHERE rnum BETWEEN ? AND ?";
 		
 		//결과 저장 리스트
 		List<Official> officialList = new ArrayList<>();
@@ -190,6 +190,8 @@ public class OfficialDaoImpl implements OfficialDao{
 			ps.setString(1, "%" + search + "%");
 			ps.setString(2, "%" + search + "%");
 			ps.setString(3, "%" + search + "%");
+			ps.setInt(4, paging.getStartNo());
+			ps.setInt(5, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			
@@ -233,7 +235,7 @@ public class OfficialDaoImpl implements OfficialDao{
 	    sql += " 			LIKE upper(?)";
 	    sql += "		ORDER BY official_cocktail_no ) O";
 		sql += " 		) officailcocktail";
-		sql += " WHERE rnum BETWEEN 1 AND 10";
+		sql += " WHERE rnum BETWEEN ? AND ?";
 	    
 		//결과 저장 리스트
 		List<Official> officialList = new ArrayList<>();
@@ -243,6 +245,8 @@ public class OfficialDaoImpl implements OfficialDao{
 			
 			//변수 채우기
 			ps.setString(1, "%" + search + "%");
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			

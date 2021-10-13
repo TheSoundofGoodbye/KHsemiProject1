@@ -7,15 +7,18 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
+import custom.dao.CustomDao;
+import custom.dao.CustomDaoImpl;
+import custom.dto.Custom;
 import official.dao.OfficialDao;
 import official.dao.OfficialDaoImpl;
 import official.dto.Official;
 import util.Paging;
 
-public class OfficialServiceImpl implements OfficialService{
+public class CustomServiceImpl implements CustomService{
 	
-	//OfficialDao 객체 생성
-	private OfficialDao officialDao = new OfficialDaoImpl();
+	//CustomDao 객체 생성
+	private CustomDao customDao = new CustomDaoImpl();
 	
 	@Override
 	public Paging getPaging(HttpServletRequest req) {
@@ -30,7 +33,7 @@ public class OfficialServiceImpl implements OfficialService{
 		}
 		
 		//Offical 테이블의 총 데이터 수(레시피 숫자)를 조회
-		int totalCount = officialDao.selectCntAll(JDBCTemplate.getConnection());
+		int totalCount = customDao.selectCntAll(JDBCTemplate.getConnection());
 		
 		//Paging 객체 생성
 		Paging paging = new Paging(totalCount, curPage);
@@ -51,11 +54,12 @@ public class OfficialServiceImpl implements OfficialService{
 		
 		int totalCount = 0;
 		
-		//검색어로 검색한 Offical 테이블의 반환 데이터 수(레시피 숫자)를 조회
+		//검색어로 검색한 테이블의 반환 데이터 수(레시피 숫자)를 조회
 		if( "all".equals(category) ) {
-			totalCount = officialDao.selectCntSearchAll(JDBCTemplate.getConnection(), search);
+			totalCount = customDao.selectCntSearchAll(JDBCTemplate.getConnection(), search);
 		} else {
-			totalCount = officialDao.selectCntSearch(JDBCTemplate.getConnection(), search, category);
+			totalCount = customDao.selectCntSearch(JDBCTemplate.getConnection(), search, category);
+			//글쓴이 정보 가져오기 필요
 		}
 		
 		//Paging 객체 생성
@@ -65,58 +69,58 @@ public class OfficialServiceImpl implements OfficialService{
 	}
 	
 	@Override
-	public List<Official> getList(Paging paging) {
+	public List<Custom> getList(Paging paging) {
 
-		return officialDao.selectAll(JDBCTemplate.getConnection(), paging);
+		return customDao.selectAll(JDBCTemplate.getConnection(), paging);
 	}
 	
 	@Override
-	public List<Official> getList(Paging paging, String search, String category) {
+	public List<Custom> getList(Paging paging, String search, String category) {
 		
-		List<Official> list = new ArrayList<>();
+		List<Custom> list = new ArrayList<>();
 		
 		if( "all".equals(category)) {
-			list = officialDao.selectSearchAll(JDBCTemplate.getConnection(), paging, search);
+			list = customDao.selectSearchAll(JDBCTemplate.getConnection(), paging, search);
 		} else {
-			list = officialDao.selectSearch(JDBCTemplate.getConnection(), paging, search, category);
+			list = customDao.selectSearch(JDBCTemplate.getConnection(), paging, search, category);
 		}
 		
 		return list;
 	}
 	
 	@Override
-	public Official getOfficial_no(HttpServletRequest req) {
+	public Custom getCustom_no(HttpServletRequest req) {
 		
-		//Official 객체 생성
-		Official officialno = new Official();
+		//Custom 객체 생성
+		Custom customno = new Custom();
 		
-		//officialno 전달 파라미터 검증 - null or ""
-		String param = req.getParameter("official_no");
+		//customno 전달 파라미터 검증 - null or ""
+		String param = req.getParameter("custom_no");
 		if(param != null && !"".equals(param)) {
-			//official_no 전달 파라미터 추출
-			officialno.setOfficial_cocktail_no( Integer.parseInt(param));
+			//custom_no 전달 파라미터 추출
+			customno.setCustom_board_no(Integer.parseInt(param));
 		}
 		
-		//결과 Official 객체 반환
-		return officialno;
+		//결과 Custom 객체 반환
+		return customno;
 	}
 	
 	@Override
-	public Official view(Official official_no) {
+	public Custom view(Custom custom_no) {
 		
 		Connection connection = JDBCTemplate.getConnection();
 		
 		//[비활성] 조회수 증가 
-//		if( officialDao.updateHit(connection, official_no) == 1 ) {
+//		if( customDao.updateHit(connection, custom_no) == 1 ) {
 //			JDBCTemplate.commit(connection);
 //		} else {
 //			JDBCTemplate.rollback(connection);
 //		}
 		
 		//레시피 조회
-		Official official = officialDao.selectOfficialByOfficialno(connection, official_no);
+		Custom custom = customDao.selectCustomByCustomno(connection, custom_no);
 		
-		return official;
+		return custom;
 	}
 	
 	

@@ -26,25 +26,11 @@ public class CustomMainController extends HttpServlet {
 	
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	System.out.println("/official/main [GET]");
+    	System.out.println("/custom/main [GET]");
     	
-    	//세션 객체 생성
-    	HttpSession session = req.getSession();
+    	System.out.println("[CONSOLE] /list로 리다이렉트합니다");
     	
-    	//요청 파라미터를 전달하여 paging 객체생성
-    	Paging paging = officialService.getPaging(req);
-    	System.out.println("OfficialListController [GET] - " + paging);
-
-    	List<Official> list = officialService.getList(paging); // 페이징 정보를 입력하여 조회
-
-    	//조회결과 MODEL값 전달
-    	req.setAttribute("list", list);
-
-    	//페이징 정보 MODEL값 전달
-    	req.setAttribute("paging", paging);
-
-    	//기본적으로 default값이 주어진 official_list.jsp 로 포워딩 한다
-    	req.getRequestDispatcher("/WEB-INF/views/board/official_list.jsp").forward(req, resp);
+    	resp.sendRedirect("/custom/list");
     	
     }
 

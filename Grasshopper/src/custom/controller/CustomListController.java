@@ -10,23 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import official.dto.Official;
-import official.service.OfficialService;
-import official.service.OfficialServiceImpl;
+import custom.dto.Custom;
+import custom.service.CustomService;
+import custom.service.CustomServiceImpl;
+import custom.dto.Custom;
+import custom.service.CustomService;
+import custom.service.CustomServiceImpl;
 import util.Paging;
 
 /**
- * Servlet implementation class OfficialSearchController
+ * Servlet implementation class CustomSearchController
  */
 @WebServlet("/custom/list")
 public class CustomListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
-	OfficialService officialService = new OfficialServiceImpl();
+	CustomService customService = new CustomServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/official/list [GET]");
+		System.out.println("/custom/list [GET]");
 		
 		Paging paging;
 		
@@ -48,19 +51,13 @@ public class CustomListController extends HttpServlet {
 		//get 메소드로 넘어온 파라미터확인
 //		System.out.println("[TEST] search(get) : " + search);
 		
-//		List<Official> list = officialService.getList(paging, search); // 페이징 정보를 입력하여 조회
-				
-		//요청 파라미터를 전달하여 paging 객체생성
-//		paging = officialService.getPaging(req);
-//		list = officialService.getList(paging); // 페이징 정보를 입력하여 조회
-		
 		//페이징 객체 생성
-		paging = officialService.getPaging(req, search, category);
+		paging = customService.getPaging(req, search, category);
 		
 		//검색 결과 리스트생성
-		List<Official> list = officialService.getList(paging, search, category); // 페이징 정보를 입력하여 조회
+		List<Custom> list = customService.getList(paging, search, category); // 페이징 정보를 입력하여 조회
 		
-		System.out.println("OfficialListController [GET] - " + paging);
+		System.out.println("CustomListController [GET] - " + paging);
 			
 		//조회결과 MODEL값 전달
 		req.setAttribute("list", list);
@@ -73,12 +70,12 @@ public class CustomListController extends HttpServlet {
 		req.setAttribute("category", category);
 		
 		//포워딩
-		req.getRequestDispatcher("/WEB-INF/views/board/official_list.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/board/custom_list.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/official/list [POST] -> redirect to doGet");
+		System.out.println("/custom/list [POST] -> redirect to doGet");
 		doGet(req, resp);
 	}
 
