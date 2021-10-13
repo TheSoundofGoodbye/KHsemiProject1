@@ -92,6 +92,14 @@ public interface OfficialDao {
 	 * @return List<OfficialComment> 
 	 */
 	List<OfficialComment> selectComment(Connection connection, Paging paging, Official viewOfficial);
+	
+	/**
+	 * 코멘트 정보를 데이터베이스에 입력한다 
+	 * 
+	 * @param connection
+	 * @param officialComment
+	 */
+	int insertComment(Connection connection, OfficialComment officialComment);
 
 
 

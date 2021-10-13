@@ -78,6 +78,13 @@ public interface OfficialService {
 	 * @return OfficialComment - 코멘트 속성
 	 */
 	List<OfficialComment> getComment(Paging paging, Official viewOfficial);
+	
+	/**
+	 * 해당 게시글에 코멘트를 등록한다 
+	 * 
+	 * @param officialComment
+	 */
+	void writeComment(OfficialComment officialComment);
 
 
 

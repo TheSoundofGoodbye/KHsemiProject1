@@ -125,11 +125,19 @@ public class OfficialServiceImpl implements OfficialService{
 		
 		List<OfficialComment> comments = 
 			officialDao.selectComment(JDBCTemplate.getConnection(), paging, viewOfficial);
-		
-		
-		
 		return comments;
 	}
 	
-	
+	@Override
+	public void writeComment(OfficialComment officialComment) {
+		System.out.println("writeComment() invoked");
+		
+		Connection conn = JDBCTemplate.getConnection();
+		if( officialDao.insertComment(conn, officialComment) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
+		
 }

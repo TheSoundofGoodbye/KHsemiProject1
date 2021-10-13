@@ -21,7 +21,7 @@ public class OfficialDaoImpl implements OfficialDao{
 	public int selectCntAll(Connection connection) {
 		
 		String sql = "";
-		sql += "SELECT count(*) FROM officailcocktail";
+		sql += "SELECT count(*) FROM OFFICIALCOCKTAIL";
 		
 		//총 레시피 숫자
 		int cnt = 0;
@@ -51,7 +51,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		int cnt = 0;
 		
 		String sql = "";
-		sql += "SELECT count(*) FROM officailcocktail";
+		sql += "SELECT count(*) FROM OFFICIALCOCKTAIL";
 		sql += " WHERE 1=1 AND";
 		sql += "      upper(official_cocktail_name) LIKE upper(?)";
 		sql += "    OR upper(official_cocktail_detail) LIKE upper(?)";
@@ -87,7 +87,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		int cnt = 0;
 		
 		String sql = "";
-		sql += "SELECT count(*) FROM officailcocktail";
+		sql += "SELECT count(*) FROM OFFICIALCOCKTAIL";
 		sql += " WHERE 1=1 ";
 		if( "name".equals(category) ) {
 			sql += "    AND upper(official_cocktail_name) LIKE upper(?)";
@@ -125,9 +125,9 @@ public class OfficialDaoImpl implements OfficialDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 	    sql += " SELECT ROWNUM rnum, O.* FROM (";
-	    sql += "    SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote, official_write_date";
-	    sql += "     FROM officailcocktail ORDER BY official_cocktail_no ) O";
-	    sql += "   ) officailcocktail";
+	    sql += "    SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote";
+	    sql += "     FROM OFFICIALCOCKTAIL ORDER BY official_cocktail_no ) O";
+	    sql += "   ) OFFICIALCOCKTAIL";
 	    sql += " WHERE rnum BETWEEN ? AND ?";
 	    
 		//결과 저장 리스트
@@ -149,7 +149,6 @@ public class OfficialDaoImpl implements OfficialDao{
 				official.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
 				official.setOfficial_cocktail_ingred(rs.getString("official_cocktail_no"));
 				official.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
-				official.setOfficial_write_date(rs.getDate("official_write_date"));
 				
 				//리스트에 official 객체로 저장
 				officialList.add(official);
@@ -171,13 +170,13 @@ public class OfficialDaoImpl implements OfficialDao{
 		sql += "SELECT * FROM (";
 		sql += "	SELECT ROWNUM rnum, O.* FROM (";
 		sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote";	                        
-		sql += "		FROM officailcocktail";
+		sql += "		FROM OFFICIALCOCKTAIL";
 		sql += "		WHERE 1=1";
 		sql += "		AND upper(official_cocktail_name) LIKE upper(?)";
 		sql += "		OR upper(official_cocktail_detail) LIKE upper(?)";
 		sql += "		OR upper(official_cocktail_ingred) LIKE upper(?)";
 		sql += "		ORDER BY official_cocktail_no ) O";
-		sql += " 		) officailcocktail";
+		sql += " 		) OFFICIALCOCKTAIL";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 		
 		//결과 저장 리스트
@@ -223,7 +222,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		sql += "SELECT * FROM (";
 		sql += "	SELECT ROWNUM rnum, O.* FROM (";
 	    sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote";	                        
-	    sql += "		FROM officailcocktail";
+	    sql += "		FROM OFFICIALCOCKTAIL";
 	    sql += "		WHERE 1=1";
 	    if( "name".equals(category) ) {
 			sql += "		AND upper(official_cocktail_name) ";
@@ -234,7 +233,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		}
 	    sql += " 			LIKE upper(?)";
 	    sql += "		ORDER BY official_cocktail_no ) O";
-		sql += " 		) officailcocktail";
+		sql += " 		) OFFICIALCOCKTAIL";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 	    
 		//결과 저장 리스트
@@ -272,12 +271,12 @@ public class OfficialDaoImpl implements OfficialDao{
 	}
 	
 	
-	@Override
-	public int updateHit(Connection connection, Official official_no) {
+	@Override 
+	public int updateHit(Connection connection, Official official_no) { // 더미데이터
 
 		//SQL 작성
 		String sql = "";
-		sql += "UPDATE officailcocktail";
+		sql += "UPDATE OFFICIALCOCKTAIL";
 		sql += " SET official_cocktail_view = official_cocktail_view + 1";
 		sql += " WHERE official_cocktail_no = ?";
 
@@ -305,7 +304,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT * FROM officailcocktail";
+		sql += "SELECT * FROM OFFICIALCOCKTAIL";
 		sql += " WHERE official_cocktail_no = ?";
 
 		//결과 저장할 Board객체
@@ -393,5 +392,33 @@ public class OfficialDaoImpl implements OfficialDao{
 		}
 	    		
 		return comments;
+	}
+	
+	@Override
+	public int insertComment(Connection connection, OfficialComment officialComment) {
+		
+		String sql = "";
+		sql += "INSERT INTO official_reply(official_reply_no, official_board_no, user_no, official_reply_content, official_reply_date)";
+		sql += " VALUES ( official_reply_seq.nextval, ?, ?, ?, sysdate)";
+		
+		int res = 0;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1, officialComment.getOfficial_board_no());
+			ps.setInt(2, officialComment.getUser_no());
+			ps.setString(3, officialComment.getOfficial_reply_content());
+			
+			res = ps.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+		
 	}
 }

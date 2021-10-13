@@ -51,8 +51,11 @@
 
 		<div class="comment-container">
 			<div class="comment-input">
-				<textarea name="comment" id="" placeholder="내용을 입력해주세요"></textarea>
-				<input type="submit" name="" id="" value="댓글달기" />
+				<form action="/official/comment" method="post" name="cmtForm">
+					<textarea name="content" id="" placeholder="내용을 입력해주세요"></textarea>
+					<input type="hidden" name="board_no" value="${param.official_no }">
+					<input type="submit" name="" id="" value="댓글달기" />
+				</form>
 			</div>
 			<div class="comment-loaded">
 				<c:forEach var="c" items="${comments }">
