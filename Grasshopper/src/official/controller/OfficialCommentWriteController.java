@@ -51,7 +51,8 @@ public class OfficialCommentWriteController extends HttpServlet {
 			//전달 파라미터 입력
 			String content = req.getParameter("content"); //댓글 내용
 			int board_no = Integer.parseInt(req.getParameter("board_no")); //댓글을 달 게시글 번호
-			int user_no = (Integer)session.getAttribute("user_no"); //현재 로그인 시 회원번호 가져오기
+//			int user_no = (Integer)session.getAttribute("user_no"); //현재 로그인 시 회원번호 가져오기
+			int user_no = 2; //임시로 회원번호 부여
 						
 			//OfficialComment 객체 생성
 			OfficialComment officialComment = new OfficialComment();
@@ -68,6 +69,8 @@ public class OfficialCommentWriteController extends HttpServlet {
 			
 			//코멘트 등록 메소드
 			officialService.writeComment(officialComment);
+			
+			resp.sendRedirect("/official/view?official_no=" + board_no);
 
 		}
 }

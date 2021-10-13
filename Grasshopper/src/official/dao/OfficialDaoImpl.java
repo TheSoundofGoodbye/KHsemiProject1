@@ -350,7 +350,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 	    sql += " SELECT ROWNUM rnum, OC.* FROM (";
-	    sql += "     SELECT OC.official_reply_no, OC.official_board_no, OC.user_no, U.USER_NICKNAME, OC.board_type, OC.official_reply_content, OC.official_reply_date";
+	    sql += "     SELECT OC.official_reply_no, OC.official_board_no, OC.user_no, U.USER_NICKNAME, OC.official_reply_content, OC.official_reply_date";
 	    sql += "     FROM official_reply OC";
 	    sql += "     JOIN USER_INFO U ON U.user_no = OC.user_no";
 	    sql += "     WHERE official_board_no = ? ";
@@ -377,7 +377,6 @@ public class OfficialDaoImpl implements OfficialDao{
 				comment.setOfficial_board_no(rs.getInt("official_board_no"));
 				comment.setUser_no(rs.getInt("user_no"));
 				comment.setUser_nickname(rs.getString("user_nickname"));
-				comment.setBoard_type(rs.getString("board_type"));
 				comment.setOfficial_reply_content(rs.getString("official_reply_content"));
 				comment.setOfficial_reply_date(rs.getDate("official_reply_date"));
 				
