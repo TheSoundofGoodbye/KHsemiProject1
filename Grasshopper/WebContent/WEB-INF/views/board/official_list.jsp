@@ -28,9 +28,6 @@
 
 <div class="main">
 
-<br>
-<br><br><br><br><br>
-
 <!-- 카드보드형태 -->
 <div class="cards" id="card">
 	<c:forEach var="o" items="${list }">
@@ -56,8 +53,6 @@
 	</c:forEach>
 </div>
 </div>
-
-
 
 <%-- 맨위로 버튼 --%>
 <button id="topButton" onclick="toTheTop()">맨 위로</button>
@@ -85,6 +80,5 @@ function toTheTop(){
 }
 </script>
 
-
+<c:import url="/WEB-INF/views/layout/official_paging.jsp" />
 <c:import url="/WEB-INF/views/layout/footer.jsp" />    
-

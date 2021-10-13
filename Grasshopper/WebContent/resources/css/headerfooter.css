@@ -115,7 +115,7 @@ h1 {
 }
 
 footer {
-	display: flex;
+	display: flex !important;
 	background: #1f1f1f;
 	padding: 30px;
 	align-items: center;
