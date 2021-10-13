@@ -1,18 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<title>Insert title here</title>
+<c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>    
 <link rel="stylesheet" type="text/css" href="/resources/css/cards.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+      
+<!-- 부트스트랩 3.3.2 -->
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>      
       
 </head>
 <body>
@@ -92,29 +98,7 @@ function toTheTop(){
 	window.scrollTo(0,0);
 }
 
-<!-- 검색어 하이라이트 -->
-//검색어 파라메터 받기
-// const urlParams = new URLSearchParams(window.location.search);
-// const search = urlParams.get('search');
-
-//파라메터 확인
-// console.log(search);
-
-//검색어를 <span class='highlight' >검색어</span>으로 교체하는 function highlight(text)
-//그림파일까지 바꿔버려서 일단 이 기능은추후 개발하는걸로
-// function highlight(text) {
-// 	var inputText = document.getElementsByClassName('card_title');
-// 	var innerHTML = inputText.innerHTML;
-// 	var index = innerHTML.indexOf(text);
-// 	if (index >= 0) {
-// 		innerHTML = innerHTML.substring(0, index)
-// 				+ "<span class='highlight'>"
-// 				+ innerHTML.substring(index, index + text.length)
-// 				+ "</span>" + innerHTML.substring(index + text.length);
-// 		inputText.innerHTML = innerHTML;
-// 	}
-// }
-// window.highlight(search)
 </script>
 
-</html>
+<c:import url="/WEB-INF/views/layout/custom_paging.jsp" />
+<c:import url="/WEB-INF/views/layout/footer.jsp" /> 
