@@ -16,19 +16,30 @@
 </head>
 <body>
 
+
+
+
 	<div class="container">
 	<div class="content-container">
 		<div class="title-container">
 			<h1 class="entry-title">${viewOfficial.official_cocktail_name }</h1>
-			<p class="et_pb_title_meta_container">
-				<a href="https://iba-world.com/category/iba-cocktails/"
-					rel="category tag">IBA Cocktail</a>
+			<p class="title-sub-container">
+				추천수 : ${viewOfficial.official_cocktail_vote }
+				
 			</p>
 		</div>
 	</div>
 	
+	<div class="pic-container">
+		<img src="/resources/img/${viewOfficial.official_cocktail_name }.jpg" />
+	</div>
+	
 	<div>
 		<div class="body-container">
+			<h3 class="semi_title">
+				새부사항
+			</h3>
+			<p>${viewOfficial.official_cocktail_detail }</p>
 			<h3 class="semi_title">
 				재료
 			</h3>
@@ -36,23 +47,20 @@
 				items="${fn:split(viewOfficial.official_cocktail_ingred,',') }">
 					${split } <br>
 			</c:forEach>
-			<h3 class="semi_title">
-				새부사항
-			</h3>
-			<p>${viewOfficial.official_cocktail_detail }</p>
 		</div>
 		
 		<div class="comment-container">
-			<textarea name="comment" id="" placeholder="내용을 입력해주세요"></textarea>
-			<input type="submit" name="" id="" value="submit" />
+			<div class="comment-input">
+				<textarea name="comment" id="" placeholder="내용을 입력해주세요"></textarea>
+				<input type="submit" name="" id="" value="댓글달기" />
+			</div>
+			<div class="comment-loaded">
+			</div>
 		</div>
 		
 		<div class="text-center">
-			<button id="btnList" class="btn">목록</button>
+			<button id="btnList" class="btn">목록으로</button>
 		</div>
-	</div>
-	<div class="pic-container">
-		<img src="/resources/img/${viewOfficial.official_cocktail_name }.jpg" />
 	</div>
 	</div>
 

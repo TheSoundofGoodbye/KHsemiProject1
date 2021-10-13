@@ -10,22 +10,36 @@ h3.semi_title {
 	font-family: Arial;
 }
 
+.content-container{
+	background-color: #ccc;
+}
+
+.title-container{
+	margin: 30px;
+}
+
+.title-sub-container {
+	
+}
+
 .pic-container{
-	position: fixed;
 	display: inline-block;
 	left: 50%;
 	top: 8px;
+	text-align: center;
+	margin-top: 30px;
 }
 
 .pic-container img {
-	width: 400px;
-	height: 400px;	
+	border-radius: 5px;
 }
 
 .btn {
 	padding: 10px;
 	border-radius: 5px;
 	cursor: pointer;
+	width: 150px;
+    font-size: 20px;
 }
 
 .comment-container{
@@ -33,10 +47,11 @@ h3.semi_title {
 }
 
 .comment-container textarea {
-	width:98%;
+	width:85%;
 	min-height: 100px;
 	padding:10px;
 	margin-block: 10px;	
+	border-radius: 5px;
 }
 
 .comment-container input {
@@ -44,8 +59,14 @@ h3.semi_title {
 	padding: 10px;
 	border-radius: 5px;
 	cursor: pointer;
+	width: 10%;
+    margin-top: 10px;
 }
 
 .commnet-container input:hover {
 	text-decoration: underline;
+}
+
+.text-center {
+	text-align: center;
 }
