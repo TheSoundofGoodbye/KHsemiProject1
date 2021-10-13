@@ -35,9 +35,6 @@
 
 <div class="main">
 
-<br>
-<br><br><br><br><br>
-
 <!-- 카드보드형태 -->
 <div class="cards" id="card">
 	<c:forEach var="c" items="${list }">

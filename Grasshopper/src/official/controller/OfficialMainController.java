@@ -30,10 +30,10 @@ public class OfficialMainController extends HttpServlet {
     	System.out.println("/official/main [GET]");
     	System.out.println("[CONSOLE] /list로 리다이렉트합니다");
     	
-    	resp.sendRedirect("/official/list");
+//    	resp.sendRedirect("/official/list");
 
     	//기본적으로 default값이 주어진 official_list.jsp 로 포워딩 한다
-//    	req.getRequestDispatcher("/WEB-INF/views/board/official_list.jsp").forward(req, resp);
+    	req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
     	
     }
 
