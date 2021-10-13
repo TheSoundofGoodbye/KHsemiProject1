@@ -1,4 +1,4 @@
-package official.service;
+package custom.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import official.dto.Official;
-import official.dto.OfficialComment;
 import util.Paging;
 
 public interface OfficialService {
@@ -15,7 +14,7 @@ public interface OfficialService {
 	 * 페이징 객체 생성
 	 * 
 	 * 요청 파라미터 curPage를 구한다
-	 * 전체 테이블과 curPage값을 이용해 Paging객체를 구하여 반환한다 
+	 * 전체 Official테이블과 curPage값을 이용해 Paging객체를 구하여 반환한다 
 	 * 
 	 * @param req - 요청정보 객체
 	 * @return 페이징 계산이 완료된 Paging 객체
@@ -69,15 +68,6 @@ public interface OfficialService {
 	 * @return Official - 조회된 레시피
 	 */
 	Official view(Official official_no);
-	
-	/**
-	 * 전달된 게시글 번호에 연관된 댓글들을 불러온다 
-	 * 
-	 * @param viewOfficial
-	 * @param paging
-	 * @return OfficialComment - 코멘트 속성
-	 */
-	List<OfficialComment> getComment(Paging paging, Official viewOfficial);
 
 
 

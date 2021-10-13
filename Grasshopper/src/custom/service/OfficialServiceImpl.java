@@ -1,4 +1,4 @@
-package official.service;
+package custom.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import common.JDBCTemplate;
 import official.dao.OfficialDao;
 import official.dao.OfficialDaoImpl;
 import official.dto.Official;
-import official.dto.OfficialComment;
 import util.Paging;
 
 public class OfficialServiceImpl implements OfficialService{
@@ -120,16 +119,7 @@ public class OfficialServiceImpl implements OfficialService{
 		return official;
 	}
 	
-	@Override
-	public List<OfficialComment> getComment(Paging paging, Official viewOfficial) {
-		
-		List<OfficialComment> comments = 
-			officialDao.selectComment(JDBCTemplate.getConnection(), paging, viewOfficial);
-		
-		
-		
-		return comments;
-	}
+	
 	
 	
 }

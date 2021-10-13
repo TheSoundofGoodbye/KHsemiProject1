@@ -48,16 +48,25 @@
 					${split } <br>
 			</c:forEach>
 		</div>
-		
+
 		<div class="comment-container">
 			<div class="comment-input">
 				<textarea name="comment" id="" placeholder="내용을 입력해주세요"></textarea>
 				<input type="submit" name="" id="" value="댓글달기" />
 			</div>
 			<div class="comment-loaded">
+				<c:forEach var="c" items="${comments }">
+					<div class="comment">
+						<div class="comment">
+							닉네임 : ${c.user_nickname } <br>
+							댓글내용: ${c.official_reply_content }<br>
+							작성일시: ${c.official_reply_date }<br>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
-		
+
 		<div class="text-center">
 			<button id="btnList" class="btn">목록으로</button>
 		</div>

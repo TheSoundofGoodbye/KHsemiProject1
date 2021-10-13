@@ -1,11 +1,10 @@
-package official.dao;
+package custom.dao;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import official.dto.Official;
-import official.dto.OfficialComment;
 import util.Paging;
 
 public interface OfficialDao {
@@ -82,16 +81,6 @@ public interface OfficialDao {
 	 * @return Official - 조회된 결과 Official객체
 	 */
 	Official selectOfficialByOfficialno(Connection connection, Official official_no);
-	
-	/**
-	 * 특정 게시글의 코멘트들을 조회하여 반환한다
-	 * 
-	 * @param connection - DB연결객체
-	 * @param paging - 페이징 객체
-	 * @param viewOfficial - 조회할 게시글 객체
-	 * @return List<OfficialComment> 
-	 */
-	List<OfficialComment> selectComment(Connection connection, Paging paging, Official viewOfficial);
 
 
 

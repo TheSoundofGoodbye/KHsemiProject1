@@ -1,7 +1,6 @@
-package official.controller;
+package custom.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +12,12 @@ import official.dto.Official;
 import official.dto.OfficialComment;
 import official.service.OfficialService;
 import official.service.OfficialServiceImpl;
-import util.Paging;
 
 /**
  * Servlet implementation class OfficialViewController
  */
-@WebServlet("/official/view")
-public class OfficialViewController extends HttpServlet {
+@WebServlet("/custom/view")
+public class CustomViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//서비스 객체 생성
@@ -38,28 +36,20 @@ public class OfficialViewController extends HttpServlet {
 		//official 객체 전달 테스트
 //		System.out.println("[TEST] viewOFficial : " + viewOfficial);
 		
-		//특정 레시피 조회 MODEL 결과 전달
+		//특정 레시피 조회결과 MODEL값 전달
 		req.setAttribute("viewOfficial", viewOfficial);
 		
 		//-------------------------------
 		//user_no로 유저정보 조회 및 전달 (오피셜 레시피에선 필요하지 않음)
 //		req.setAttribute("nick", boardService.getNick(viewOfficial));
 		
-		//댓글 페이징 객체 생성
-		Paging pagingComment = officialService.getPaging(req);
-		
-		//검색 결과 리스트생성
-		List<OfficialComment> comments = officialService.getComment(pagingComment, viewOfficial); // 페이징 정보를 입력하여 조회
-		
-		System.out.println("OfficialListController [GET] - " + pagingComment);
-				
-		//댓글 조회  MODEL결과 전달
-		req.setAttribute("comments", comments);
-		
+		//댓글정보 조회
+//		OfficialComment comments = officialService.getComment(viewOfficial;)
+
 		//첨부파일 정보 조회 (오피셜에선 필요하지 않음)
 //		BoardFile boardFile = boardService.viewFile(viewOfficial);
 
-		//첨부파일 정보 MODEL결과 전달 (오피셜에선 필요하지 않음)
+		//첨부파일 정보 MODEL값 전달 (오피셜에선 필요하지 않음)
 //		req.setAttribute("boardFile", boardFile);
 	
 
