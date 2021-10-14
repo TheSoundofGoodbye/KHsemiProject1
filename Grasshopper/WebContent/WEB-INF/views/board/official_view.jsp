@@ -65,7 +65,10 @@
 						${c.official_reply_content }<br> 작성일시:
 						${c.official_reply_date }<br>
 						<c:if test="${c.user_no == sessionScope.user_no }">
-							<button class="comment-button">삭제하기</button>
+							<form action="/official/comment/delete" method="get">
+							<input type="hidden" name="official_reply_no" value="${c.official_reply_no }">
+							<button type="submit" class="comment-button">삭제하기</button>
+							</form>
 							<button type="button" class="comment-button"
 								onclick="updateCommentShow('${c.official_reply_no}')">수정하기</button>
 						</c:if>

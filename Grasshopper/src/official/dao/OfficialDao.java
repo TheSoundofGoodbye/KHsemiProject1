@@ -109,6 +109,15 @@ public interface OfficialDao {
 	 * @return
 	 */
 	int updateComment(Connection connection, OfficialComment officialComment);
+	
+	/**
+	 * 해당 코멘트 데이터를 삭제한다 (번호는 남긴다)
+	 *  
+	 * @param connection
+	 * @param officialComment
+	 * @return
+	 */
+	int delete(Connection connection, OfficialComment officialComment);
 
 
 

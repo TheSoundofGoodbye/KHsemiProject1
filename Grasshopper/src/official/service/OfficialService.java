@@ -92,6 +92,13 @@ public interface OfficialService {
 	 * @param officialComment
 	 */
 	void updateComment(OfficialComment officialComment);
+	
+	/**
+	 * 등록된 코멘트를삭제한다
+	 * 
+	 * @param officialComment
+	 */
+	void deleteComment(OfficialComment officialComment);
 
 
 

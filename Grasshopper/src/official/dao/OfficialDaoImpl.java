@@ -447,4 +447,29 @@ public class OfficialDaoImpl implements OfficialDao{
 		
 		return result;
 	}
+	
+	@Override
+	public int delete(Connection connection, OfficialComment officialComment) {
+		String sql = "";
+		sql += "DELETE FROM official_reply";
+		sql += " WHERE official_reply_no = ?";
+		
+		//수행결과 변경된 row num
+		int result = 0;
+
+		try {
+			ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, officialComment.getOfficial_reply_no());
+
+			result = ps.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
+	}
 }

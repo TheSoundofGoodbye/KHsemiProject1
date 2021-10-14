@@ -157,5 +157,21 @@ public class OfficialServiceImpl implements OfficialService{
 		}
 		
 	}
+	
+	@Override
+	public void deleteComment(OfficialComment officialComment) {
+		
+		Connection connection = JDBCTemplate.getConnection();
+		
+		//게시글 데이터 delete
+		if( officialDao.delete(connection, officialComment) > 0 ) {
+			//게시글 삭제 성공 시
+			System.out.println("[DELETE] 댓글 삭제 성공");
+			JDBCTemplate.commit(connection);
+		} else {
+			System.out.println("[ERROR] 댓글 삭제 실패");
+			JDBCTemplate.rollback(connection);
+		}
+	}
 		
 }
