@@ -27,8 +27,12 @@ public class CustomMainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     	System.out.println("/custom/main [GET]");
-    	
     	System.out.println("[CONSOLE] /list로 리다이렉트합니다");
+
+    	//세션 객체 생성
+		HttpSession session = req.getSession();
+		//세션 Attribute에 user_no 임의로 지정 (테스트용)
+		session.setAttribute("user_no", 2);
     	
     	resp.sendRedirect("/custom/list");
     	

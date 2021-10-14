@@ -19,10 +19,12 @@ import common.JDBCTemplate;
 import custom.dao.CustomDao;
 import custom.dao.CustomDaoImpl;
 import custom.dto.Custom;
+import custom.dto.CustomComment;
 import custom.dto.CustomFile;
 import official.dao.OfficialDao;
 import official.dao.OfficialDaoImpl;
 import official.dto.Official;
+import official.dto.OfficialComment;
 import util.Paging;
 
 public class CustomServiceImpl implements CustomService{
@@ -459,4 +461,59 @@ public class CustomServiceImpl implements CustomService{
 		}
 		
 	}
+		
+	@Override
+	public List<CustomComment> getComment(Paging paging, Custom viewCustom) {
+		
+		List<CustomComment> comments = 
+			customDao.selectComment(JDBCTemplate.getConnection(), paging, viewCustom);
+		return comments;
+	}
+	
+	@Override
+	public void writeComment(CustomComment customComment) {
+		System.out.println("writeComment() invoked");
+		
+		Connection conn = JDBCTemplate.getConnection();
+		if( customDao.insertComment(conn, customComment) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}
+	
+	@Override
+	public void updateComment(CustomComment customComment) {
+		
+		Connection connection = JDBCTemplate.getConnection();
+		
+		int result = customDao.updateComment(connection, customComment);
+		
+		//result 결과에 따라 commit, rollback
+		if(result == 1) {
+			System.out.println("수정 commit");
+			JDBCTemplate.commit(connection);
+		} else {
+			System.out.println("수정 실패");
+			JDBCTemplate.rollback(connection);				
+		}
+		
+	}
+	
+	@Override
+	public void deleteComment(CustomComment customComment) {
+		
+		Connection connection = JDBCTemplate.getConnection();
+		
+		//게시글 데이터 delete
+		if( customDao.delete(connection, customComment) > 0 ) {
+			//게시글 삭제 성공 시
+			System.out.println("[DELETE] 댓글 삭제 성공");
+			JDBCTemplate.commit(connection);
+		} else {
+			System.out.println("[ERROR] 댓글 삭제 실패");
+			JDBCTemplate.rollback(connection);
+		}
+	}
+	
 }

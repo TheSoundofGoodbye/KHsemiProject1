@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import custom.dto.Custom;
+import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import official.dto.OfficialComment;
 import custom.dto.Custom;
 import util.Paging;
 
@@ -148,11 +150,40 @@ public interface CustomDao {
 	 */
 	int delete(Connection connection, Custom custom);
 
+	/**
+	 * 코멘트 정보를 데이터베이스에 입력한다 
+	 * 
+	 * @param connection
+	 * @param customComment
+	 */
+	int insertComment(Connection connection, CustomComment customComment);
+	
+	/**
+	 * 데이터베이스의 코멘트 정보를 수정한다
+	 * 
+	 * @param connection
+	 * @param customComment
+	 * @return
+	 */
+	int updateComment(Connection connection, CustomComment customComment);
+	
+	/**
+	 * 해당 코멘트 데이터를 삭제한다 
+	 *  
+	 * @param connection
+	 * @param customComment
+	 * @return
+	 */
+	int delete(Connection connection, CustomComment customComment);
 
-
-
-
-
-
+	/**
+	 * 특정 게시글의 코멘트들을 조회하여 반환한다
+	 * 
+	 * @param connection - DB연결객체
+	 * @param paging - 페이징 객체
+	 * @param viewCustom - 조회할 게시글 객체
+	 * @return List<CustomComment> 
+	 */
+	List<CustomComment> selectComment(Connection connection, Paging paging, Custom viewCustom);
 
 }

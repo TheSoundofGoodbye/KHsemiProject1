@@ -9,7 +9,9 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import custom.dto.Custom;
+import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import official.dto.OfficialComment;
 import custom.dto.Custom;
 import util.Paging;
 
@@ -616,4 +618,137 @@ public class CustomDaoImpl implements CustomDao{
 		
 		return res;
 	}
+	
+	@Override
+	public List<CustomComment> selectComment(Connection connection, Paging paging, Custom viewCustom) {
+		
+		int board_no = viewCustom.getCustom_board_no();
+		
+		String sql = ""; //SQL 작성
+		sql += "SELECT * FROM (";
+	    sql += " SELECT ROWNUM rnum, OC.* FROM (";
+	    sql += "     SELECT OC.custom_reply_no, OC.custom_board_no, OC.user_no, U.USER_NICKNAME, OC.custom_reply_content, OC.custom_reply_date";
+	    sql += "     FROM custom_reply OC";
+	    sql += "     JOIN USER_INFO U ON U.user_no = OC.user_no";
+	    sql += "     WHERE custom_board_no = ? ";
+	    sql += "	 ORDER BY custom_reply_no ) OC";
+	    sql += "   ) custom_reply";
+	    sql += " WHERE rnum BETWEEN ? AND ?";
+	    
+		//결과 저장 리스트
+		List<CustomComment> comments = new ArrayList<>();
+	    
+	    try {
+			ps = connection.prepareStatement(sql);
+			
+			//변수 채우기
+			ps.setInt(1, board_no);
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				CustomComment comment = new CustomComment();
+				comment.setCustom_reply_no(rs.getInt("custom_reply_no"));
+				comment.setCustom_board_no(rs.getInt("custom_board_no"));
+				comment.setUser_no(rs.getInt("user_no"));
+				comment.setUser_nickname(rs.getString("user_nickname"));
+				comment.setCustom_reply_content(rs.getString("custom_reply_content"));
+				comment.setCustom_reply_date(rs.getDate("custom_reply_date"));
+				
+				//리스트에 custom 객체로 저장
+				comments.add(comment);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+	    		
+		return comments;
+	}
+	
+	@Override
+	public int insertComment(Connection connection, CustomComment customComment) {
+		
+		String sql = "";
+		sql += "INSERT INTO custom_reply(custom_reply_no, custom_board_no, user_no, custom_reply_content, custom_reply_date)";
+		sql += " VALUES ( custom_reply_seq.nextval, ?, ?, ?, sysdate)";
+		
+		int res = 0;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1, customComment.getCustom_board_no());
+			ps.setInt(2, customComment.getUser_no());
+			ps.setString(3, customComment.getCustom_reply_content());
+			
+			res = ps.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return res;
+	}
+	
+	@Override
+	public int updateComment(Connection connection, CustomComment customComment) {
+		
+		String sql = "";
+		sql += "UPDATE custom_reply SET";
+		sql += " custom_reply_content = ?";
+		sql += " WHERE custom_reply_no = ?";
+		
+		//수행결과 변수
+		int result = 0;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setString(1, customComment.getCustom_reply_content());
+			ps.setInt(2, customComment.getCustom_reply_no());
+			
+			result = ps.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("Update 수행 결과 :" + result);
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int delete(Connection connection, CustomComment customComment) {
+		String sql = "";
+		sql += "DELETE FROM custom_reply";
+		sql += " WHERE custom_reply_no = ?";
+		
+		//수행결과 변경된 row num
+		int result = 0;
+
+		try {
+			ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, customComment.getCustom_reply_no());
+
+			result = ps.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
+	}
+	
+	
 }

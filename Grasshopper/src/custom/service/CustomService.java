@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import custom.dto.Custom;
+import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import official.dto.OfficialComment;
 import util.Paging;
 
 public interface CustomService {
@@ -108,6 +110,35 @@ public interface CustomService {
 	 */
 	void delete(Custom custom);
 
+	/**
+	 * 해당 게시글에 코멘트를 등록한다 
+	 * 
+	 * @param customComment
+	 */
+	void writeComment(CustomComment customComment);
+
+	/**
+	 * 등록된 코멘트를 수정한다 
+	 * 
+	 * @param customComment
+	 */
+	void updateComment(CustomComment customComment);
+	
+	/**
+	 * 등록된 코멘트를삭제한다
+	 * 
+	 * @param customComment
+	 */
+	void deleteComment(CustomComment customComment);
+
+	/**
+	 * 전달된 게시글 번호에 연관된 댓글들을 불러온다 
+	 * 
+	 * @param viewCustom
+	 * @param paging
+	 * @return CustomComment - 코멘트 속성
+	 */
+	List<CustomComment> getComment(Paging paging, Custom viewCustom);
 
 
 }

@@ -61,7 +61,7 @@
 		</div>
 
 		<div class="comment-container">
-			<div class="comment-input">
+			<div class="comment-input comment-show">
 				<form action="/custom/comment/write" method="post" name="cmtForm">
 					<textarea name="content" id="textarea"
 						placeholder="내용을 입력해주세요 (200자)"></textarea>
