@@ -36,20 +36,30 @@ public class OfficialCommentUpdateController extends HttpServlet {
 		//세션 객체 생성
 		HttpSession session = req.getSession();
 
+		//입력 문자 인코딩 한글처리
+		req.setCharacterEncoding("UTF-8");
+
+		//응답페이지 문자 인코딩
+		resp.setContentType("text/html; charset=UTF-8");
+
 		OfficialComment officialComment = new OfficialComment();
 		
 		//수정할 comment의 reply_no 수신
 		officialComment.setOfficial_reply_no(Integer.parseInt(req.getParameter("official_reply_no")));
+		officialComment.setOfficial_reply_content(req.getParameter("official_reply_content"));
+		
 
 		System.out.println(officialComment);
 		
 		//코멘트 업데이트
-//		officialSevice.updateComment(officialComment);
+		officialService.updateComment(officialComment);
 		
 		//코멘트+파일업데이트 (disabled)
 //		boardService.update(req, resp);
 		
-		resp.sendRedirect("/board/list");
+		System.out.println(req.getHeader("Referer"));
+		
+		resp.sendRedirect(req.getHeader("Referer"));
 		
 	}
 }

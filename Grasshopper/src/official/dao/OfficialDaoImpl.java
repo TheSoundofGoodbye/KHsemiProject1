@@ -416,8 +416,35 @@ public class OfficialDaoImpl implements OfficialDao{
 		} finally {
 			JDBCTemplate.close(ps);
 		}
-		
 		return res;
+	}
+	
+	@Override
+	public int updateComment(Connection connection, OfficialComment officialComment) {
 		
+		String sql = "";
+		sql += "UPDATE official_reply SET";
+		sql += " official_reply_content = ?";
+		sql += " WHERE official_reply_no = ?";
+		
+		//수행결과 변수
+		int result = 0;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setString(1, officialComment.getOfficial_reply_content());
+			ps.setInt(2, officialComment.getOfficial_reply_no());
+			
+			result = ps.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("Update 수행 결과 :" + result);
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
 	}
 }

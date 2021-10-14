@@ -72,7 +72,7 @@
 					</div>
 					<div class="comment-input comment-hide" id="comment-input${ c.official_reply_no }">
 						<form action="/official/comment/update" method="post" name="cmtUpdate">
-							<textarea name="content" id="textarea">${c.official_reply_content }</textarea>
+							<textarea name="official_reply_content" id="textarea">${c.official_reply_content }</textarea>
 							<input type="hidden" name="official_reply_no" value="${c.official_reply_no }">
 							<button type="submit" class="comment-button" name="" id="comment-update-button">수정확인</button>
 							<button type="button" class="comment-button" name="" id="comment-cancel-button"

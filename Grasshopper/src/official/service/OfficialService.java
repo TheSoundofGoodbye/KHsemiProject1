@@ -85,6 +85,13 @@ public interface OfficialService {
 	 * @param officialComment
 	 */
 	void writeComment(OfficialComment officialComment);
+	
+	/**
+	 * 등록된 코멘트를 수정한다 
+	 * 
+	 * @param officialComment
+	 */
+	void updateComment(OfficialComment officialComment);
 
 
 

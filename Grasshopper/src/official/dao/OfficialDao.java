@@ -100,6 +100,15 @@ public interface OfficialDao {
 	 * @param officialComment
 	 */
 	int insertComment(Connection connection, OfficialComment officialComment);
+	
+	/**
+	 * 데이터베이스의 코멘트 정보를 수정한다
+	 * 
+	 * @param connection
+	 * @param officialComment
+	 * @return
+	 */
+	int updateComment(Connection connection, OfficialComment officialComment);
 
 
 

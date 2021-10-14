@@ -139,5 +139,23 @@ public class OfficialServiceImpl implements OfficialService{
 			JDBCTemplate.rollback(conn);
 		}
 	}
+	
+	@Override
+	public void updateComment(OfficialComment officialComment) {
+		
+		Connection connection = JDBCTemplate.getConnection();
+		
+		int result = officialDao.updateComment(connection, officialComment);
+		
+		//result 결과에 따라 commit, rollback
+		if(result == 1) {
+			System.out.println("수정 commit");
+			JDBCTemplate.commit(connection);
+		} else {
+			System.out.println("수정 실패");
+			JDBCTemplate.rollback(connection);				
+		}
+		
+	}
 		
 }
