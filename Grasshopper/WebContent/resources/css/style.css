@@ -40,7 +40,8 @@ h3.semi_title {
 }
 
 .comment-container{
-	margin-top: 50px;
+	margin-top: 50px !important;
+	margin-bottom: 80px !important;
 }
 
 .comment-container textarea {
