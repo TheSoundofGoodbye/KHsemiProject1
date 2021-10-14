@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import custom.dto.Custom;
+import custom.dto.CustomFile;
+import custom.service.CustomService;
+import custom.service.CustomServiceImpl;
 import official.dto.Official;
 import official.dto.OfficialComment;
 import official.service.OfficialService;
@@ -21,43 +25,36 @@ public class CustomViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//서비스 객체 생성
-	OfficialService officialService = new OfficialServiceImpl();
+	CustomService customService = new CustomServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/official/view [GET]");
+		System.out.println("/custom/view [GET]");
 		
-		//전달 파라미터 얻기 - official_cocktail_no
-		Official official_no = officialService.getOfficial_no(req);
-	
+		//전달파라미터 얻기 - custom_board_no
+		Custom custom_board_no = customService.getCustom_no(req);
+		
 		//상세보기 결과 조회
-		Official viewOfficial = officialService.view(official_no);
+		Custom viewCustom = customService.view(custom_board_no);
 		
-		//official 객체 전달 테스트
-//		System.out.println("[TEST] viewOFficial : " + viewOfficial);
+		//조회결과 MODEL값 전달
+		req.setAttribute("viewCustom", viewCustom);
 		
-		//특정 레시피 조회결과 MODEL값 전달
-		req.setAttribute("viewOfficial", viewOfficial);
+		//데이터 값 체크
+		System.out.println("viewCustom.getUser_no() : " + viewCustom.getUser_no());
 		
-		//-------------------------------
-		//user_no로 유저정보 조회 및 전달 (오피셜 레시피에선 필요하지 않음)
-//		req.setAttribute("nick", boardService.getNick(viewOfficial));
+		//닉네임 전달
+		req.setAttribute("nick", customService.getNick(viewCustom));
 		
-		//댓글정보 조회
-//		OfficialComment comments = officialService.getComment(viewOfficial;)
-
-		//첨부파일 정보 조회 (오피셜에선 필요하지 않음)
-//		BoardFile boardFile = boardService.viewFile(viewOfficial);
-
-		//첨부파일 정보 MODEL값 전달 (오피셜에선 필요하지 않음)
-//		req.setAttribute("boardFile", boardFile);
-	
-
+		//첨부파일 정보 조회
+		CustomFile customFile = customService.viewFile(viewCustom);
+		
+		//첨부파일 정보 MODEL값 전달
+		req.setAttribute("customFile", customFile);
+		
 		//VIEW 지정 및 응답 - forward
-		req.getRequestDispatcher("/WEB-INF/views/board/official_view.jsp").forward(req, resp);	
-		
+		req.getRequestDispatcher("/WEB-INF/views/board/custom_view.jsp").forward(req, resp);		
+
 	}
-	
-	
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import custom.dto.Custom;
+import custom.dto.CustomFile;
 import util.Paging;
 
 public interface CustomService {
@@ -76,6 +77,29 @@ public interface CustomService {
 	 * 
 	 */
 	void write(HttpServletRequest req);
+	
+	/**
+	 * Custom 객체의 user_no 를 이용한 닉네임 조회
+	 * 
+	 * @param viewCustom - 조회할 게시글 정보
+	 * @return String - 게시글 작성자의 닉네임
+	 */
+	String getNick(Custom viewCustom);
+	
+	/**
+	 * 첨부파일 정보 조회
+	 * 
+	 * @param viewCustom - 첨부파일과 연결된 게시글번호를 포함한 DTO객체
+	 * @return CustomFile - 첨부파일 정보 DTO객체
+	 */
+	CustomFile viewFile(Custom viewCustom);
+	
+	/**
+	 * 게시글 수정
+	 * 
+	 * @param req - 요청 정보 객체
+	 */
+	void update(HttpServletRequest req);
 
 
 

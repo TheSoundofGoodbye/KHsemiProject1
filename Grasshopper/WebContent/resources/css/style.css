@@ -12,7 +12,13 @@ h3.semi_title {
 
 .content-container{
 	background-color: rgba(100, 149, 237, 0.3);
-	margin-bottom: 80px !important;
+	margin-bottom: 30px !important;
+}
+.body-container p {
+	min-height: 200px;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid grey;
 }
 
 .title-container{

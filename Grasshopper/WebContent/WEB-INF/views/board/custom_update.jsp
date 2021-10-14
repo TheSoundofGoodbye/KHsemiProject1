@@ -72,14 +72,14 @@ $(document).ready(function() {
 	</div>
 
 	<div class="content-container">
-		<form action="/custom/write" method="post" name="cmtForm"
-			enctype="multipart/form-data" >
+		<form action="/custom/update" method="post" name="cmtForm" enctype="multipart/form-data" >
+		<input type="hidden" name="custom_board_no" value="${updateCustom.custom_board_no }" />
 			<div class="title-container">
-				<input type="text" name="custom_board_title" placeholder="제목을 입력하세요" style="width:100%;font-size: 24px;" />
+				<input type="text" name="custom_board_title" value="${updateCustom.custom_board_title }" style="width:100%;font-size: 24px;" />
 			</div>
 
 			<div class="body-container">
-				<textarea name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
+				<textarea name="content" id="content" placeholder="내용을 입력해주세요">${updateCustom.custom_board_content }</textarea>
 				<input type="hidden" name="user_no" value="${param.user_no }">
 			</div>
 			<div class="attachment-container">

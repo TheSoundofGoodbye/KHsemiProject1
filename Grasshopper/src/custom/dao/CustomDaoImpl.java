@@ -341,10 +341,7 @@ public class CustomDaoImpl implements CustomDao{
 
 				//결과값 한 행 처리
 				custom.setCustom_board_no(rs.getInt("custom_board_no"));
-				custom.setBoard_type(rs.getString("board_type"));
 				custom.setUser_no(rs.getInt("user_no"));
-				custom.setUser_nickname(rs.getString("user_nickname"));
-				custom.setAttach_no(rs.getInt("attach_no"));
 				custom.setCustom_board_title(rs.getString("custom_board_title"));
 				custom.setCustom_board_content(rs.getString("custom_board_content"));
 				custom.setCustom_board_date(rs.getDate("custom_board_date"));
@@ -429,7 +426,7 @@ public class CustomDaoImpl implements CustomDao{
 
 		String sql = "";
 		sql += "INSERT INTO CUSTOM_BOARD_ATTACHMENT ( ATTACHMENT_NO, CUSTOM_BOARD_NO, ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE)";
-		sql += " VALUES (USTOM_BOARD_ATTACHMENT_seq.nextval,?,?,?,?)";
+		sql += " VALUES (CUSTOM_BOARD_ATTACHMENT_seq.nextval,?,?,?,?)";
 
 		int res = 0;
 
@@ -452,6 +449,112 @@ public class CustomDaoImpl implements CustomDao{
 		return res;
 	}
 	
+	@Override
+	public String selectNickByUserno(Connection connection, Custom viewCustom) {
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT USER_NICKNAME FROM USER_INFO";
+		sql += " WHERE user_no = ?";
+		
+		//결과 저장할 String 변수
+		String user_nickname = null;
+		
+		System.out.println("[DAO] viewCustom.getUser_no() : " + viewCustom.getUser_no());
+		
+		try {
+			ps = connection.prepareStatement(sql); //SQL수행 객체
+			ps.setInt(1, viewCustom.getUser_no()); //조회할 user_no 적용
+			
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				user_nickname = rs.getString("user_nickname");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//DB객체 닫기
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//최종 결과 반환
+		return user_nickname;
+		
+	}
 	
+	@Override
+	public CustomFile selectFile(Connection connection, Custom viewCustom) {
+
+		String sql = "";
+		sql += "SELECT * FROM CUSTOM_BOARD_ATTACHMENT";
+		sql += " WHERE custom_board_no = ?";
+		sql += " ORDER BY ATTACHMENT_NO";
+
+		CustomFile customFile = null;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1, viewCustom.getCustom_board_no());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				customFile = new CustomFile();
+				
+				customFile.setAttachment_no( rs.getInt("ATTACHMENT_NO") );
+				customFile.setCustom_board_no( rs.getInt("CUSTOM_BOARD_NO") );
+				customFile.setOriginal_file_name( rs.getString("ORIGINAL_FILE_NAME") );
+				customFile.setStored_file_name( rs.getString("STORED_FILE_NAME") );
+				customFile.setFile_size( rs.getInt("FILE_SIZE") );
+				customFile.setFile_date( rs.getDate("FILE_DATE") );
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+				
+		return customFile;
+	}
+	
+	@Override
+	public int update(Connection connection, Custom custom) {
+		
+		//다음 게시글 번호 조회 쿼리
+		String sql = "";
+		sql += "UPDATE custom_board";
+		sql += " SET custom_board_title = ?,";
+		sql += " 	 custom_board_content = ?";
+		sql += " WHERE custom_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		int res = -1;
+		
+		try {
+			//DB작업
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, custom.getCustom_board_title());
+			ps.setString(2, custom.getCustom_board_content());
+			ps.setInt(3, custom.getCustom_board_no());
+
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 	
 }

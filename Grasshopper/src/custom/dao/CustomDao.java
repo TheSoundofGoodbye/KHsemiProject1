@@ -110,6 +110,30 @@ public interface CustomDao {
 	 */
 	int insertFile(Connection connection, CustomFile customFile);
 
+	/**
+	 * user_no를 이용해 nick을 조회한다
+	 * 
+	 * @param viewBoard - 조회할 user_no를 가진 객체
+	 * @return String - 작성자 닉네임
+	 */
+	String selectNickByUserno(Connection connection, Custom viewCustom);
+	
+	/**
+	 * 첨부파일 조회
+	 * 
+	 * @param connection - DB연결 객체
+	 * @param viewCustom - 첨부파일을 조회할 게시글번호 객체
+	 * @return CustomFile - 조회된 첨부파일
+	 */
+	CustomFile selectFile(Connection connection, Custom viewCustom);
+
+	/**
+	 * 게시글 수정 
+	 * 
+	 * @param board - 수정할 내용을 담은 객체
+	 */
+	int update(Connection connection, Custom custom);
+
 
 
 
