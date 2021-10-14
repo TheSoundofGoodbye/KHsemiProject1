@@ -18,7 +18,7 @@ import official.service.OfficialServiceImpl;
 /**
  * Servlet implementation class OfficialCommentWriteController
  */
-@WebServlet("/official/comment")
+@WebServlet("/official/comment/write")
 public class OfficialCommentWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,14 +34,7 @@ public class OfficialCommentWriteController extends HttpServlet {
 			
 			//세션 객체 생성
 			HttpSession session = req.getSession();
-			
-			//현재 session에 저장된 key, value모두 출력
-			Enumeration<String> attributes = req.getSession().getAttributeNames();
-			while (attributes.hasMoreElements()) {
-				String attribute = (String) attributes.nextElement();
-				System.out.println(attribute+" : "+req.getSession().getAttribute(attribute));
-			}		
-
+	
 			//입력 문자 인코딩 한글처리
 			req.setCharacterEncoding("UTF-8");
 

@@ -2,6 +2,7 @@ package official.controller;
 
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,9 +32,22 @@ public class OfficialMainController extends HttpServlet {
     	System.out.println("[CONSOLE] /list로 리다이렉트합니다");
     	
 //    	resp.sendRedirect("/official/list");
+    	
+		//세션 객체 생성
+		HttpSession session = req.getSession();
+		
+		//세션 Attribute에 user_no 임의로 지정 (테스트용)
+		session.setAttribute("user_no", 2);
 
-    	//기본적으로 default값이 주어진 official_list.jsp 로 포워딩 한다
-    	req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
+		//현재 session에 저장된 key, value모두 출력
+		Enumeration<String> attributes = req.getSession().getAttributeNames();
+		while (attributes.hasMoreElements()) {
+			String attribute = (String) attributes.nextElement();
+			System.out.println(attribute+" : "+req.getSession().getAttribute(attribute));
+		}	
+		
+    	//기본적으로 default값이 주어진 /official/list 로 포워딩 한다
+    	req.getRequestDispatcher("/official/list").forward(req, resp);
     	
     }
 

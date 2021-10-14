@@ -2,6 +2,7 @@ package official.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -71,6 +72,13 @@ public class OfficialListController extends HttpServlet {
 		//검색어 / 카테고리 다시 전달
 		req.setAttribute("search", search);
 		req.setAttribute("category", category);
+		
+		//현재 session에 저장된 key, value모두 출력
+		Enumeration<String> attributes = req.getSession().getAttributeNames();
+		while (attributes.hasMoreElements()) {
+			String attribute = (String) attributes.nextElement();
+			System.out.println(attribute+" : "+req.getSession().getAttribute(attribute));
+		}	
 		
 		//포워딩
 		req.getRequestDispatcher("/WEB-INF/views/board/official_list.jsp").forward(req, resp);
