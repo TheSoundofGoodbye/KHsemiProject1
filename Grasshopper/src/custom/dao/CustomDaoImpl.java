@@ -9,6 +9,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import custom.dto.Custom;
+import custom.dto.CustomFile;
 import custom.dto.Custom;
 import util.Paging;
 
@@ -178,7 +179,7 @@ public class CustomDaoImpl implements CustomDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "  SELECT ROWNUM rnum, O.* FROM (";
-		sql += "    SELECT custom_board_no, BOARD_TYPE, C.USER_NO, U.USER_NICKNAME, ATTACH_NO, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
+		sql += "    SELECT custom_board_no, C.USER_NO, U.USER_NICKNAME, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
 		sql += "	  FROM CUSTOM_BOARD C ";
 		sql += "	  JOIN USER_INFO U ON U.USER_NO = C.USER_NO ";
 		sql += "		WHERE 1=1";
@@ -205,10 +206,8 @@ public class CustomDaoImpl implements CustomDao{
 			while(rs.next()) {
 				Custom custom = new Custom();
 				custom.setCustom_board_no(rs.getInt("custom_board_no"));
-				custom.setBoard_type(rs.getString("board_type"));
 				custom.setUser_no(rs.getInt("user_no"));
 				custom.setUser_nickname(rs.getString("user_nickname"));
-				custom.setAttach_no(rs.getInt("attach_no"));
 				custom.setCustom_board_title(rs.getString("custom_board_title"));
 				custom.setCustom_board_content(rs.getString("custom_board_content"));
 				custom.setCustom_board_date(rs.getDate("custom_board_date"));
@@ -365,4 +364,94 @@ public class CustomDaoImpl implements CustomDao{
 		//최종 결과 반환
 		return custom;
 	}
+	
+	@Override
+	public int insert(Connection connection, Custom custom) {
+		String sql = "";
+		sql += "INSERT INTO CUSTOM_BOARD (custom_board_no, user_no, custom_board_title, custom_board_content";
+		sql += " 						, custom_board_date, custom_board_hit, custom_board_vote)";
+		sql += " VALUES (?,?,?,?,sysdate,0,0)";
+		
+		//첨부파일이 있을 경우 미리 만든 custom_board_no 를 삽입한다
+//		sql += " VALUES (board_seq.nextval, ?, ?, ?, 0)";
+
+		int res = 0;
+
+		try {
+			//DB작업
+			ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, custom.getCustom_board_no());
+			ps.setInt(2, custom.getUser_no());
+			ps.setString(3, custom.getCustom_board_title());
+			ps.setString(4, custom.getCustom_board_content());
+
+			res = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+
+		return res;
+	}
+	
+	@Override
+	public int selectNextCustomno(Connection connection) {
+		String sql = "";
+		sql += "SELECT custom_board_seq.nextval FROM dual";
+
+		//결과 저장 변수
+		int nextCustomno = 0;
+
+		try {
+			ps = connection.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				nextCustomno = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+
+		return nextCustomno;
+	}
+	
+	@Override
+	public int insertFile(Connection connection, CustomFile customFile) {
+
+		String sql = "";
+		sql += "INSERT INTO CUSTOM_BOARD_ATTACHMENT ( ATTACHMENT_NO, CUSTOM_BOARD_NO, ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE)";
+		sql += " VALUES (USTOM_BOARD_ATTACHMENT_seq.nextval,?,?,?,?)";
+
+		int res = 0;
+
+		try {
+			ps = connection.prepareStatement(sql);
+
+			ps.setInt(1, customFile.getCustom_board_no());
+			ps.setString(2, customFile.getOriginal_file_name());
+			ps.setString(3, customFile.getStored_file_name());
+			ps.setInt(4, customFile.getFile_size());
+
+			res = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+
+		return res;
+	}
+	
+	
+	
 }

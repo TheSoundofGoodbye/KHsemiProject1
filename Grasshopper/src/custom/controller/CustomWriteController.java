@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import custom.dto.Custom;
 import custom.service.CustomService;
 import custom.service.CustomServiceImpl;
 
@@ -21,20 +22,21 @@ import custom.service.CustomServiceImpl;
 public class CustomWriteController extends HttpServlet {
 private static final long serialVersionUID = 1L;
     
-	CustomService customService = new CustomServiceImpl();
+	private CustomService customService = new CustomServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/custom/write [GET]");
 		
-		//세션 객체 생성
-		HttpSession session = req.getSession();
 		
 		//로그인 되어있지 않으면 리다이렉트 (일단 disable)
 //		if( session.getAttribute("login")== null || !(boolean)session.getAttribute("login")) {
 //			resp.sendRedirect("/");
 //			return;
 //		}
+		
+		//세션 객체 생성
+		HttpSession session = req.getSession();
 		
 		//현재 session에 저장된 key, value모두 출력
 		Enumeration<String> attributes = req.getSession().getAttributeNames();
@@ -43,7 +45,10 @@ private static final long serialVersionUID = 1L;
 		    System.out.println(attribute+" : "+req.getSession().getAttribute(attribute));
 		}		
 		
+		//세션확인 및 테스트용 세션파라미터 지정
 		System.out.println("[TEST] session : " + session);
+		session.getAttribute("login");
+		session.getAttribute("user_no");
 		
 		req.getRequestDispatcher("/WEB-INF/views/board/custom_write.jsp").forward(req, resp);
 	
@@ -53,29 +58,10 @@ private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/custom/write [POST]");
 		
-		//세션 객체 생성
-		HttpSession session = req.getSession();
-//		
-////		Custom custom = new Custom();
-//
-//		custom.setTitle(req.getParameter("title"));
-//		custom.setContent(req.getParameter("content"));
-//		
-//		custom.setUserid((String)session.getAttribute("userid"));
-//		
-//		System.out.println(custom);
-//		
-//		//게시글 등록 메소드
-////		customService.write(custom);
-//		
-//		//---------------------------------------
-//		
-//		System.out.println("첨부파일 업로드 시 custom : " + custom);
-//		
-//		//파일 첨부 + 게시글
-//		customService.write(req,resp);
-//				
-//		
+		//작성글 삽입
+		customService.write(req);
+		
+		//목록으로 리다이렉션
 		resp.sendRedirect("/custom/list");
 		
 	}

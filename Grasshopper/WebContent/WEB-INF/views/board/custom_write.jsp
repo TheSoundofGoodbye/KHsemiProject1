@@ -49,6 +49,14 @@ $(document).ready(function() {
 
 </script>
 
+<style type="text/css">
+#content {
+/* 	width: 100%; */
+	width: 98%;
+	height: 300px;
+}
+</style>
+
 <div class="container">
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
@@ -67,15 +75,15 @@ $(document).ready(function() {
 		<form action="/custom/write" method="post" name="cmtForm"
 			enctype="multipart/form-data" >
 			<div class="title-container">
-				<input type="text" name="custom_board_title" value="제목을 입력하세요" />
+				<input type="text" name="custom_board_title" placeholder="제목을 입력하세요" style="width:100%;font-size: 24px;" />
 			</div>
 
 			<div class="body-container">
 				<textarea name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
 				<input type="hidden" name="user_no" value="${param.usern_no }">
 			</div>
-			<div>
-				첨부파일 <input type="file" name="file" />
+			<div class="attachment-container">
+				  첨부파일 : <input type="file" name="file" />
 			</div>
 		</form>
 
@@ -91,7 +99,7 @@ $(document).ready(function() {
 	//목록으로 버튼 function
 	document.getElementById("btnList").addEventListener("click", goList);
 	function goList() {
-		location.href = "/official/list";
+		location.href = "/custom/list";
 	}
 	//문서편집기 function
 	var oEditors = [];

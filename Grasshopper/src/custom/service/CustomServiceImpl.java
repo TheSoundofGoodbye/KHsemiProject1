@@ -1,15 +1,25 @@
 package custom.service;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import common.JDBCTemplate;
 import custom.dao.CustomDao;
 import custom.dao.CustomDaoImpl;
 import custom.dto.Custom;
+import custom.dto.CustomFile;
 import official.dao.OfficialDao;
 import official.dao.OfficialDaoImpl;
 import official.dto.Official;
@@ -123,7 +133,155 @@ public class CustomServiceImpl implements CustomService{
 		return custom;
 	}
 	
-	
-	
-	
+	@Override
+	public void write(HttpServletRequest req) {
+		
+		//게시글 정보 DTO 객체
+		Custom custom = null;
+		
+		//첨부파일 정보 DTO 객체
+		CustomFile customFile = null;
+			
+		//파일업로드 형태의 데이터가 맞는지 검사
+		boolean isMultipart = false;
+		isMultipart = ServletFileUpload.isMultipartContent(req);
+		
+		if( !isMultipart ) {
+			System.out.println("[ERROR] multipart/form-data 형식이 아님");
+			return; //write() 메소드 중단
+		}
+		
+		//게시글 정보를 저장할 DTO객체 생성
+		custom = new Custom();
+		
+		//디스크기반 아이템 팩토리
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		
+		//메모리 처리 사이즈 지정
+		factory.setSizeThreshold(1 * 1024 * 1024); //1MB
+
+		//임시 저장소 설정
+		File repository = new File(req.getServletContext().getRealPath("tmp"));
+		repository.mkdir(); //임시 저장소 폴더 생성
+		factory.setRepository(repository); //임시 저장소 폴더 지정
+		
+		//파일업로드 객체 생성
+		ServletFileUpload upload = new ServletFileUpload(factory);
+
+		//업로드 용량 제한
+		upload.setFileSizeMax(10 * 1024 * 1024); //10MB
+		
+		//전달 데이터 파싱
+		List<FileItem> items = null;
+		try {
+			items = upload.parseRequest(req);
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
+
+		//파싱된 전달파라미터를 처리할 반복자
+		Iterator<FileItem> iter = items.iterator();
+
+		while( iter.hasNext() ) { //모든 요청 정보 처리
+			FileItem item = iter.next();
+			
+			//--- 1) 빈 파일에 대한 처리 ---
+			if( item.getSize() <= 0 ) {
+				continue; //빈 파일은 무시하고 다음 FileItem처리로 넘긴다
+			}
+			
+			//--- 2) form-data에 대한 처리 ---
+			if( item.isFormField() ) {
+				//키 추출하기
+				String key = item.getFieldName();
+				
+				//값 추출하기
+				String value = null;
+				try {
+					value = item.getString("UTF-8");
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				}
+
+				//키(name)에 따라서 value저장하기
+				if( "custom_board_title".equals(key) ) {
+					custom.setCustom_board_title( value );
+				} else if( "content".equals(key) ) {
+					custom.setCustom_board_content( value );
+				}
+				
+			} //if( item.isFormField() ) end
+			
+			//--- 3) 파일에 대한 처리 ---
+			if( !item.isFormField() ) {
+				
+				//UUID 생성
+				UUID uuid = UUID.randomUUID(); //랜덤 UUID
+				String uid = uuid.toString().split("-")[0]; //8자리 uuid
+				
+				//로컬 저장소의 업로드 폴더
+				File upFolder = new File(req.getServletContext().getRealPath("upload"));
+				upFolder.mkdir(); //폴더 생성
+				
+				//업로드 파일 객체
+				String origin = item.getName(); //원본파일명
+				String stored = origin + "_" + uid; //원본파일명_uid
+				File up = new File(upFolder, stored);
+				
+				try {
+					item.write(up); //실제 업로드(임시파일을 최종결과파일로 생성함)
+					item.delete(); //임시파일을 삭제
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				//업로드된 파일의 정보 저장
+				customFile = new CustomFile();
+				customFile.setOriginal_file_name(origin);
+				customFile.setStored_file_name(stored);
+				customFile.setFile_size( (int)item.getSize() );
+				
+			} //if( !item.isFormField() ) end
+		} //while( iter.hasNext() ) end
+		
+		//DB연결 객체
+		Connection connection = JDBCTemplate.getConnection();
+		
+		//게시글 번호 생성 - DAO 이용
+		int customno = customDao.selectNextCustomno(connection);
+			
+		//게시글 정보가 있을 경우
+		if(custom != null) {
+			
+			//작성자 user_no 입력 
+			//테스트용 임시데이터 사용중
+//			custom.setUser_no( (Integer)req.getSession().getAttribute("user_no") );
+			int user_no = 2;
+			custom.setUser_no( user_no );
+
+			custom.setCustom_board_no(customno); //게시글 번호 입력 (PK)
+			
+			if(custom.getCustom_board_title()==null || "".equals(custom.getCustom_board_title())) {
+				custom.setCustom_board_title("(제목없음)");
+			}
+			
+			if( customDao.insert(connection, custom) > 0 ) {
+				JDBCTemplate.commit(connection);
+			} else {
+				JDBCTemplate.rollback(connection);
+			}
+		}
+		
+		//첨부파일 정보가 있을 경우
+		if(customFile != null) {
+			customFile.setCustom_board_no(customno); //게시글 번호 입력 (FK)
+			
+			if( customDao.insertFile(connection, customFile) > 0 ) {
+				JDBCTemplate.commit(connection);
+			} else {
+				JDBCTemplate.rollback(connection);
+			}
+		}
+		
+	}
 }

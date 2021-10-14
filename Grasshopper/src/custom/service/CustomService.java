@@ -67,6 +67,15 @@ public interface CustomService {
 	 * @return custom - 조회된 레시피
 	 */
 	Custom view(Custom custom_no);
+	
+	/**
+	 * 게시글 작성
+	 * 	입력한 게시글 내용을 DB에 저장
+	 * 
+	 * @param req - 요청정보 객체(게시글내용 + 첨부파일)
+	 * 
+	 */
+	void write(HttpServletRequest req);
 
 
 

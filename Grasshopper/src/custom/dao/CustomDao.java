@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import custom.dto.Custom;
+import custom.dto.CustomFile;
 import custom.dto.Custom;
 import util.Paging;
 
@@ -82,6 +83,32 @@ public interface CustomDao {
 	 * @return Custom - 조회된 결과 Custom객체
 	 */
 	Custom selectCustomByCustomno(Connection connection, Custom custom_no);
+	
+	/**
+	 * 다음 게시글 번호 조회
+	 * 
+	 * 	게시글 테이블과 첨부파일 테이블에 입력될 공통 custom_board_no값을 시퀀스를 통해 조회한다
+	 * 
+	 * @param connection - DB연결 객체
+	 * @return 다음 게시글 번호
+	 */
+	int selectNextCustomno(Connection connection);
+
+	/**
+	 * 게시글 입력
+	 * 
+	 * @param custom - 삽입될 게시글 내용
+	 */
+	int insert(Connection connection, Custom custom);
+
+	/**
+	 * 첨부파일 입력
+	 * 
+	 * @param connection - DB연결 객체
+	 * @param customFile - 첨부파일 정보
+	 * @return 삽입 결과
+	 */
+	int insertFile(Connection connection, CustomFile customFile);
 
 
 
