@@ -442,4 +442,21 @@ public class CustomServiceImpl implements CustomService{
 		
 	}
 	
+	@Override
+	public void delete(Custom custom) {
+		Connection connection = JDBCTemplate.getConnection();
+		
+		if( customDao.deleteFile(connection, custom) > 0 ) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+		
+		if( customDao.delete(connection, custom) > 0 ) {
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
+		
+	}
 }

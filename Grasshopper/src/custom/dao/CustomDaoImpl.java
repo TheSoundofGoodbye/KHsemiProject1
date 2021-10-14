@@ -557,4 +557,63 @@ public class CustomDaoImpl implements CustomDao{
 		return res;
 	}
 	
+	@Override
+	public int delete(Connection connection, Custom custom) {
+		
+		//다음 게시글 번호 조회 쿼리
+		String sql = "";
+		sql += "DELETE custom_board";
+		sql += " WHERE custom_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		int res = -1;
+		
+		try {
+			//DB작업
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1, custom.getCustom_board_no());
+
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public int deleteFile(Connection connection, Custom custom) {
+		
+		//다음 게시글 번호 조회 쿼리
+		String sql = "";
+		sql += "DELETE custom_board_attachment";
+		sql += " WHERE custom_board_no = ?";
+		
+		//DB 객체
+		PreparedStatement ps = null; 
+		
+		int res = -1;
+		
+		try {
+			//DB작업
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1, custom.getCustom_board_no());
+
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 }

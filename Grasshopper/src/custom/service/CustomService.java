@@ -101,6 +101,13 @@ public interface CustomService {
 	 */
 	void update(HttpServletRequest req);
 
+	/**
+	 * 게시글 삭제
+	 * 
+	 * @param custom - 삭제할 게시글 번호를 가진 객체
+	 */
+	void delete(Custom custom);
+
 
 
 }

@@ -101,6 +101,7 @@
 		<div class="bottom-buttons text-center">
 			<button id="btnUpdate" class="btn">수정하기</button>
 			<button id="btnList" class="btn">목록으로</button>
+			<button id="btnDelete" class="btn btn-danger">삭제</button>
 		</div>
 	</div>
 </div>

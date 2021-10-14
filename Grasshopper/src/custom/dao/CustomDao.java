@@ -134,6 +134,20 @@ public interface CustomDao {
 	 */
 	int update(Connection connection, Custom custom);
 
+	/**
+	 * 게시글 삭제
+	 * 
+	 * @param custom - 삭제할 게시글번호를 담은 객체
+	 */
+	int deleteFile(Connection connection, Custom custom);
+	
+	/**
+	 * 게시글에 첨부된 파일 기록 삭제
+	 * 
+	 * @param custom - 삭제할 게시글번호를 담은 객체
+	 */
+	int delete(Connection connection, Custom custom);
+
 
 
 
