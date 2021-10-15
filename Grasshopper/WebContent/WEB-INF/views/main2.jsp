@@ -9,13 +9,17 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>오늘 뭐 마시지</title>
 
+<!-- 구글 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/resources/css/mainstyle.css">
+	
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/resources/css/mainstyle2.css">
 
+<!-- 부트스트랩 -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -26,40 +30,45 @@
 	height: 426.75px;
 }
 </style>
-
 </head>
+
 <body>
 	<div class="wrap">
 		<div class="intro_bg">
+			<div class="video-area">
+				<video width="100%" src="/resources/video/cheers02.mp4" autoplay
+					muted loop></video>
+				<div class="search_area">
+					<form>
+						<input type="search" placeholder="search" value="오늘 뭐 마시지"/> <span>검색</span>
+					</form>
+				</div>
+			</div>
 			<div class="header">
+				<div class="header_logo">
+					<a href="/main"> <img width=100px;
+						src='/resources/img/header_logo2.png' />
+					</a>
+				</div>
 				<ul class="nav">
-					<li>
-						<div class="header_logo">
-							<a href="/main"> <img width=100px;
-								src='/resources/img/header_logo2.png' />
-							</a>
-						</div>
-					</li>
-					<li><a href="/official/main">칵테일 검색</a></li>
-					<li><a href="/custom/main">칵테일 제작</a></li>
+					<li><a href="/main">칵테일 검색</a></li>
+					<li><a href="/main">칵테일 제작</a></li>
 					<li><a href="/main">커뮤니티 게시판</a></li>
 					<li><a href="/main">자유게시판</a></li>
 					<li><a href="/main">쇼핑</a></li>
 					<li><a href="/main">문의게시판</a></li>
-					<c:if test="${not login }">
-						<li>
-							<div class="login">
-								<form>
-									<button class="btn btn-info">로그인</button>
-								</form>
-							</div>
-							<div class="join">
-								<button class="btn btn-warning">회원가입</button>
-							</div>
-						</li>
-					</c:if>
 				</ul>
 
+				<c:if test="${not login }">
+					<div class="login">
+						<form>
+							<button class="btn btn-info">로그인</button>
+						</form>
+					</div>
+					<div class="join">
+						<button class="btn btn-warning">회원가입</button>
+					</div>
+				</c:if>
 
 				<c:if test="${login }">
 					<div class="mypage">
@@ -71,54 +80,11 @@
 						</form>
 					</div>
 				</c:if>
-
+				
 			</div>
-			<div class="video-area">
-				<video class="width="1696px" height="854.5px"
-					src="/resources/video/cheers02.mp4" autoplay muted loop></video>
-				<div class="search_area">
-					<form>
-						<input type="search" placeholder="search" /> <span>검색</span>
-					</form>
-				</div>
-			</div>
-			<!-- 			<div class="intro_text"> -->
-			<!-- 			<h1>칵테일;</h1><br> -->
-			<!-- 			<h4 class="contents1">칵테일 이름은 오래된 친구, 옛친구라는 의미이다.</h4> -->
-			<!-- 			<h4 class="contents1">아메리칸 칵테일이기 때문에 라이 위스키를 사용하는 것이 좋다.</h4> -->
-			<!-- 			<h4 class="contents1">라이 위스키가 없으면 캐나디안 위스키로 대용한다.</h4> -->
-			<!-- 			<h4 class="contents1">식전에 마시는 아페리티프 칵테일로서 적합하다.</h4> -->
-			<!-- 			</div> -->
 		</div>
 	</div>
-
-	<!-- 		<ul class="amount"> -->
-	<!-- 			<li> -->
-	<!-- 				<div> -->
-	<!-- 					<div class="contents1">분류</div> -->
-	<!-- 					<div class="result">칵테일(Cocktail)</div> -->
-	<!-- 				</div> -->
-	<!-- 			</li> -->
-	<!-- 			<li> -->
-	<!-- 				<div> -->
-	<!-- 					<div class="contents1">베이스</div> -->
-	<!-- 					<div class="result">Whisky</div> -->
-	<!-- 				</div> -->
-	<!-- 			</li> -->
-	<!-- 			<li> -->
-	<!-- 				<div> -->
-	<!-- 					<div class="contents1">맛</div> -->
-	<!-- 					<div class="result">약간 단맛</div> -->
-	<!-- 				</div> -->
-	<!-- 			</li> -->
-	<!-- 			<li> -->
-	<!-- 				<div> -->
-	<!-- 					<div class="contents1">알코올도수</div> -->
-	<!-- 					<div class="result">27</div> -->
-	<!-- 				</div> -->
-	<!-- 			</li>			 -->
-	<!-- 		</ul> -->
-
+	
 	<div class="main_text0">
 		<h1>ABOUT US.</h1>
 		<div class="contents"></div>
@@ -154,6 +120,8 @@
 	<div class="main_text1">
 		<h1>BEST 칵테일 레시피</h1>
 		<div class="contents1">이번주, 좋아요가 많은 칵테일 레시피.</div>
+		
+		<!-- 사진 슬라이드 01 -->
 		<div class="service">
 			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 				integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -166,7 +134,7 @@
 				src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 				integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 				crossorigin="anonymous"></script>
-			<script> $('.carousel').carousel({interval: 2000 }) </script>
+			<script> $('.carousel').carousel({ interval: 2000 //기본 5초 }) </script>
 			<div class="photo_slide" style="width: 569px; height: 426.75px">
 				<div id="demo" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
@@ -223,6 +191,8 @@
 		<div class="main_text1">
 			<h1>famous 칵테일 레시피</h1>
 			<div class="contents1">이번주, 좋아요가 많은 일반인 레시피.</div>
+			
+			<!-- 사진 슬라이드 02 -->
 			<div class="service">
 				<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 					integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -235,7 +205,7 @@
 					src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 					integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 					crossorigin="anonymous"></script>
-				<script> $('.carousel').carousel({ interval: 2000 }) </script>
+				<script> $('.carousel').carousel({ interval: 2000 //기본 5초 }) </script>
 				<div class="photo_slide" style="width: 569px; height: 426.75px">
 					<div id="demo2" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner">
@@ -284,11 +254,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- 				<div class="contents3"> -->
-			<!-- 					<h2>준벅 (June Bug)</h2> -->
-			<!-- 					'6월의 벌레'라는 의미로, 초록의 싱그러운 색깔이 그야말로 여름벌레를 연상시킨다. -->
-			<!-- 					<br>멜론, 바나나, 코코넛, 파인애플, 레몬 5가지 맛이 나는 도수가 낮은 달콤한 칵테일 -->
-			<!-- 				</div> -->
 		</div>
 
 		<div class="main_text2">
@@ -306,17 +271,24 @@
 	</div>
 
 
-	<!-- 공지사항 -->
+	<!-- 팝업 공지사항 -->
 	<div class="popup">
-		<h2>
-			정기 구독 서비스 출시. <br>자세한 사항은 공지사항을 확인하세요.
-		</h2>
-		<br> <input type="checkbox" id="popup"> <label
-			for="popup">하루 안보기</label>
-		<button class="close">닫기</button>
+		<h4>정규 서비스 출시</h4>
+		<br>
+		<p>안녕하세요. 오늘 뭐 마시지 서비스가 오픈하였습니다.
+				<br>많은 사랑 부탁드립니다.
+		</p>
+		<br>
+		<div>
+			<input type="checkbox" id="popup"> <label for="popup">하루
+				안보기</label>
+		</div>
+		<div>
+			<button id="close" class="btn btn-info">닫기</button>
+		</div>
 	</div>
 
-	<!-- 팝업 스크립트 불러오기 -->
+	<!-- 팝업 스크립트 -->
 	<script type="text/javascript" src="/resources/script/popup_cookie.js"></script>
 
 </body>

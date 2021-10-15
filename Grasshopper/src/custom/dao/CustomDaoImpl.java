@@ -129,7 +129,7 @@ public class CustomDaoImpl implements CustomDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "  SELECT ROWNUM rnum, O.* FROM (";
-		sql += "    SELECT custom_board_no, BOARD_TYPE, C.USER_NO, U.USER_NICKNAME, ATTACH_NO, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
+		sql += "    SELECT custom_board_no, C.USER_NO, U.USER_NICKNAME, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
 		sql += "	  FROM CUSTOM_BOARD C ";
 		sql += "	  JOIN USER_INFO U ON U.USER_NO = C.USER_NO ";
 		sql += "	  WHERE 1=1 ";
@@ -152,10 +152,8 @@ public class CustomDaoImpl implements CustomDao{
 			while(rs.next()) {
 				Custom custom = new Custom();
 				custom.setCustom_board_no(rs.getInt("custom_board_no"));
-				custom.setBoard_type(rs.getString("board_type"));
 				custom.setUser_no(rs.getInt("user_no"));
 				custom.setUser_nickname(rs.getString("user_nickname"));
-				custom.setAttach_no(rs.getInt("attach_no"));
 				custom.setCustom_board_title(rs.getString("custom_board_title"));
 				custom.setCustom_board_content(rs.getString("custom_board_content"));
 				custom.setCustom_board_date(rs.getDate("custom_board_date"));
@@ -235,7 +233,7 @@ public class CustomDaoImpl implements CustomDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "  SELECT ROWNUM rnum, O.* FROM (";
-		sql += "    SELECT custom_board_no, BOARD_TYPE, C.USER_NO, U.USER_NICKNAME, ATTACH_NO, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
+		sql += "    SELECT custom_board_no, C.USER_NO, U.USER_NICKNAME, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
 		sql += "	  FROM CUSTOM_BOARD C ";
 		sql += "	  JOIN USER_INFO U ON U.USER_NO = C.USER_NO ";
 	    sql += "	  WHERE 1=1";
@@ -262,15 +260,13 @@ public class CustomDaoImpl implements CustomDao{
 			ps.setInt(2, paging.getStartNo());
 			ps.setInt(3, paging.getEndNo());
 			
-			rs = ps.executeQuery();
+				rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				Custom custom = new Custom();
 				custom.setCustom_board_no(rs.getInt("custom_board_no"));
-				custom.setBoard_type(rs.getString("board_type"));
 				custom.setUser_no(rs.getInt("user_no"));
 				custom.setUser_nickname(rs.getString("user_nickname"));
-				custom.setAttach_no(rs.getInt("attach_no"));
 				custom.setCustom_board_title(rs.getString("custom_board_title"));
 				custom.setCustom_board_content(rs.getString("custom_board_content"));
 				custom.setCustom_board_date(rs.getDate("custom_board_date"));

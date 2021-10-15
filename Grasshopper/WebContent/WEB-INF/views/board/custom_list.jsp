@@ -45,8 +45,9 @@
 <div class="cards" id="card">
 	<c:forEach var="c" items="${list }">
 	<div class="card">
-	<div class="card_image">
-		<img src="/resources/img/${c.attach_no }.jpg" />
+	<div class="card_image" id="card_thumbnail${c.custom_board_no })">
+		<!-- 첨부파일이 이미지가 아니거나 없을 경우 -->
+		<img src="/resources/img/Dry Martini.jpg" />
 	</div>
 	<div class="card_title">
 		<h3>${c.custom_board_title }</h3>

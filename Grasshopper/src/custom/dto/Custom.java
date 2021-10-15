@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Custom {
 	private int custom_board_no; // NUMBER primary key,
-	private String board_type; // varchar2(2),
 	private int user_no; // NUMBER ,
 	private String user_nickname; // JOIN으로 가져올 유저닉네임
 	private int attach_no; // NUMBER,
@@ -20,14 +19,6 @@ public class Custom {
 
 	public void setCustom_board_no(int custom_board_no) {
 		this.custom_board_no = custom_board_no;
-	}
-
-	public String getBoard_type() {
-		return board_type;
-	}
-
-	public void setBoard_type(String board_type) {
-		this.board_type = board_type;
 	}
 
 	public int getUser_no() {
@@ -96,7 +87,7 @@ public class Custom {
 
 	@Override
 	public String toString() {
-		return "Custom [custom_board_no=" + custom_board_no + ", board_type=" + board_type + ", user_no=" + user_no
+		return "Custom [custom_board_no=" + custom_board_no + ", user_no=" + user_no
 				+ ", user_nickname=" + user_nickname + ", attach_no=" + attach_no + ", custom_board_title="
 				+ custom_board_title + ", custom_board_content=" + custom_board_content + ", custom_board_date="
 				+ custom_board_date + ", custom_board_hit=" + custom_board_hit + ", custom_board_vote="

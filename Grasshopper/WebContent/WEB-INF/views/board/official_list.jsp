@@ -30,7 +30,7 @@
    		<option value="ingred">재료</option>
   	</select>
 	<input type="text" name="search" value="${search }" autocomplete="off" 
-	id="search" onkeyup="searchFunction()" placeholder="검색어를 입력하세요">
+	id="search" placeholder="검색어를 입력하세요">
 	<input type="submit" id="btnSearch" value="찾기">
 	</form>
 </div>

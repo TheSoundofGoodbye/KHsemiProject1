@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class MainController
  */
-@WebServlet("/main2")
-public class MainPageController extends HttpServlet {
+@WebServlet("/main")
+public class MainPageController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -27,7 +27,7 @@ public class MainPageController extends HttpServlet {
 			session.setAttribute("login", login);
 		}
 		
-		req.getRequestDispatcher("/WEB-INF/views/main2.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
 		
 	}
 	

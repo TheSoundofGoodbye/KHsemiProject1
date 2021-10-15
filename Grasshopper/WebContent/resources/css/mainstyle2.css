@@ -2,16 +2,12 @@
 
 * {
 	font-family: 'Noto Sans KR', sans-serif !important;
+	list-style: none;
 	text-decoration: none !important;
 	border-collapse: collapse;
 	margin: 0px;
 	padding: 0px;
 	color: #000;
-}
-
-body, html {
-	width: 100%;
-	height: 100%;
 }
 
 h1 {
@@ -41,71 +37,64 @@ h1 {
 .intro_bg {
 	display: flex;
 	width: 100%;
-	height: 750px;
-	position: relative;
-	place-content: center;
-	background-color: rgb(241, 242, 243);
+	height: 753px;
 }
 
 .video-area {
 	display: block;
 	margin: auto;
-	position: absolute;
 }
 
-.header  {
+.intro_bg video {
+	margin: auto;
+}
+
+.header {
 	top: 0;
 	display: flex;
 	width: 100%;
+	margin: auto;
 	height: 86px;
 	background: rgba(0, 0, 0, 0.4);
-	position: sticky;
+	position: fixed;
 	z-index: 3;
-	justify-content: space-around;
-	margin: 0;
 }
 
 .header_logo {
 	margin-top: -10px;
+	margin-left: 95px;
+	position: absolute;
 }
 
 .login {
 	color: #fff;
-    margin: auto;
-    display: inline-block;
 }
 
 .login>form>button {
-	/* 	color: #fff; */
-	/* 	background: blue; */
-	/* 	border: none; */
 	font-size: 16px;
-	/* 	cursor: pointer; */
+	margin-top: 25px;
+	margin-left: 110px;
+	padding: 5px;
 	border-radius: 1;
-	white-space: nowrap;
 }
 
 .join {
 	color: #fff;
-    margin: auto;
-    display: inline-block;
 }
 
 .join>button {
 	color: #fff;
-	/* 	background: red; */
-	/* 	border: none; */
 	font-size: 16px;
+	margin-top: 25px;
+	padding: 5px;
 	border-radius: 1;
-	/* 	cursor: pointer; */
-	white-space: nowrap;
 }
 
 .search_area {
 	width: 900px;
 	height: 60px;
 	background: rgba(255, 255, 255, 0.7);
-	border-radius: 5;
+	border-radius: 8px;
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -114,42 +103,31 @@ h1 {
 
 .search_area>form>input {
 	border: none;
-	width: 90%;
+	width: 850px;
 	height: 60px;
 	background: rgba(0, 0, 0, 0.0);
 	color: #fff;
 	padding-left: 10px;
 }
 
-#btnSearch{
-	width: 9%;
-    display: inline-block;
-}
-
 .search_area>form>span {
 	width: 50px;
-	/*  	color: #fff; */
 	color: rgba(100, 100, 100, 0.8);
 	font-weight: bold;
 	cursor: pointer;
 }
 
 .nav {
-
+	display: flex;
+	justify-content: flex-end;
 	line-height: 86px;
 	width: calc(1280px - 400px);
-	text-align: center;
-    justify-content: space-evenly;
-    overflow : hidden;
-}
-
-ul {
-    list-style: none;
-    padding-left: 0;
+	padding-left: 0;
+	margin-left: 290px;
 }
 
 .nav>li:not(:first-child) {
-
+	margin-left: 84px;
 }
 
 .nav>li:first-child {
@@ -200,17 +178,16 @@ ul {
 	color: #fff;
 }
 
-/* main_text0 */
 .main_text0 {
 	width: 100%;
-	height: 600px;
+	height: 601px;
+	margin-top: 103px;
 	background: #f1f2f3;
-	padding: 28px;
 }
 
 .main_text0>h1 {
-	/* 	padding-top: 116px; */
-	padding-top: 45px;
+	padding-top: 116px;
+	padding-top: 35px;
 	text-align: center;
 }
 
@@ -246,7 +223,7 @@ ul {
 	margin-right: 20px;
 }
 
-.icons contents3 {
+.icons contents 3 {
 	width: 240px;
 	margin: auto;
 	letter-spacing: -1px;
@@ -255,7 +232,6 @@ ul {
 .more {
 	width: 180px;
 	height: 30px;
-	/* 	background: #2F7AF4; */
 	background: rgba(51, 153, 153, 1.0);
 	color: white;
 	font-size: 12px;
@@ -282,7 +258,6 @@ ul {
 	width: 1280px;
 	display: flex;
 	margin: 49px auto;
-	/* 	padding-left: calc(640px - 500px); */
 	height: 427px;
 }
 
@@ -290,16 +265,6 @@ ul {
 	margin: 0 auto;
 }
 
-/* .food_photo > img {  */
-/* 	justify-content: flex-end; */
-/* } */
-
-/* .photo_slide { */
-/* 	width: 569px; */
-/* 	height: 426.75px; */
-/* 	overflow: hidden; */
-/* 	transition: transform 0.5s; */
-/* } */
 .food_photo {
 	width: 569px;
 }
@@ -315,10 +280,6 @@ ul {
 	/* 	background: #f1f2f3; */
 }
 
-.more a {
-	color: inherit;
-}
-
 .service>.contents3>h2 {
 	margin-bottom: 27px;
 }
@@ -326,7 +287,6 @@ ul {
 .main_text2 {
 	width: 100%;
 	height: 418px;
-	/* 	background-image: url("image/contact.png"); */
 	background: rgba(51, 153, 153, 1.0);
 }
 
@@ -345,10 +305,6 @@ ul {
 	color: #fff;
 }
 
-/* .main_text2 > ul > li:first-child { */
-/* 	background-image:url("/resources/img/Stars.jpg"); */
-/* /* 	background-size: 760px 418px; */
-/* } */
 .main_text2>ul>li:last-child>img {
 	width: 760px;
 	height: 418px;
@@ -368,21 +324,23 @@ ul {
 	position: fixed;
 	left: 100px;
 	top: 100px;
-	border: 1px solid #ebebeb;
-	padding: 40px 60px;
-	/* 		background: rgba(230,230,230,1.0); */
+	border-radius: 8px;
+	padding: 20px;
 	background: orange;
 	display: none;
-	padding-bottom: 20px;
 }
 
-.popup>input {
-	margin-top: 20px;
-	margin-left: 70px;
+.popup>div:first-child {
+	margin-left: 20px;
 }
 
-.popup>button {
-	margin-left: -20px;
+.popup>div {
+	float: left;
+}
+
+.popup>div:last-child {
+	margin-left: 60px;
+	margin-top: -5px;
 }
 
 footer {

@@ -182,6 +182,16 @@
 		document.getElementById(input).classList.add("comment-hide");
 		return false;
 	}
+	
+	//파일 타입에 따른 if문 동작
+	const file = this.files[0];
+	const  fileType = file['type'];
+	const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/webp'];
+	if (validImageTypes.includes(fileType)) { // 이미지면 
+		document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
+	} else { //이미지가 아니면
+		document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
+	}
 </script>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />     
