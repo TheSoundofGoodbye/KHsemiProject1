@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <title>오늘 뭐 마시지</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +26,6 @@
 }
 </style>
 
-
 </head>
 <body>
 	<div class="wrap">
@@ -44,34 +42,35 @@
 					<li><a href="/official/main">칵테일 검색</a></li>
 					<li><a href="/custom/main">칵테일 제작</a></li>
 					<li><a href="/main">커뮤니티 게시판</a></li>
-					<li><a href="/main">자유게시판</a></li>
+					<li><a href="/free/list">자유게시판</a></li>
 					<li><a href="/main">쇼핑</a></li>
 					<li><a href="/main">문의게시판</a></li>
-					<c:if test="${not login }">
+					<c:if test="${empty login or not login }">
 						<li>
 							<div class="login">
 								<form>
-									<button class="btn btn-info">로그인</button>
+									<button type="reset" onclick='location.href="/kh1/login";' class="btn btn-info">로그인</button>
 								</form>
 							</div>
 							<div class="join">
-								<button class="btn btn-warning">회원가입</button>
+								<button type="reset" onclick='location.href="/kh1/join";' class="btn btn-warning">회원가입</button>
 							</div>
 						</li>
 					</c:if>
+					<c:if test="${login }">
+					<li>
+						<div class="login">
+							<button type="reset" class="btn btn-info">마이페이지</button>
+						</div>
+						<div class="join">
+							<form>
+								<button type="reset" class="btn btn-warning"
+									onclick='location.href="/kh1/logout";'>로그아웃</button>
+							</form>
+						</div>
+						</li>
+					</c:if>
 				</ul>
-
-
-				<c:if test="${login }">
-					<div class="mypage">
-						<button>마이페이지</button>
-					</div>
-					<div class="logout">
-						<form>
-							<button>로그아웃</button>
-						</form>
-					</div>
-				</c:if>
 
 			</div>
 			<div class="video-area">
