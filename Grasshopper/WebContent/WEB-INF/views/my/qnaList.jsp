@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>  
 
 <div class="container">
 
-	<h1 style="margin-top: 100px;">내가 쓴 문의 내역</h1>
+	<h1>내가 쓴 문의 내역</h1>
 	<hr>
 
 	<table class="table table-striped table-hover table-condensed">
@@ -48,7 +48,6 @@
 
 	});
 </script>
-
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

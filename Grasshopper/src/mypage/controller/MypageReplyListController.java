@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import mypage.dto.Custom_reply;
 import mypage.dto.Free_board_reply;
 import mypage.dto.Official_reply;
-import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
@@ -30,8 +29,8 @@ public class MypageReplyListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-		
-		int user_no = (int)session.getAttribute("user_no");
+
+		int user_no = (int) session.getAttribute("user_no");
 
 		List<Free_board_reply> freeBoardReply = mypageService.freeBoardReplySelectAll(user_no);
 

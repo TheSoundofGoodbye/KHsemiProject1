@@ -31,10 +31,15 @@ public class MypageSendMessageList extends HttpServlet {
 
 		int user_no = (int) session.getAttribute("user_no");
 
+		System.out.println(user_no);
+
 		List<Message> message = mypageService.sendMessageSelect(user_no);
 
 		session.setAttribute("message", message);
-		System.out.println(message.get(2));
+
+		List<User_info> user_info = mypageService.getList();
+
+		session.setAttribute("user_info", user_info);
 
 		req.getRequestDispatcher("/WEB-INF/views/my/mypageSendMessageList.jsp").forward(req, resp);
 

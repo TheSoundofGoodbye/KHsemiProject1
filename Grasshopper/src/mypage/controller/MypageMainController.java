@@ -34,44 +34,44 @@ public class MypageMainController extends HttpServlet {
 		}
 		
 		//로그인 인증 상태
-		boolean login = (boolean)req.getSession().getAttribute("login");
-		
-//		System.out.println("/main - login : " + login);
-		
-		if (login) {
+				boolean login = (boolean)req.getSession().getAttribute("login");
+				
+//				System.out.println("/main - login : " + login);
+				
+				if (login) {
 
-			HttpSession session = req.getSession();
-			
-			int user_no = (Integer)session.getAttribute("user_no");
+					HttpSession session = req.getSession();
+					
+					int user_no = (int)session.getAttribute("user_no");
 
-			User_info user_info = mypageService.getUserInfo(user_no);
+					User_info user_info = mypageService.getUserInfo(user_no);
 
-			req.setAttribute("user_info", user_info);
+					req.setAttribute("user_info", user_info);
 
-			Attachment_profile attachmentFile = mypageService.getFile(user_no);
+					Attachment_profile attachmentFile = mypageService.getFile(user_no);
 
-//			System.out.println("MyPageMainController - " + attachmentFile);
-			req.setAttribute("attachmentFile", attachmentFile);
-			
+//					System.out.println("MyPageMainController - " + attachmentFile);
+					req.setAttribute("attachmentFile", attachmentFile);
+					
 
-		} 
-			
+				} 
+					
 
-		// 전달파라미터 얻기 - 로그인 정보
-		User_admin user_admin = mypageService.getLoginAdmin_info(req);
-		
-		// 로그인 인증
-		boolean loginAdmin = mypageService.login(user_admin);
+				// 전달파라미터 얻기 - 로그인 정보
+				User_admin user_admin = mypageService.getLoginAdmin_info(req);
+				
+				// 로그인 인증
+				boolean loginAdmin = mypageService.login(user_admin);
 
-		if( loginAdmin ) {
-			
-			HttpSession session = req.getSession();
+				if( loginAdmin ) {
+					
+					HttpSession session = req.getSession();
 
-			session.setAttribute("loginAdmin", loginAdmin);
+					session.setAttribute("loginAdmin", loginAdmin);
+				}
+				
+				req.getRequestDispatcher("/WEB-INF/views/my/mypageMain.jsp").forward(req, resp);
+
+			}
+
 		}
-		
-		req.getRequestDispatcher("/WEB-INF/views/my/mypageMain.jsp").forward(req, resp);
-
-	}
-
-}

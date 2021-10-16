@@ -7,7 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
@@ -18,11 +20,18 @@ import mypage.service.impl.MypageServiceImpl;
 public class MypageQnaWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	MypageService MypageService = new MypageServiceImpl();
+	MypageService mypageService = new MypageServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
+		HttpSession session = req.getSession();
+
+		int user_no = (int) session.getAttribute("user_no");
+
+		User_info user_info = mypageService.getUserInfo(user_no);
+
+		req.setAttribute("user_info", user_info);
 
 		req.getRequestDispatcher("/WEB-INF/views/my/qnaWrite.jsp").forward(req, resp);
 
@@ -31,7 +40,7 @@ public class MypageQnaWriteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MypageService.write(req);
+		mypageService.write(req);
 
 		resp.sendRedirect("/qna/list");
 

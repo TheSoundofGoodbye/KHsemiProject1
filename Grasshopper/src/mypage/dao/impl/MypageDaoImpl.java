@@ -52,7 +52,7 @@ public class MypageDaoImpl implements MypageDao {
 				info.setUser_password(rs.getString("user_password"));
 				info.setUser_point(rs.getInt("user_point"));
 				info.setUser_name(rs.getString("user_name"));
-				info.setUser_birth(rs.getDate("user_birth"));
+				info.setUser_birth(rs.getString("user_birth"));
 				info.setUser_check(rs.getString("user_check"));
 				info.setUser_nickname(rs.getString("user_nickname"));
 
@@ -140,7 +140,7 @@ public class MypageDaoImpl implements MypageDao {
 				result.setUser_password(rs.getString("user_password"));
 				result.setUser_point(rs.getInt("user_point"));
 				result.setUser_name(rs.getString("user_name"));
-				result.setUser_birth(rs.getDate("user_birth"));
+				result.setUser_birth(rs.getString("user_birth"));
 				result.setUser_check(rs.getString("user_check"));
 				result.setUser_nickname(rs.getString("user_nickname"));
 			}
@@ -702,7 +702,7 @@ public class MypageDaoImpl implements MypageDao {
 				result.setUser_password(rs.getString("user_password"));
 				result.setUser_point(rs.getInt("user_point"));
 				result.setUser_name(rs.getString("user_name"));
-				result.setUser_birth(rs.getDate("user_birth"));
+				result.setUser_birth(rs.getString("user_birth"));
 				result.setUser_check(rs.getString("user_check"));
 				result.setUser_nickname(rs.getString("user_nickname"));
 			}
@@ -1275,6 +1275,7 @@ public class MypageDaoImpl implements MypageDao {
 				String sql = "";
 				sql += "SELECT * FROM message";
 				sql += " WHERE msg_rec = ?";
+				sql += " order by msg_no desc";
 
 				// 결과 저장할 Board객체
 				List<Message> BoardList = new ArrayList<>();
@@ -1324,7 +1325,7 @@ public class MypageDaoImpl implements MypageDao {
 		String sql = "";
 		sql += "SELECT * FROM message";
 		sql += " WHERE msg_send = ?";
-
+		sql += " order by msg_no desc";
 		// 결과 저장할 Board객체
 		List<Message> BoardList = new ArrayList<>();
 
@@ -1364,12 +1365,6 @@ public class MypageDaoImpl implements MypageDao {
 		// 최종 결과 반환
 		return BoardList;
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 }// class

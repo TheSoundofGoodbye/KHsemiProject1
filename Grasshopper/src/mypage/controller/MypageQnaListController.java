@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mypage.dto.Qna_board;
-import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 

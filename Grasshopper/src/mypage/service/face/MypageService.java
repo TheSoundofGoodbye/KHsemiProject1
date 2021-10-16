@@ -152,7 +152,6 @@ public interface MypageService {
 	 */
 	public List<Qna_board> qnaBoardSelectAll(int user_no);
 
-	
 	/**
 	 * 주어진 qna_board_no를 이용하여 게시글을 조회한다
 	 * 
@@ -160,9 +159,9 @@ public interface MypageService {
 	 * @return Qna_board - 조회된 게시글
 	 */
 	public Qna_board view(Qna_board boardno);
-	
+
 	public Qna_board_attachment viewFile(Qna_board viewBoard);
-	
+
 	/**
 	 * 게시글 수정
 	 * 
@@ -176,9 +175,7 @@ public interface MypageService {
 	 * @param board - 삭제할 게시글 번호를 가진 객체
 	 */
 	public void deleteQna(Qna_board board);
-	
-	
-	
+
 	/**
 	 * 로그인 정보 추출
 	 * 
@@ -194,53 +191,44 @@ public interface MypageService {
 	 * @return true - 인증됨, false - 인증되지 않음
 	 */
 	public boolean login(User_admin user_admin);
-	
-	
+
 	/**
 	 * 게시글 전체 조회
 	 * 
 	 * @return List<Qna_board> - 문의글 전체 조회 결과 리스트
 	 */
 	public List<Qna_board> getListQnaBoard();
-	
+
 	/**
 	 * 
 	 * @param user_no 유저번호로 문의글찾기
 	 * @return Qna_board
 	 */
 	public Qna_board qnaBoardByuserno(int user_no);
-	
+
 	/**
 	 * 
 	 * @param qna_board - 보드넘버만잇는객체로 객체조회
 	 * @return
 	 */
 	public Qna_board qnaBoardByBoardno(Qna_board qna_board);
-	
 
-	
 	/**
 	 * 
 	 * @param boardno 보드넘버로 객체조회
 	 * @return Qna_board
 	 */
 	public Qna_board qnaBoardByBoardno(int boardno);
-	
-	
-	
+
 	/**
 	 * DB에 삽입
-	 *  
+	 * 
 	 * @param req
 	 * @param qna_board
 	 * @param user_no
-	 */ 
-	public void insertMessage(HttpServletRequest req, Qna_board qna_board, int user_no );
+	 */
+	public void insertMessage(HttpServletRequest req, Qna_board qna_board, int user_no);
 
-	
-	
-	
-	
 	/**
 	 * 내가 보낸 Message 전체 조회
 	 * 
@@ -248,8 +236,7 @@ public interface MypageService {
 	 * @return List<Message> - user_no에 맞는 Message테이블 전체 조회 결과 리스트
 	 */
 	public List<Message> sendMessageSelect(int user_no);
-	
-	
+
 	/**
 	 * 내가 받은 Message 전체 조회
 	 * 
@@ -257,8 +244,14 @@ public interface MypageService {
 	 * @return List<Message> - user_no에 맞는 Message테이블 전체 조회 결과 리스트
 	 */
 	public List<Message> recMessageSelect(int user_no);
-	
-	
-	
-	
+
+	/**
+	 * DB에 삽입
+	 * 
+	 * @param req
+	 * @param qna_board
+	 * @param user_no
+	 */
+	public void insertMsg(HttpServletRequest req, int user_no, int msg_rec);
+
 }

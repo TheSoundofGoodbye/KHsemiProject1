@@ -40,10 +40,6 @@ public interface MypageDao {
 	 * @return User_info - 조회된 결과 객체
 	 */
 	public User_info selectUser_infoByUser_email(Connection conn, User_info user_info);
-	
-	
-	
-	
 
 	/**
 	 * 회원정보 수정
@@ -51,7 +47,6 @@ public interface MypageDao {
 	 * @param user_info - 수정할 내용을 담은 객체
 	 */
 	public int update(Connection conn, User_info user_info);
-
 
 	/**
 	 * 
@@ -113,7 +108,6 @@ public interface MypageDao {
 	 */
 	public List<Free_board> freeBoardByUserno(Connection conn, int user_no);
 
-
 	/**
 	 * 내가 자유게시판에 쓴 댓글 조회
 	 * 
@@ -144,19 +138,15 @@ public interface MypageDao {
 	 * @param - 탈퇴한 회원정보를 담은 객체
 	 */
 //	public User_info delete(Connection conn, int user_no );
-	
-	
+
 	/**
 	 * 
 	 * @param conn
-	 * @param user_no 회원탈퇴할 유저번호 
+	 * @param user_no 회원탈퇴할 유저번호
 	 * @return
 	 */
 	public int delete(Connection conn, int user_no);
 
-	
-	
-	
 	/**
 	 * 
 	 * @param conn
@@ -170,12 +160,11 @@ public interface MypageDao {
 	/**
 	 * 
 	 * @param conn
-	 * @param qna_board 
+	 * @param qna_board
 	 * @return 1 - 성공 , 0 - 실패 -1 -에러
 	 */
 	public int insertQna(Connection conn, Qna_board qna_board);
 
-	
 	/**
 	 * 
 	 * @param conn
@@ -191,7 +180,6 @@ public interface MypageDao {
 	 */
 	public int getNextBoardno(Connection conn);
 
-	
 	/**
 	 * 
 	 * @param conn
@@ -206,7 +194,7 @@ public interface MypageDao {
 	 * @return Qna_board - 조회된 결과 객체
 	 */
 	public List<Qna_board> QnaBoardByUserno(Connection conn, int user_no);
-	
+
 	/**
 	 * 
 	 * @param conn
@@ -215,7 +203,6 @@ public interface MypageDao {
 	 */
 	public Qna_board selectQnaBoardByBoardno(Connection conn, Qna_board boardno);
 
-	
 	/**
 	 * 
 	 * @param conn
@@ -269,8 +256,6 @@ public interface MypageDao {
 	 * @return List<Qna_board> - Qna_board테이블 전체 조회 결과 리스트
 	 */
 	public List<Qna_board> selectAllQna(Connection conn);
-	
-	
 
 	/**
 	 * 
@@ -278,10 +263,8 @@ public interface MypageDao {
 	 * @param message
 	 * @return
 	 */
-	public int insertMessage(Connection conn, Message message);	
-	
-	
-	
+	public int insertMessage(Connection conn, Message message);
+
 	/**
 	 * 다음 쪽지 번호 조회
 	 * 
@@ -290,10 +273,7 @@ public interface MypageDao {
 	 * @return 다음 쪽지 번호
 	 */
 	public int selectNextMessageNo(Connection conn);
-	
-	
-	
-	
+
 	/**
 	 * 내가쓴 쪽지 조회
 	 * 
@@ -301,15 +281,7 @@ public interface MypageDao {
 	 * @return Message - 조회된 결과 객체
 	 */
 	public List<Message> sendMessageByUserno(Connection conn, int user_no);
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * 내가보낸 쪽지 조회
 	 * 
@@ -317,14 +289,5 @@ public interface MypageDao {
 	 * @return Message - 조회된 결과 객체
 	 */
 	public List<Message> recMessageByUserno(Connection conn, int user_no);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }// class

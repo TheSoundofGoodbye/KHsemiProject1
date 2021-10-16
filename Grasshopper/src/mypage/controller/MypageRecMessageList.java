@@ -34,6 +34,12 @@ public class MypageRecMessageList extends HttpServlet {
 		List<Message> message = mypageService.recMessageSelect(user_no);
 
 		session.setAttribute("message", message);
+		
+		List<User_info> user_info = mypageService.getList();
+		
+		session.setAttribute("user_info", user_info);
+		
+		
 
 		req.getRequestDispatcher("/WEB-INF/views/my/mypageRecMessageList.jsp").forward(req, resp);
 

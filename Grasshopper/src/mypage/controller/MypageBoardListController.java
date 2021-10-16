@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import mypage.dto.Custom_board;
 import mypage.dto.Free_board;
-import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
@@ -30,18 +29,16 @@ public class MypageBoardListController extends HttpServlet {
 
 
 		HttpSession session = req.getSession();
-	
+		
 		int user_no = (int)session.getAttribute("user_no");
 		
 		List<Custom_board> customBoardList = mypageService.customBoardSelectAll(user_no);
 
-		System.out.println(customBoardList);
 
 		session.setAttribute("customBoardList", customBoardList);
 
 		List<Free_board> freeBoardList = mypageService.freeBoardSelectAll(user_no);
 
-		System.out.println(freeBoardList);
 
 		session.setAttribute("freeBoardList", freeBoardList);
 

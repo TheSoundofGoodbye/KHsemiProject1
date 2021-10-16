@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mypage.dto.Qna_board;
 import mypage.dto.Qna_board_attachment;
+import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
@@ -25,20 +27,24 @@ public class MypageQnaUpdateController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
-		
-		Qna_board boardno = mypageService.getBoardno(req);
-		
-		Qna_board updateBoard = mypageService.view(boardno);
-		
-		req.setAttribute("updateBoard", updateBoard);
-		
-		Qna_board_attachment boardFile = mypageService.viewFile(updateBoard);
-	
-		req.setAttribute("boardFile", boardFile);
-		
+		HttpSession session = req.getSession();
 
-		
+		int user_no = (int) session.getAttribute("user_no");
+
+		User_info user_info = mypageService.getUserInfo(user_no);
+
+		req.setAttribute("user_info", user_info);
+
+		Qna_board boardno = mypageService.getBoardno(req);
+
+		Qna_board updateBoard = mypageService.view(boardno);
+
+		req.setAttribute("updateBoard", updateBoard);
+
+		Qna_board_attachment boardFile = mypageService.viewFile(updateBoard);
+
+		req.setAttribute("boardFile", boardFile);
+
 		req.getRequestDispatcher("/WEB-INF/views/my/qnaUpdate.jsp").forward(req, resp);
 
 	}
@@ -47,7 +53,7 @@ public class MypageQnaUpdateController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		mypageService.updateQna(req);
-		
+
 		resp.sendRedirect("/qna/list");
 
 	}

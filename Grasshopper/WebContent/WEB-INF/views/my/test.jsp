@@ -67,6 +67,8 @@
 		</div>
 	</div>
 
+
+
 	<script>
 		$('p').on('click', function() {
 			$(this).siblings('div').removeClass('hide');

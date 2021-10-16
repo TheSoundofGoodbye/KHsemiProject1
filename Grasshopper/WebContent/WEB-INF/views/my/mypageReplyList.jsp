@@ -4,7 +4,7 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<h1 style="margin-top: 100px;">내가 쓴 댓글</h1>
+<h1>내가 쓴 댓글</h1>
 <hr>
 
 <table class="table table-striped">
