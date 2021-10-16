@@ -41,10 +41,9 @@
 					</li>
 					<li><a href="/official/main">칵테일 검색</a></li>
 					<li><a href="/custom/main">칵테일 제작</a></li>
-					<li><a href="/main">커뮤니티 게시판</a></li>
 					<li><a href="/free/list">자유게시판</a></li>
-					<li><a href="/main">쇼핑</a></li>
-					<li><a href="/main">문의게시판</a></li>
+					<li><a href="/shopping/main">쇼핑</a></li>
+					<li><a href="/qna/write">문의게시판</a></li>
 					<c:if test="${empty login or not login }">
 						<li>
 							<div class="login">
@@ -60,7 +59,7 @@
 					<c:if test="${login }">
 					<li>
 						<div class="login">
-							<button type="reset" class="btn btn-info">마이페이지</button>
+							<button type="reset" onclick='location.href="/mypage/main";' class="btn btn-info">마이페이지</button>
 						</div>
 						<div class="join">
 							<form>
