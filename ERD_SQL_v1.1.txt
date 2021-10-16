@@ -447,3 +447,4 @@ INSERT INTO shopping_board (shopping_product_no, shopping_category, shopping_pro
 INSERT INTO shopping_board (shopping_product_no, shopping_category, shopping_product_title, shopping_product_price, shopping_product_content, shopping_product_link, shopping_img_link) VALUES (shopping_board_seq.nextval, 'FOOD', '샐러드', 5900, '샐러드 5종', 'https://smartstore.naver.com/ginsmartfarm/products/5764225560', '/resources/img/salad.jpg');
 
 commit;
+--rollback;
