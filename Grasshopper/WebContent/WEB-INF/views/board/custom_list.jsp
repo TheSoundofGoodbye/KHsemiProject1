@@ -10,6 +10,19 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$("#btnwrite").click(function() {
+		if( '${login }' == false ){
+			alert("로그인을 해야지 글을 등록할 수 있습니다");
+			return;
+		}
+		location.href="/custom/write";
+		
+	});
+});
+</script>     
 </head>
 
 <style>
@@ -67,39 +80,15 @@
 	</div>
 	</c:forEach>
 </div>
-
+<button id="btnwrite" class="btn btn-info float-right" style="float:right">글 쓰기</button>
 
 </div>
 
 
 </body>
 
-<%-- 맨위로 버튼 --%>
-<button id="topButton" onclick="toTheTop()">맨 위로</button>
 
-<!-- 최상단으로 버튼 스크립트 -->
-<script type="text/javascript">
-var topButton = document.getElementById("topButton");
-//스크롤 시 scrollFunction 동작
-window.onscroll = function() {
-	scrollFunction()	
-};
-//버튼이 나타나게 함
-function scrollFunction(){
-	console.log("[TEST] You are scrolling!") //테스트용
-	//스크롤을 통해 20줄 이상 내려가면 
-	if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
-		topButton.style.display = "block";	
-	} else {
-		topButton.style.display = "none";
-	}
-}
-//화면 최상단으로 보내는 기능
-function toTheTop(){
-	window.scrollTo(0,0);
-}
-
-</script>
 
 <c:import url="/WEB-INF/views/layout/custom_paging.jsp" />
+
 <c:import url="/WEB-INF/views/layout/footer.jsp" /> 

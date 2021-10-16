@@ -24,7 +24,7 @@ public class MemberDaoImpl implements MemberDao {
 		sql += "INSERT INTO user_info";
 		sql += " (user_no, user_email, user_password, user_point";
 		sql += " , user_name, user_check, user_nickname, user_birth)";
-		sql += " VALUES(userInfo_seq.nextval,?, ?, 0, ?, ?, ?, ?)";
+		sql += " VALUES(user_info_seq.nextval,?, ?, 0, ?, ?, ?, ?)";
 		
 		int res = 0;
 		
