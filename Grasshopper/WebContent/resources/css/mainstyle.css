@@ -18,10 +18,12 @@ body, html {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	background: #f1f2f3;
 }
 
 .content_area {
 	flex: 1 0 auto;
+	background: #f1f2f3;
 }
 
 header  {

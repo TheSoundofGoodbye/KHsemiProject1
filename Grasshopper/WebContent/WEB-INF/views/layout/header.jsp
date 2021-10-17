@@ -62,7 +62,7 @@
 								</form>
 							</div>
 							<div class="join">
-								<button type="reset" onclick='location.href="/kh1/join";'
+								<button type="reset" onclick='location.href="/member/join";'
 									class="btn btn-warning">회원가입</button>
 							</div>
 						</li>
