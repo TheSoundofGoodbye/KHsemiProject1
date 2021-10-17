@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <script>
 //window.location.search = ?를 포함한 이후 문자열
 var params = new URLSearchParams(window.location.search);
@@ -9,6 +10,11 @@ var category = params.get("category");
 var search = params.get("search");
 
 </script>
+
+<style>
+
+</style>
+
 
 <div class="text-center">
 <nav>

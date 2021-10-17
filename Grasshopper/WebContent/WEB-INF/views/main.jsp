@@ -28,9 +28,9 @@
 
 </head>
 <body>
-	<div class="wrap">
+	<div class="wrap" style="height:auto;">
 		<div class="intro_bg">
-			<div class="header">
+			<header>
 				<ul class="nav">
 					<li>
 						<div class="header_logo">
@@ -72,7 +72,7 @@
 					</c:if>
 				</ul>
 
-			</div>
+			</header>
 			<div class="video-area">
 				<video class="video"  height="780px"
 					src="/resources/video/cheers02.mp4" autoplay muted loop></video>
