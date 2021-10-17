@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>    
-<link rel="stylesheet" type="text/css" href="/resources/css/offcusstyle.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/offcusstyle.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/messagePopup.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+	rel="stylesheet">
 
 
 <div class="container">
@@ -28,8 +31,8 @@
 	<div class="content-container">
 		<div class="title-container">
 			<h1 class="entry-title">${viewCustom.custom_board_title }</h1>
-			<p class="title-sub-container">작성자 : ${viewCustom.user_nickname }   |   조회수 :
-				${viewCustom.custom_board_hit }</p>
+			<p class="title-sub-container popupOpen1">작성자 : ${viewCustom.user_nickname }
+				| 조회수 : ${viewCustom.custom_board_hit }</p>
 		</div>
 	</div>
 
@@ -45,17 +48,18 @@
 			<h3 class="semi_title"></h3>
 			<!-- custom_board_content 에서 키워드로 parsing해서 아래나눠서넣어야함 -->
 			${viewCustom.custom_board_content }
-<!-- 			<h3 class="semi_title">재료</h3> -->
-<%-- 			<c:forEach var="split" --%>
-<%-- 				items="${fn:split(viewCustom.custom_cocktail_ingred,',') }"> --%>
-<%-- 					${split } <br> --%>
-<%-- 			</c:forEach> --%>
+			<!-- 			<h3 class="semi_title">재료</h3> -->
+			<%-- 			<c:forEach var="split" --%>
+			<%-- 				items="${fn:split(viewCustom.custom_cocktail_ingred,',') }"> --%>
+			<%-- 					${split } <br> --%>
+			<%-- 			</c:forEach> --%>
 			<!-- 첨부파일 -->
 			<div class="attachment">
-			<h5 class="semi_title">첨부파일</h5>
+				<h5 class="semi_title">첨부파일</h5>
 				<c:if test="${not empty customFile }">
-					<a href="/upload/${customFile.stored_file_name }" download="${customFile.original_file_name }"> 
-					${customFile.original_file_name }</a>
+					<a href="/upload/${customFile.stored_file_name }"
+						download="${customFile.original_file_name }">
+						${customFile.original_file_name }</a>
 				</c:if>
 			</div>
 		</div>
@@ -71,26 +75,32 @@
 			</div>
 			<div class="comment-loaded">
 				<c:forEach var="c" items="${comments }">
-					<div class="comment-list comment-show" id="comment-show${ c.custom_reply_no }">
+					<div class="comment-list comment-show"
+						id="comment-show${ c.custom_reply_no }">
 						<div id="" style="display: none;">${c.user_no }</div>
-						닉네임 : ${c.user_nickname } <br> 댓글내용:
-						${c.custom_reply_content }<br> 작성일시:
-						${c.custom_reply_date }<br>
+						<div class="popupOpen1">닉네임 : ${c.user_nickname }</div> 댓글내용: ${c.custom_reply_content }<br>
+						작성일시: ${c.custom_reply_date }<br>
 						<c:if test="${c.user_no == sessionScope.user_no }">
 							<form action="/custom/comment/delete" method="get">
-							<input type="hidden" name="custom_reply_no" value="${c.custom_reply_no }">
-							<button type="submit" class="comment-button">삭제하기</button>
+								<input type="hidden" name="custom_reply_no"
+									value="${c.custom_reply_no }">
+								<button type="submit" class="comment-button">삭제하기</button>
 							</form>
 							<button type="button" class="comment-button"
 								onclick="updateCommentShow('${c.custom_reply_no}')">수정하기</button>
 						</c:if>
 					</div>
-					<div class="comment-input comment-hide" id="comment-input${ c.custom_reply_no }">
-						<form action="/custom/comment/update" method="post" name="cmtUpdate">
+					<div class="comment-input comment-hide"
+						id="comment-input${ c.custom_reply_no }">
+						<form action="/custom/comment/update" method="post"
+							name="cmtUpdate">
 							<textarea name="custom_reply_content" id="textarea">${c.custom_reply_content }</textarea>
-							<input type="hidden" name="custom_reply_no" value="${c.custom_reply_no }">
-							<button type="submit" class="comment-button" name="" id="comment-update-button">수정확인</button>
-							<button type="button" class="comment-button" name="" id="comment-cancel-button"
+							<input type="hidden" name="custom_reply_no"
+								value="${c.custom_reply_no }">
+							<button type="submit" class="comment-button" name=""
+								id="comment-update-button">수정확인</button>
+							<button type="button" class="comment-button" name=""
+								id="comment-cancel-button"
 								onclick="cancelCommentUpdate('${c.custom_reply_no}')">취소하기</button>
 						</form>
 					</div>
@@ -106,92 +116,124 @@
 	</div>
 </div>
 
+<div class="popupWrap1 hide1">
+	<form action="/customboard/message" method="post">
+		<input type="hidden" name="custom_no" value="${param.custom_no }" />
+		<div class="popup1">
+			<div class="title">
+				<p>${viewCustom.user_nickname }</p>
+				<span class="close1">❌</span>
+			</div>
+			<textarea name="message" id="message" cols="30" rows="10"></textarea>
+			<div class="btnWrap1">
+				<button>보내기</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+	$('.popupOpen1').on('click', function() {
+		$('.popupWrap1').removeClass('hide1');
+	});
+	$('.close1').on('click', function() {
+		$(this).parents('.popupWrap1').addClass('hide1');
+		$(this).parents('.popup1').children('textarea').val('');
+	});
+
+	$(".btnWrap1").click(function() {
+		$(this).parents("form").submit();
+// 		history.go(-1);
+	});
+</script>
+
+
 <script type="text/javascript">
-	//목록으로 버튼 function
-	$(document).ready(function() {
+//목록으로 버튼 function
+$(document).ready(function() {
+						
 	//목록버튼 동작
+				
 	$("#btnList").click(function() {
 		$(location).attr("href", "/custom/list");
 	});
-	
+
 	//수정버튼 동작
 	$("#btnUpdate").click(function() {
-		$(location).attr("href", "/custom/update?custom_no=${viewCustom.custom_board_no }");
+		$(location).attr("href","/custom/update?custom_no=${viewCustom.custom_board_no }");
 	});
 
 	//삭제버튼 동작
 	$("#btnDelete").click(function() {
-		if( confirm("게시글을 삭제하시겠습니까?") ) {
-			$(location).attr("href", "/custom/delete?custom_no=${viewCustom.custom_board_no }");
-			}
-		});
-	
+		if (confirm("게시글을 삭제하시겠습니까?")) {
+			$(location).attr("href","/custom/delete?custom_no=${viewCustom.custom_board_no }");
+		}
 	});
 
-	//코멘트 200자 이상일 시 스크립트
-	
-	// Get the modal
-	var modal = document.getElementById("myModal");
+});
 
-	// Get the button that opens the modal
-	var btn = document.getElementById("comment-write-button");
-	
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
+//코멘트 200자 이상일 시 스크립트
 
-	// When the user clicks on the button, open the modal
-	btn.onclick = function() {
-		if (document.getElementById("textarea").value.length >= 200) {
-			modal.style.display = "block";
-			return false;
-		}
-	}
-			
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("comment-write-button");
 
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	  modal.style.display = "none";
-	}
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
-	
-	function updateCommentShow(custom_reply_no){
-		var show = "comment-show" + custom_reply_no;
-		var input = "comment-input" + custom_reply_no;
-		
-		document.getElementById(show).classList.add("comment-hide");
-		document.getElementById(show).classList.remove("comment-show");
-		document.getElementById(input).classList.add("comment-show");
-		document.getElementById(input).classList.remove("comment-hide");
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+	if (document.getElementById("textarea").value.length >= 200) {
+		modal.style.display = "block";
 		return false;
 	}
-	
-	function cancelCommentUpdate(custom_reply_no){
-		var show = "comment-show" + custom_reply_no;
-		var input = "comment-input" + custom_reply_no;
-		
-		document.getElementById(show).classList.remove("comment-hide");
-		document.getElementById(show).classList.add("comment-show");
-		document.getElementById(input).classList.remove("comment-show");
-		document.getElementById(input).classList.add("comment-hide");
-		return false;
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
 	}
-	
-	//파일 타입에 따른 if문 동작
-	const file = this.files[0];
-	const  fileType = file['type'];
-	const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/webp'];
-	if (validImageTypes.includes(fileType)) { // 이미지면 
-		document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
-	} else { //이미지가 아니면
-		document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
-	}
+}
+
+function updateCommentShow(custom_reply_no) {
+	var show = "comment-show" + custom_reply_no;
+	var input = "comment-input" + custom_reply_no;
+
+	document.getElementById(show).classList.add("comment-hide");
+	document.getElementById(show).classList.remove("comment-show");
+	document.getElementById(input).classList.add("comment-show");
+	document.getElementById(input).classList.remove("comment-hide");
+	return false;
+}
+
+function cancelCommentUpdate(custom_reply_no) {
+	var show = "comment-show" + custom_reply_no;
+	var input = "comment-input" + custom_reply_no;
+
+	document.getElementById(show).classList.remove("comment-hide");
+	document.getElementById(show).classList.add("comment-show");
+	document.getElementById(input).classList.remove("comment-show");
+	document.getElementById(input).classList.add("comment-hide");
+	return false;
+}
+
+//파일 타입에 따른 if문 동작
+// const file = this.files[0];
+// const fileType = file['type'];
+// const validImageTypes = [ 'image/gif', 'image/jpeg', 'image/png',
+// 		'image/webp' ];
+// if (validImageTypes.includes(fileType)) { // 이미지면 
+// 	document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
+// } else { //이미지가 아니면
+// 	document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
+// }
 </script>
 
-<c:import url="/WEB-INF/views/layout/footer.jsp" />     
+<c:import url="/WEB-INF/views/layout/footer.jsp" />

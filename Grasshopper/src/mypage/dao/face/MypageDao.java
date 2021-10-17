@@ -290,4 +290,18 @@ public interface MypageDao {
 	 */
 	public List<Message> recMessageByUserno(Connection conn, int user_no);
 
+	
+	
+	
+	/**
+	 * FreeBoard 게시글 조회
+	 *  
+	 * @param conn - DB 연결 객체
+	 * @param boardno
+	 * @return - dto타입 반환
+	 */
+	public Free_board getFreeBoardByFreeBoardNo(Connection conn, int boardno);
+	
+	
+	
 }// class

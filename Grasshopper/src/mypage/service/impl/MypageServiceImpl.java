@@ -767,20 +767,87 @@ public class MypageServiceImpl implements MypageService {
 		return mypageDao.sendMessageByUserno(JDBCTemplate.getConnection(), user_no);
 	}
 
-	@Override
-	public void insertMsg(HttpServletRequest req, int user_no, int msg_rec) {
+//	@Override
+//	public void insertMsg(HttpServletRequest req, int user_no, int msg_rec) {
+//
+//		// DB연결 객체
+//		Message message = new Message();
+//
+//		Connection conn = JDBCTemplate.getConnection();
+//		int msgNo = mypageDao.selectNextMessageNo(conn);
+//		message.setMsg_no(msgNo);
+//		System.out.println("인서트메세지" + msg_rec);
+//		message.setMsg_send(user_no);
+//		message.setMsg_rec(msg_rec);
+//		// user_no 전달파라미터 검증 - null, ""
+//		String param = req.getParameter("msg");
+//		try {
+//			param = new String(param.getBytes("ISO-8859-1"), "UTF-8");
+//		} catch (UnsupportedEncodingException e1) {
+//			e1.printStackTrace();
+//		}
+//
+//		if (param != null && !"".equals(param)) {
+//			message.setMsg_content(param);
+//		}
+//
+//		if (mypageDao.insertMessage(conn, message) > 0) {
+//			JDBCTemplate.commit(conn);
+//		} else {
+//			JDBCTemplate.rollback(conn);
+//		}
+//
+//	}
 
+	@Override
+	public Free_board selectFreeBoard(int boardno) {
+		return mypageDao.getFreeBoardByFreeBoardNo(JDBCTemplate.getConnection(), boardno);
+	}
+
+	@Override
+	public void FreeBoardInsertMessage(HttpServletRequest req, Free_board free_board, int user_no) {
 		// DB연결 객체
 		Message message = new Message();
 
 		Connection conn = JDBCTemplate.getConnection();
 		int msgNo = mypageDao.selectNextMessageNo(conn);
 		message.setMsg_no(msgNo);
-		System.out.println("인서트메세지" + msg_rec);
+
 		message.setMsg_send(user_no);
-		message.setMsg_rec(msg_rec);
+		message.setMsg_rec(free_board.getUser_no());
 		// user_no 전달파라미터 검증 - null, ""
-		String param = req.getParameter("msg");
+		String param = req.getParameter("message");
+		try {
+			param = new String(param.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+
+		if (param != null && !"".equals(param)) {
+			message.setMsg_content(param);
+		}
+
+		if (mypageDao.insertMessage(conn, message) > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+
+	}
+
+	@Override
+	public void CustomBoardInsertMessage(HttpServletRequest req, Custom_board custom_board, int user_no) {
+		// DB연결 객체
+		Message message = new Message();
+
+		Connection conn = JDBCTemplate.getConnection();
+		int msgNo = mypageDao.selectNextMessageNo(conn);
+		message.setMsg_no(msgNo);
+
+		message.setMsg_send(user_no);
+		message.setMsg_rec(custom_board.getUser_no());
+		// user_no 전달파라미터 검증 - null, ""
+		String param = req.getParameter("message");
 		try {
 			param = new String(param.getBytes("ISO-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e1) {

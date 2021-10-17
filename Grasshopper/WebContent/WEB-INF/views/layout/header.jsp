@@ -38,7 +38,7 @@
 
 <body>
 	<div class="wrap">
-		<div class="header">
+		<header>
 				<ul class="nav">
 					<li>
 						<div class="header_logo">
@@ -47,10 +47,11 @@
 							</a>
 						</div>
 					</li>
-					<li><a href="/official/main">칵테일 검색</a></li>
-					<li><a href="/custom/main">칵테일 제작</a></li>
+					<li><a href="/official/main">공식 레시피</a></li>
+					<li><a href="/custom/main">나만의 칵테일</a></li>
 					<li><a href="/free/list">자유게시판</a></li>
 					<li><a href="/shopping/main">쇼핑</a></li>
+					<li><a href="/searchbar">어디가서 마실까</a></li>
 					<li><a href="/qna/write">문의하기</a></li>
 					<c:if test="${empty login or not login }">
 						<li>
@@ -81,7 +82,6 @@
 						</li>
 					</c:if>
 				</ul>
-		</div>
-	</div>
+		</header>
 
-	<div class="content_area">
+		<div class="content_area">

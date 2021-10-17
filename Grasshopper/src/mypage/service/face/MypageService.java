@@ -245,13 +245,36 @@ public interface MypageService {
 	 */
 	public List<Message> recMessageSelect(int user_no);
 
-	/**
-	 * DB에 삽입
-	 * 
-	 * @param req
-	 * @param qna_board
-	 * @param user_no
-	 */
-	public void insertMsg(HttpServletRequest req, int user_no, int msg_rec);
+//	/**
+//	 * DB에 삽입
+//	 * 
+//	 * @param req
+//	 * @param qna_board
+//	 * @param user_no
+//	 */
+//	public void insertMsg(HttpServletRequest req, int user_no, int msg_rec);
 
+	
+	
+	
+	
+	/**
+	 * Free_board 보드넘버로 조회
+	 * 
+	 * @param conn - DB연결 객체
+	 * @return Free_board 
+	 */
+	public Free_board selectFreeBoard (int boardno);
+
+	
+	
+	public void FreeBoardInsertMessage(HttpServletRequest req, Free_board free_board, int user_no);
+	
+	
+	public void CustomBoardInsertMessage(HttpServletRequest req, Custom_board custom_board, int user_no);
+
+	
+	
+	
+	
 }
