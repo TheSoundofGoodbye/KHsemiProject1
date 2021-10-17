@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import custom.dto.Custom;
 import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import custom.dto.Report;
 import official.dto.OfficialComment;
 import util.Paging;
 
@@ -139,6 +140,13 @@ public interface CustomService {
 	 * @return CustomComment - 코멘트 속성
 	 */
 	List<CustomComment> getComment(Paging paging, Custom viewCustom);
+	
+	/**
+	 * 현재 게시글을 신고한다
+	 * 
+	 * @param report
+	 */
+	void reportContent(Report report);
 
 
 }

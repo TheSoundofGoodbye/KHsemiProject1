@@ -31,8 +31,14 @@
 	<div class="content-container">
 		<div class="title-container">
 			<h1 class="entry-title">${viewCustom.custom_board_title }</h1>
-			<p class="title-sub-container popupOpen1">작성자 : ${viewCustom.user_nickname }
-				| 조회수 : ${viewCustom.custom_board_hit }</p>
+			<div class="title-sub-container popupOpen1" style="display:inline-block;">작성자 : ${viewCustom.user_nickname }
+				| 조회수 : ${viewCustom.custom_board_hit }</div>
+			<!-- 신고 아이콘 -->
+			<form class="report-form" action="/custom/report" method="post" name="report_link">
+			<input type="hidden" name="board_title" value="${viewCustom.custom_board_title }">
+			<span id="report-icon" class="material-icons report-icon">
+			report_problem</span>
+			</form>
 		</div>
 	</div>
 
@@ -78,8 +84,14 @@
 					<div class="comment-list comment-show"
 						id="comment-show${ c.custom_reply_no }">
 						<div id="" style="display: none;">${c.user_no }</div>
-						<div class="popupOpen1">닉네임 : ${c.user_nickname }</div> 댓글내용: ${c.custom_reply_content }<br>
+						<div class="popupOpen1" style="width: fit-content;">닉네임 : ${c.user_nickname }</div>
+						댓글내용: ${c.custom_reply_content }<br>
 						작성일시: ${c.custom_reply_date }<br>
+						<form class="report-reply-form" action="/custom/report" method="post" name="report_link">
+							<input type="hidden" name="reply_content" value="${ c.custom_reply_no }번리플:${c.custom_reply_content }"> 
+							<span id="report-reply-icon" class="material-icons report-reply-icon">
+							report_problem</span>
+						</form>
 						<c:if test="${c.user_no == sessionScope.user_no }">
 							<form action="/custom/comment/delete" method="get">
 								<input type="hidden" name="custom_reply_no"
@@ -148,7 +160,7 @@
 
 
 <script type="text/javascript">
-//목록으로 버튼 function
+//버튼 function
 $(document).ready(function() {
 						
 	//목록버튼 동작
@@ -168,11 +180,22 @@ $(document).ready(function() {
 			$(location).attr("href","/custom/delete?custom_no=${viewCustom.custom_board_no }");
 		}
 	});
-
+	
+	//신고버튼 동작
+	$(".report-icon").click(function(){
+		if (confirm("게시글을 신고하시겠습니까?")) {
+			$(".report-form").submit();
+		}
+	});
+	$(".report-reply-icon").click(function(){
+		if (confirm("댓글을 신고하시겠습니까?")) {
+			$(".report-reply-form").submit();
+		}
+	});
 });
 
-//코멘트 200자 이상일 시 스크립트
 
+//코멘트 200자 이상일 시 스크립트
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -223,17 +246,6 @@ function cancelCommentUpdate(custom_reply_no) {
 	document.getElementById(input).classList.add("comment-hide");
 	return false;
 }
-
-//파일 타입에 따른 if문 동작
-// const file = this.files[0];
-// const fileType = file['type'];
-// const validImageTypes = [ 'image/gif', 'image/jpeg', 'image/png',
-// 		'image/webp' ];
-// if (validImageTypes.includes(fileType)) { // 이미지면 
-// 	document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
-// } else { //이미지가 아니면
-// 	document.getElementById("card_thumbnail").innerHTML = '<img src="/resources/img/Dry Martini.jpg" />';
-// }
 </script>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

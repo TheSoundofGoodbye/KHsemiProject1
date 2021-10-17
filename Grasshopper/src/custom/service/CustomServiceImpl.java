@@ -21,6 +21,7 @@ import custom.dao.CustomDaoImpl;
 import custom.dto.Custom;
 import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import custom.dto.Report;
 import official.dao.OfficialDao;
 import official.dao.OfficialDaoImpl;
 import official.dto.Official;
@@ -521,5 +522,15 @@ public class CustomServiceImpl implements CustomService{
 			JDBCTemplate.rollback(connection);
 		}
 	}
+	
+	@Override
+	public void reportContent(Report report) {
+		Connection conn = JDBCTemplate.getConnection();
+		if( customDao.report(conn, report) > 0 ) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+	}	
 	
 }
