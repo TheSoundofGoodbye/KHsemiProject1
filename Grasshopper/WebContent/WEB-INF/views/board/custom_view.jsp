@@ -35,9 +35,9 @@
 
 	<div class="pic-container">
 		<!-- JS로 그림파일만 게시되되록 할 예정 -->
-<%-- 		<c:if test="${not empty customFile }"> --%>
-<%-- 		<img src="/upload/${customFile.storedname }" /> --%>
-<%-- 		</c:if> --%>
+		<c:if test="${not empty customFile }">
+			<img width="600px" src="/upload/${customFile.stored_file_name }" />
+		</c:if>
 	</div>
 
 	<div>
