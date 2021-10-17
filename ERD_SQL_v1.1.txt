@@ -175,7 +175,7 @@ CREATE SEQUENCE free_board_attachment_seq;
 CREATE TABLE qna_board (
 	qna_board_no NUMBER primary key, --문의번호
 	 user_no NUMBER, --회원번호
-	 qna_board_title varchar2(100),--문의종류
+	 qna_board_title varchar2(100),--문의게시판 제목
 	 qna_board_content varchar2(500), --문의내용
 	 qna_board_date DATE, --문의일자
 	 FOREIGN KEY (user_no) REFERENCES user_info (user_no)
@@ -188,6 +188,7 @@ CREATE SEQUENCE qna_board_seq;
 CREATE TABLE qna_board_reply (
 	qna_reply_no NUMBER primary key,
 	qna_board_no NUMBER,
+	board_type varchar2(2),
 	user_no NUMBER,
 	qna_reply_content varchar2(2000),
 	qna_reply_date DATE,
@@ -366,7 +367,7 @@ CREATE TABLE custom_reply (
     custom_board_no NUMBER,
     user_no NUMBER,
     custom_reply_content varchar2(200),
-    comment_date DATE,
+    custom_reply_date DATE default sysdate,
     FOREIGN KEY (user_no) REFERENCES user_info (user_no),
     FOREIGN KEY (custom_board_no) REFERENCES custom_board (custom_board_no)
  );
@@ -447,4 +448,4 @@ INSERT INTO shopping_board (shopping_product_no, shopping_category, shopping_pro
 INSERT INTO shopping_board (shopping_product_no, shopping_category, shopping_product_title, shopping_product_price, shopping_product_content, shopping_product_link, shopping_img_link) VALUES (shopping_board_seq.nextval, 'FOOD', '샐러드', 5900, '샐러드 5종', 'https://smartstore.naver.com/ginsmartfarm/products/5764225560', '/resources/img/salad.jpg');
 
 commit;
---rollback;
+
