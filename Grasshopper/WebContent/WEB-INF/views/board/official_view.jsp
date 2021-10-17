@@ -34,18 +34,28 @@
 	</div>
 
 	<div class="pic-container">
-		<img src="/resources/img/${viewOfficial.official_cocktail_name }.jpg" />
+		<img src="/resources/img/official_cocktail/official_cocktail_${viewOfficial.official_cocktail_no }.jpg" />
 	</div>
 
 	<div>
 		<div class="body-container">
-			<h3 class="semi_title">새부사항</h3>
-			<p>${viewOfficial.official_cocktail_detail }</p>
-			<h3 class="semi_title">재료</h3>
+			<br>
+			<br>
+			<h4 class="semi_title">재료</h4>
 			<c:forEach var="split"
 				items="${fn:split(viewOfficial.official_cocktail_ingred,',') }">
 					${split } <br>
 			</c:forEach>
+			<br>
+			<h4 class="semi_title"></h4>
+			<p id="cocktail-detail"></p>
+			<br>
+			<h4 class="semi_title">제조법</h4>
+			<p id="cocktail-recipe"></p>
+			<br>
+			<h4 class="semi_title">가니쉬</h4>
+			<p id="cocktail-garnish"></p>
+			<br>
 		</div>
 
 		<div class="comment-container">
@@ -117,9 +127,7 @@
 			return false;
 		}
 	}
-			
-
-
+	
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 	  modal.style.display = "none";
@@ -153,6 +161,22 @@
 		document.getElementById(input).classList.add("comment-hide");
 		return false;
 	}
+	
+	//칵테일 세부내역 나누기
+
+	window.onload = function() {
+
+		var details = "${viewOfficial.official_cocktail_detail }";
+		var paragraph1 = details.split('Recipe:');
+		detail = paragraph1[0];
+		var paragraph2 = paragraph1[1].split('Garnish:');
+		recipe = paragraph2[0];
+		garnish = paragraph2[1];
+
+		document.getElementById('cocktail-detail').innerHTML = detail;
+		document.getElementById('cocktail-recipe').innerHTML = recipe;
+		document.getElementById('cocktail-garnish').innerHTML = garnish;
+	};
 </script>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />     
