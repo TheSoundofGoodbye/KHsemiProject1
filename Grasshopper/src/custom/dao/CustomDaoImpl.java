@@ -11,6 +11,7 @@ import common.JDBCTemplate;
 import custom.dto.Custom;
 import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import custom.dto.Report;
 import official.dto.OfficialComment;
 import custom.dto.Custom;
 import util.Paging;
@@ -748,5 +749,30 @@ public class CustomDaoImpl implements CustomDao{
 		return result;
 	}
 	
+	@Override
+	public int report(Connection connection, Report report) {
+		String sql = "";
+		sql += "INSERT INTO REPORT_BOARD (REPORT_NO, REPORT_LINK, REPORT_BOARD_TITLE, REPORT_BOARD_DONE)";
+		sql += " VALUES (REPORT_BOARD_SEQ.nextval, ?, ?, 0)";
+		
+		//수행결과 변경된 row num
+		int result = 0;
+
+		try {
+			ps = connection.prepareStatement(sql);
+
+			ps.setString(1, report.getReport_link());
+			ps.setString(2, report.getReport_board_title());
+
+			result = ps.executeUpdate();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
+	}
 	
 }

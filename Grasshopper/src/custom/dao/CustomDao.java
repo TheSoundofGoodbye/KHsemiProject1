@@ -7,6 +7,7 @@ import java.util.List;
 import custom.dto.Custom;
 import custom.dto.CustomComment;
 import custom.dto.CustomFile;
+import custom.dto.Report;
 import official.dto.OfficialComment;
 import custom.dto.Custom;
 import util.Paging;
@@ -185,5 +186,13 @@ public interface CustomDao {
 	 * @return List<CustomComment> 
 	 */
 	List<CustomComment> selectComment(Connection connection, Paging paging, Custom viewCustom);
+	
+	/**
+	 * Report객체를 report_board DB에 삽입한다
+	 * @param connection 
+	 * 
+	 * @param report
+	 */
+	int report(Connection connection, Report report);
 
 }
