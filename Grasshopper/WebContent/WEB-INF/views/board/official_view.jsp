@@ -7,6 +7,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>    
 <link rel="stylesheet" type="text/css" href="/resources/css/offcusstyle.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/messagePopup.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
@@ -75,7 +76,7 @@
 				<c:forEach var="c" items="${comments }">
 					<div class="comment-list comment-show" id="comment-show${ c.official_reply_no }">
 						<div id="" style="display: none;">${c.user_no }</div>
-						닉네임 : ${c.user_nickname } <br> 댓글내용:
+						<div class="popupOpen1">닉네임 : ${c.user_nickname }</div> 댓글내용:
 						${c.official_reply_content }<br> 작성일시:
 						${c.official_reply_date }<br>
 						<c:if test="${c.user_no == sessionScope.user_no }">
@@ -105,6 +106,36 @@
 		</div>
 	</div>
 </div>
+
+<div class="popupWrap1 hide1">
+	<form action="/customboard/message" method="post">
+		<input type="hidden" name="custom_no" value="${param.custom_no }" />
+		<div class="popup1">
+			<div class="title">
+				<p>${viewCustom.user_nickname }</p>
+				<span class="close1">❌</span>
+			</div>
+			<textarea name="message" id="message" cols="30" rows="10"></textarea>
+			<div class="btnWrap1">
+				<button>보내기</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+	$('.popupOpen1').on('click', function() {
+		$('.popupWrap1').removeClass('hide1');
+	});
+	$('.close1').on('click', function() {
+		$(this).parents('.popupWrap1').addClass('hide1');
+		$(this).parents('.popup1').children('textarea').val('');
+	});
+
+	$(".btnWrap1").click(function() {
+		$(this).parents("form").submit();
+// 		history.go(-1);
+	});
+</script>
 
 <script>
 	//목록으로 버튼 function

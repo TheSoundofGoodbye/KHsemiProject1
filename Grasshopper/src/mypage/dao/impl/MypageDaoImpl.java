@@ -1299,6 +1299,7 @@ public class MypageDaoImpl implements MypageDao {
 						viewBoard.setMsg_send(rs.getInt("msg_send"));
 						viewBoard.setMsg_rec(rs.getInt("msg_rec"));
 						viewBoard.setMsg_content(rs.getString("msg_content"));
+						viewBoard.setMsg_check(rs.getString("msg_check"));
 						viewBoard.setSend_date(rs.getDate("send_date"));
 
 						BoardList.add(viewBoard);
@@ -1348,6 +1349,7 @@ public class MypageDaoImpl implements MypageDao {
 				viewBoard.setMsg_send(rs.getInt("msg_send"));
 				viewBoard.setMsg_rec(rs.getInt("msg_rec"));
 				viewBoard.setMsg_content(rs.getString("msg_content"));
+				viewBoard.setMsg_check(rs.getString("msg_check"));
 				viewBoard.setSend_date(rs.getDate("send_date"));
 
 				BoardList.add(viewBoard);
@@ -1365,6 +1367,53 @@ public class MypageDaoImpl implements MypageDao {
 		// 최종 결과 반환
 		return BoardList;
 	}
+	
+	
+	
+	
+		@Override
+		public Free_board getFreeBoardByFreeBoardNo(Connection conn, int boardno) {
+			// SQL 작성
+			String sql = "";
+			sql += "SELECT * FROM free_board";
+			sql += " WHERE free_board_no = ?";
+
+			// 결과 저장할 Board객체
+			Free_board free_board = null;
+			try {
+				ps = conn.prepareStatement(sql); // SQL수행 객체
+
+				ps.setInt(1, boardno); // 조회할 게시글 번호 적용
+
+				rs = ps.executeQuery(); // SQL 수행 및 결과집합 저장
+
+				// 조회 결과 처리
+				while (rs.next()) {
+
+					free_board = new Free_board();
+
+					// 결과값 한 행 처리
+					free_board.setFree_board_no(rs.getInt("free_board_no"));
+					free_board.setUser_no(rs.getInt("user_no"));
+					free_board.setFree_board_title(rs.getString("free_board_title"));
+					free_board.setFree_board_content(rs.getString("free_board_content"));
+					free_board.setFree_board_date(rs.getDate("free_board_date"));
+					free_board.setFree_board_hit(rs.getInt("free_board_hit"));
+					free_board.setFree_board_vote(rs.getInt("free_board_vote"));
+
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				// DB객체 닫기
+				JDBCTemplate.close(rs);
+				JDBCTemplate.close(ps);
+			}
+
+			// 최종 결과 반환
+			return free_board;
+		}
 	
 	
 }// class

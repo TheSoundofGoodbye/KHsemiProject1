@@ -81,9 +81,7 @@ $(document).ready(function() {
 	</div>
 	</c:forEach>
 </div>
-
 </div>
-
 
 </body>
 

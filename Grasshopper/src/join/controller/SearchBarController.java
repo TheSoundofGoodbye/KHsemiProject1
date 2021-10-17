@@ -1,4 +1,4 @@
-package controller;
+package join.controller;
 
 import java.io.IOException;
 
