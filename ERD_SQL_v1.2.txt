@@ -280,11 +280,9 @@ CREATE SEQUENCE blacklist_seq;
 --신고글 목록
 CREATE TABLE report_board (
 	report_no NUMBER  primary key,
-	admin_id VARCHAR2(100),
-	report_board_number NUMBER,
+	report_link VARCHAR2(100),
 	report_board_title VARCHAR2(100),
 	report_board_done NUMBER,
-	FOREIGN KEY (admin_id) REFERENCES user_admin (admin_id)
 );
 
 DROP SEQUENCE report_board_seq;
@@ -323,11 +321,15 @@ CREATE TABLE official_reply (
 	official_board_no NUMBER,
 	user_no NUMBER,
 	official_reply_content varchar2(200),
-	official_reply_date DATE,
+	official_reply_date DATE default sysdate,
 
 	FOREIGN KEY (user_no) REFERENCES user_info (user_no),
-	FOREIGN KEY (official_board_no) REFERENCES official_board (official_board_no)
+	FOREIGN KEY (official_board_no) REFERENCES officialcocktail (official_cocktail_no)
 );
+
+SELECT * FROM official_reply;
+select * FROM user_info;
+SELECT * FROM officialcocktail;
 
 DROP SEQUENCE OFFICIAL_REPLY_SEQ;
 CREATE SEQUENCE official_reply_seq;
