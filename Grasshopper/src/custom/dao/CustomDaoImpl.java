@@ -133,7 +133,7 @@ public class CustomDaoImpl implements CustomDao{
 		sql += "	  FROM CUSTOM_BOARD C ";
 		sql += "	  JOIN USER_INFO U ON U.USER_NO = C.USER_NO ";
 		sql += "	  WHERE 1=1 ";
-		sql += "	  ORDER BY custom_board_no ) O ";
+		sql += "	  ORDER BY custom_board_no DESC) O ";
 		sql += "	) Custom_board ";
 		sql += "  WHERE rnum BETWEEN ? AND ?";
 	    
@@ -185,7 +185,7 @@ public class CustomDaoImpl implements CustomDao{
 		sql += "		WHERE 1=1";
 		sql += "		AND upper(custom_board_title) LIKE upper(?)";
 		sql += "		OR upper(custom_board_content) LIKE upper(?)";
-		sql += "		ORDER BY custom_board_no ) O";
+		sql += "		ORDER BY custom_board_no DESC) O";
 		sql += " 		) custom_board";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 		
@@ -245,7 +245,7 @@ public class CustomDaoImpl implements CustomDao{
 			sql += "		AND upper(user_nickname) ";
 		}
 	    sql += " 			LIKE upper(?)";
-	    sql += "		ORDER BY custom_board_no ) O";
+	    sql += "		ORDER BY custom_board_no DESC) O";
 		sql += " 		) custom_board";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 	    

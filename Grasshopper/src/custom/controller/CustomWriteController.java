@@ -61,6 +61,9 @@ private static final long serialVersionUID = 1L;
 		//작성글 삽입
 		customService.write(req);
 		
+		//첨부파일 dto에 추가
+		
+		
 		//목록으로 리다이렉션
 		resp.sendRedirect("/custom/list");
 		

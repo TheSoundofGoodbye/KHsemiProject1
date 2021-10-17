@@ -135,6 +135,12 @@ public class CustomServiceImpl implements CustomService{
 		//게시글 조회
 		Custom custom = customDao.selectCustomByCustomno(connection, custom_board_no);
 		
+		System.out.println("[Serv] custom : " + custom);
+		
+		custom.setUser_nickname(customDao.selectNickByUserno(connection, custom));
+		
+		System.out.println("[Serv] custom(afternick) : " + custom);
+			
 		return custom;
 	}
 	

@@ -88,8 +88,8 @@ $(document).ready(function() {
 		</form>
 
 		<div class="bottom-buttons text-center">
-			<button type="button" id="btnWrite" class="btn">작성완료</button>
-			<button type="button" id="btnList" class="btn">목록으로</button>
+			<button type="button" id="btnWrite" class="viewButton">작성완료</button>
+			<button type="button" id="btnList" class="viewButton">목록으로</button>
 		</div>
 
 	</div>
