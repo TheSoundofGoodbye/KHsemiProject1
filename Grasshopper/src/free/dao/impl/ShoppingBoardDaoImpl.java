@@ -9,7 +9,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import free.dao.face.ShoppingBoardDao;
-import free.dto.ShoppingBoard;
+import free.dto.Shopping_board;
 
 public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 
@@ -17,12 +17,12 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	private ResultSet rs = null;
 	
 	@Override
-	public List<ShoppingBoard> getList(Connection conn) {
+	public List<Shopping_board> getList(Connection conn) {
 		String sql = "";
 		sql += "SELECT * FROM shopping_board";
 		
-		ShoppingBoard shoppingBoard = null;
-		List<ShoppingBoard> shoppingBoardList= new ArrayList<>();
+		Shopping_board shoppingBoard = null;
+		List<Shopping_board> shoppingBoardList= new ArrayList<>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -30,7 +30,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				shoppingBoard = new ShoppingBoard();
+				shoppingBoard = new Shopping_board();
 				shoppingBoard.setShopping_product_no(rs.getInt("shopping_product_no"));
 				shoppingBoard.setShopping_category(rs.getString("shopping_category"));
 				shoppingBoard.setShopping_product_title(rs.getString("shopping_product_title"));
@@ -54,13 +54,13 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public List<ShoppingBoard> getAlcholList(Connection conn) {
+	public List<Shopping_board> getAlcholList(Connection conn) {
 		String sql = "";
 		sql += "SELECT * FROM shopping_board";
 		sql += " WHERE shopping_category LIKE ?";
 		
-		ShoppingBoard shoppingBoard = null;
-		List<ShoppingBoard> shoppingBoardList = new ArrayList<>();
+		Shopping_board shoppingBoard = null;
+		List<Shopping_board> shoppingBoardList = new ArrayList<>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 			
 			
 			while(rs.next()) {
-				shoppingBoard = new ShoppingBoard();
+				shoppingBoard = new Shopping_board();
 				shoppingBoard.setShopping_product_no(rs.getInt("shopping_product_no"));
 				shoppingBoard.setShopping_category(rs.getString("shopping_category"));
 				shoppingBoard.setShopping_product_title(rs.getString("shopping_product_title"));
@@ -94,13 +94,13 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public List<ShoppingBoard> getToolList(Connection conn) {
+	public List<Shopping_board> getToolList(Connection conn) {
 		String sql = "";
 		sql += "SELECT * FROM shopping_board";
 		sql += " WHERE shopping_category LIKE ?";
 		
-		ShoppingBoard shoppingBoard = null;
-		List<ShoppingBoard> shoppingBoardList = new ArrayList<>();
+		Shopping_board shoppingBoard = null;
+		List<Shopping_board> shoppingBoardList = new ArrayList<>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 			
 			
 			while(rs.next()) {
-				shoppingBoard = new ShoppingBoard();
+				shoppingBoard = new Shopping_board();
 				shoppingBoard.setShopping_product_no(rs.getInt("shopping_product_no"));
 				shoppingBoard.setShopping_category(rs.getString("shopping_category"));
 				shoppingBoard.setShopping_product_title(rs.getString("shopping_product_title"));
@@ -134,13 +134,13 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public List<ShoppingBoard> getFoodList(Connection conn) {
+	public List<Shopping_board> getFoodList(Connection conn) {
 		String sql = "";
 		sql += "SELECT * FROM shopping_board";
 		sql += " WHERE shopping_category LIKE ?";
 		
-		ShoppingBoard shoppingBoard = null;
-		List<ShoppingBoard> shoppingBoardList = new ArrayList<>();
+		Shopping_board shoppingBoard = null;
+		List<Shopping_board> shoppingBoardList = new ArrayList<>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -150,7 +150,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 			
 			
 			while(rs.next()) {
-				shoppingBoard = new ShoppingBoard();
+				shoppingBoard = new Shopping_board();
 				shoppingBoard.setShopping_product_no(rs.getInt("shopping_product_no"));
 				shoppingBoard.setShopping_category(rs.getString("shopping_category"));
 				shoppingBoard.setShopping_product_title(rs.getString("shopping_product_title"));

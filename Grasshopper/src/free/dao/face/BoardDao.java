@@ -3,9 +3,9 @@ package free.dao.face;
 import java.sql.Connection;
 import java.util.List;
 
-import free.dto.BoardFile;
-import free.dto.FreeBoard;
-import free.dto.FreeReply;
+import free.dto.Free_board_attachment;
+import free.dto.Free_board;
+import free.dto.Free_board_reply;
 import free.util.Paging;
 
 public interface BoardDao {
@@ -27,7 +27,7 @@ public interface BoardDao {
 	 * @param paging - 페이징 정보 객체
 	 * @return List<FreeBoard> - Board테이블 전체 조회 결과 리스트
 	 */
-	public List<FreeBoard> selectAll(Connection conn, Paging paging);
+	public List<Free_board> selectAll(Connection conn, Paging paging);
 
 	
 	/**
@@ -37,7 +37,7 @@ public interface BoardDao {
 	 * @param board - boardno가 들어있는 객체
 	 * @return - dto타입 반환
 	 */
-	public FreeBoard getFreeBoardByFreeBoardNo(Connection conn, FreeBoard board);
+	public Free_board getFreeBoardByFreeBoardNo(Connection conn, Free_board board);
 
 
 	/**
@@ -47,7 +47,7 @@ public interface BoardDao {
 	 * @param board - boardno를 가지고 잇는 dto객체
 	 * @return - boardno로 검색된 게시글 수 반환
 	 */
-	public int SearchByBoardNo(Connection conn, FreeBoard board);
+	public int SearchByBoardNo(Connection conn, Free_board board);
 
 
 	/**
@@ -56,7 +56,7 @@ public interface BoardDao {
 	 * @param connection - DB 연결 객체
 	 * @param board - Boardno정보가 들어있는 DTO
 	 */
-	public void Hit(Connection connection, FreeBoard board);
+	public void Hit(Connection connection, Free_board board);
 
 	/**
 	 * 다음 boardno값을 가져오는 메소드
@@ -83,7 +83,7 @@ public interface BoardDao {
 	 * @param freeBoard - dto객체
 	 * @return - insert완료한 행 갯수 반환
 	 */
-	public int insertIntoFreeBoard(Connection conn, FreeBoard freeBoard);
+	public int insertIntoFreeBoard(Connection conn, Free_board freeBoard);
 
 	/**
 	 * attachment테이믈에 insert
@@ -92,7 +92,7 @@ public interface BoardDao {
 	 * @param boardFile - dto객체
 	 * @return - insert완료한 행 갯수 반환
 	 */
-	public int insertFile(Connection conn, BoardFile boardFile);
+	public int insertFile(Connection conn, Free_board_attachment boardFile);
 
 
 
@@ -104,7 +104,7 @@ public interface BoardDao {
 	 * @param boardFile - attach_no가 들어있는 dto객체
 	 * @return - 결과값 dto객체
 	 */
-	public BoardFile getAttachmentByAttachNo(Connection conn, BoardFile boardFile);
+	public Free_board_attachment getAttachmentByAttachNo(Connection conn, Free_board_attachment boardFile);
 
 
 	
@@ -115,7 +115,7 @@ public interface BoardDao {
 	 * @param conn - DB 연결 객체
 	 * @param freeBoard - free.dto
 	 */
-	public int updateFreeBoard(Connection conn, FreeBoard freeBoard);
+	public int updateFreeBoard(Connection conn, Free_board freeBoard);
 
 
 	/**
@@ -135,7 +135,7 @@ public interface BoardDao {
 	 * @param boardFile - user_no가 들어있는 free.dto
 	 * @return - 변경된 행의 갯수 반환
 	 */
-	public int updateFile(Connection conn, BoardFile boardFile);
+	public int updateFile(Connection conn, Free_board_attachment boardFile);
 
 	
 	/**
@@ -144,7 +144,7 @@ public interface BoardDao {
 	 * @param conn - DB 연결 객체
 	 * @return
 	 */
-	public BoardFile getFreeboardAttachmentByFreeBoardNo(Connection conn, BoardFile boardFile);
+	public Free_board_attachment getFreeboardAttachmentByFreeBoardNo(Connection conn, Free_board_attachment boardFile);
 
 	
 	
@@ -154,7 +154,7 @@ public interface BoardDao {
 	 * @param connection - DB 연결 객체
 	 * @param freeBoard - free_board_no가 들어있는 FreeBoard free.dto 객체
 	 */
-	public int deleteFreeBoardByFreeBoardNo(Connection connection, FreeBoard freeBoard);
+	public int deleteFreeBoardByFreeBoardNo(Connection connection, Free_board freeBoard);
 
 	/**
 	 * 넘겨받은 freeboardno를 바탕으로 게시글 관련 파일 삭제
@@ -163,7 +163,7 @@ public interface BoardDao {
 	 * @param boardFile
 	 * @return
 	 */
-	public int deleteFreeBoardAttachment(Connection connection, BoardFile boardFile);
+	public int deleteFreeBoardAttachment(Connection connection, Free_board_attachment boardFile);
 
 
 	/**
@@ -173,7 +173,7 @@ public interface BoardDao {
 	 * @param freeReply - free.dto 객체
 	 * @return - 반영된 행의 수 반환
 	 */
-	public int insertReply(Connection conn, FreeReply freeReply);
+	public int insertReply(Connection conn, Free_board_reply freeReply);
 
 
 	/**
@@ -183,7 +183,7 @@ public interface BoardDao {
 	 * @param freeReply - DTO
 	 * @return - DTO ArrayList
 	 */
-	public List<FreeReply> selectAllReplyByFreeboardno(Connection conn, FreeReply freeReply);
+	public List<Free_board_reply> selectAllReplyByFreeboardno(Connection conn, Free_board_reply freeReply);
 
 
 	/**
@@ -193,7 +193,7 @@ public interface BoardDao {
 	 * @param freeReply - free.dto
 	 * @return - 반영된 행 갯수 반환
 	 */
-	public int deleteFreeReplyByNo(Connection conn, FreeReply freeReply);
+	public int deleteFreeReplyByNo(Connection conn, Free_board_reply freeReply);
 
 
 	/**
@@ -203,7 +203,7 @@ public interface BoardDao {
 	 * @param freeBoard - free.dto
 	 * @return - update가 반영된 행의 수 반환
 	 */
-	public int PlusLike(Connection conn, FreeBoard freeBoard);
+	public int PlusLike(Connection conn, Free_board freeBoard);
 
 	
 	/**
@@ -213,7 +213,7 @@ public interface BoardDao {
 	 * @param freeBoard - free.dto
 	 * @return - update가 반영된 행의 수 반환
 	 */
-	public int MinusLike(Connection conn, FreeBoard freeBoard);
+	public int MinusLike(Connection conn, Free_board freeBoard);
 
 	/**
 	 * 게시글의 좋아요 수 반환
@@ -222,7 +222,7 @@ public interface BoardDao {
 	 * @param freeBoard - freeboardno가 포함된 free.dto
 	 * @return - 좋아요 수가 포함된 dto객체
 	 */
-	public FreeBoard getLike(Connection conn, FreeBoard freeBoard);
+	public Free_board getLike(Connection conn, Free_board freeBoard);
 
 
 
