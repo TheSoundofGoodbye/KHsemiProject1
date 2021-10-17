@@ -27,7 +27,11 @@
 
 	<div class="content-container">
 		<div class="title-container">
-			<h1 class="entry-title">${viewOfficial.official_cocktail_name }</h1>
+			<h1 class="entry-title">
+				<c:set var="cocktail_title"
+					value="${fn:split(viewOfficial.official_cocktail_name,',')}" />
+				${ cocktail_title[0]} | ${ cocktail_title[1]}
+			</h1>
 			<p class="title-sub-container">추천수 :
 				${viewOfficial.official_cocktail_vote }</p>
 		</div>
@@ -97,7 +101,7 @@
 		</div>
 
 		<div class="bottom-buttons text-center">
-			<button id="btnList" class="btn">목록으로</button>
+			<button id="btnList" class="btn viewButton">목록으로</button>
 		</div>
 	</div>
 </div>
@@ -163,7 +167,6 @@
 	}
 	
 	//칵테일 세부내역 나누기
-
 	window.onload = function() {
 
 		var details = "${viewOfficial.official_cocktail_detail }";

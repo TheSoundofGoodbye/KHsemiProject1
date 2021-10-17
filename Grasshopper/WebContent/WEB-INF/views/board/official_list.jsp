@@ -35,10 +35,12 @@
 	<c:forEach var="o" items="${list }">
 	<div class="card">
 	<div class="card_image">
-		<img src="/resources/img/${o.official_cocktail_name }.jpg" />
+		<img src="/resources/img/official_cocktail/official_cocktail_${o.official_cocktail_no }.jpg" />
 	</div>
 	<div class="card_title">
-		<h3>${o.official_cocktail_name }</h3>
+		<c:set var="cocktail_title" value="${fn:split(o.official_cocktail_name,',')}" />
+		<h3>${ cocktail_title[0]}</h3>
+		<h4>${ cocktail_title[1]}</h4>
 	</div>
 	<div class="card_desc">
 		<p>${o.official_cocktail_detail }</p>
@@ -57,7 +59,7 @@
 </div>
 
 <%-- 맨위로 버튼 --%>
-<button id="topButton" onclick="toTheTop()">맨 위로</button>
+<!-- <button id="topButton" onclick="toTheTop()">맨 위로</button> -->
 
 <!-- 최상단으로 버튼 스크립트 -->
 <script type="text/javascript">
@@ -80,6 +82,16 @@ function scrollFunction(){
 function toTheTop(){
 	window.scrollTo(0,0);
 }
+
+window.onload = function() {
+
+	var details = "${viewOfficial.official_cocktail_detail }";
+	var paragraph1 = details.split(',');
+
+	document.getElementById('cocktail-detail').innerHTML = detail;
+	document.getElementById('cocktail-recipe').innerHTML = recipe;
+	document.getElementById('cocktail-garnish').innerHTML = garnish;
+};
 </script>
 
 <c:import url="/WEB-INF/views/layout/official_paging.jsp" />

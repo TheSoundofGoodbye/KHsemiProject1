@@ -18,6 +18,16 @@ body {
 
 .card {
 	box-shadow: 2px 2px 10px black;
+	height: 500px;
+}
+
+.card_image {
+	display: block;
+	overflow: hidden; 
+	width: 230px;
+	height: 300px;
+	align-self: center;
+
 }
 
 .card_image img{
@@ -26,7 +36,9 @@ body {
 
 .card_title {
 	text-align: center;
-	padding: 5px
+	padding: 5px;
+/* 	font-size: calc(4vw + 4vh + 2vmin); */
+	font-size: 1.5vw;
 }
 
 .card_desc {
@@ -34,6 +46,13 @@ body {
 	line-height: 2.5ex;
 	height: 7.5ex; 
 	overflow: hidden;
+/* 	font-size: calc(4vw + 4vh + 2vmin); */
+	font-size: 1vw;
+}
+
+.card_desc p {
+    height: 60px;
+    overflow: hidden;
 }
 
 .card_desc > p:first-of-type {
@@ -51,7 +70,7 @@ body {
 	background: #eee;
 	font-size: 0.8em;
 	border-bottom: 2px solid #ccc;
-	
+    box-shadow: inset 0px 0px 0px 5px white;
 }
 
 .card_info i {
