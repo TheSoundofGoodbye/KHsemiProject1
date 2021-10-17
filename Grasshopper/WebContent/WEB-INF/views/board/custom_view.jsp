@@ -28,8 +28,8 @@
 	<div class="content-container">
 		<div class="title-container">
 			<h1 class="entry-title">${viewCustom.custom_board_title }</h1>
-			<p class="title-sub-container">추천수 :
-				${viewCustom.custom_board_vote }</p>
+			<p class="title-sub-container">작성자 : ${viewCustom.user_nickname }   |   조회수 :
+				${viewCustom.custom_board_hit }</p>
 		</div>
 	</div>
 
@@ -42,7 +42,7 @@
 
 	<div>
 		<div class="body-container">
-			<h3 class="semi_title">세부사항</h3>
+			<h3 class="semi_title"></h3>
 			<!-- custom_board_content 에서 키워드로 parsing해서 아래나눠서넣어야함 -->
 			${viewCustom.custom_board_content }
 <!-- 			<h3 class="semi_title">재료</h3> -->
@@ -52,7 +52,7 @@
 <%-- 			</c:forEach> --%>
 			<!-- 첨부파일 -->
 			<div class="attachment">
-			<h3 class="semi_title">첨부파일</h3>
+			<h5 class="semi_title">첨부파일</h5>
 				<c:if test="${not empty customFile }">
 					<a href="/upload/${customFile.stored_file_name }" download="${customFile.original_file_name }"> 
 					${customFile.original_file_name }</a>

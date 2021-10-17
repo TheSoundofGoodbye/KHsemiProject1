@@ -47,7 +47,7 @@ public class CustomViewController extends HttpServlet {
 		System.out.println("viewCustom.getUser_no() : " + viewCustom.getUser_no());
 		
 		//닉네임 전달
-		req.setAttribute("nick", customService.getNick(viewCustom));
+//		req.setAttribute("nick", customService.getNick(viewCustom));
 		
 		//첨부파일 정보 조회
 		CustomFile customFile = customService.viewFile(viewCustom);

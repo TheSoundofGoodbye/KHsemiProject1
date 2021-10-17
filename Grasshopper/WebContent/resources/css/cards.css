@@ -119,7 +119,12 @@ body {
 	height: 40px;
 	margin: 4px;
 }
-	
+
+#btnwrite {
+	left: calc(50% + 425px);
+	position: fixed;
+}
+
 .highlight {
   background-color: yellow !important;
 }
