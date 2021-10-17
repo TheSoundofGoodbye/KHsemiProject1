@@ -279,10 +279,10 @@ CREATE SEQUENCE blacklist_seq;
 
 --신고글 목록
 CREATE TABLE report_board (
-	report_no NUMBER  primary key,
+	report_no NUMBER primary key,
 	report_link VARCHAR2(100),
 	report_board_title VARCHAR2(100),
-	report_board_done NUMBER,
+	report_board_done NUMBER
 );
 
 DROP SEQUENCE report_board_seq;
