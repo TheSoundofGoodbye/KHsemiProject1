@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import common.JDBCTemplate;
 import free.dao.face.MemberDao;
 import free.dao.impl.MemberDaoImpl;
-import free.dto.Member;
 import free.service.face.MemberService;
+import member.dto.User_info;
 
 public class MemberServiceImple implements MemberService {
 
@@ -16,7 +16,7 @@ public class MemberServiceImple implements MemberService {
 
 
 	@Override
-	public boolean login(Member member) {
+	public boolean login(free.dto.User_info member) {
 		
 		if(memberDao.selectCntMemberByUseridUserpw(JDBCTemplate.getConnection(), member)>0) {
 			return true;
@@ -26,7 +26,7 @@ public class MemberServiceImple implements MemberService {
 	}
 
 	@Override
-	public Member getLoginMember(HttpServletRequest req) {
+	public User_info getLoginMember(HttpServletRequest req) {
 
 		try {
 			req.setCharacterEncoding("UTF-8");
@@ -34,7 +34,7 @@ public class MemberServiceImple implements MemberService {
 			e.printStackTrace();
 		}
 		
-		Member member = new Member();
+		User_info member = new User_info();
 		
 		member.setUser_email( req.getParameter("useremail") );
 		member.setUser_password( req.getParameter("userpassword") );
@@ -45,10 +45,10 @@ public class MemberServiceImple implements MemberService {
 	}
 
 	@Override
-	public Member info(Member member) {
-		return memberDao.selectMemberByUseremail(JDBCTemplate.getConnection(), member);
+	public free.dto.User_info info(free.dto.User_info member) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	
+
 
 }

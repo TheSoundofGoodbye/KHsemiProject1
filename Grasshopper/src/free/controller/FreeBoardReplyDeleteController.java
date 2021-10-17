@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import free.dto.FreeReply;
+import free.dto.Free_board_reply;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 
@@ -35,7 +35,7 @@ public class FreeBoardReplyDeleteController extends HttpServlet {
 		
 		
 		//자유게시판 게시글에 달린 댓글 가져오기
-		List<FreeReply> freeReplyList = boardService.getReply(req);
+		List<Free_board_reply> freeReplyList = boardService.getReply(req);
 		req.setAttribute("replyList", freeReplyList);
 		
 		

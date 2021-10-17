@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import free.dto.ShoppingBoard;
+import free.dto.Shopping_board;
 import free.service.face.ShoppingService;
 import free.service.impl.ShoppingServiceImpl;
 
@@ -26,8 +26,7 @@ public class ShoppingListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/shopping/list [GET]");
 		
-		List<ShoppingBoard> shoppingBoardList = shoppingService.getList(req);
-		
+		List<Shopping_board> shoppingBoardList = shoppingService.getList(req);
 		
 		req.setAttribute("shoppingBoardList", shoppingBoardList);
 		

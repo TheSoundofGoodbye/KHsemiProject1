@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import free.dto.BoardFile;
-import free.dto.FreeBoard;
+import free.dto.Free_board_attachment;
+import free.dto.Free_board;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 
@@ -27,9 +27,9 @@ public class FreeBoardUpdateController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		System.out.println("/free/update [GET]");
 		
-		FreeBoard freeBoard = boardService.getFreeBoardDetail(req);
+		Free_board freeBoard = boardService.getFreeBoardDetail(req);
 		
-		BoardFile boardFile = new BoardFile();
+		Free_board_attachment boardFile = new Free_board_attachment();
 		
 		boardFile.setFree_board_no(freeBoard.getFree_board_no());
 		

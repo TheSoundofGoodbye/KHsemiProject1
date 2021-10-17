@@ -69,13 +69,13 @@ body {
 }
 
 .search-bar {
-	position: fixed;
+	position: absolute;	
 	display: inline-block;
 	left: 50%;
 	top: 100px !important;
 	transform: translateX(-50%);
 	width: 80%;
-	max-width: 400px;
+	max-width: 500px;
 	height: 48px;
 	background: #fff;
 	border-radius: 4px;
@@ -88,7 +88,7 @@ body {
 	transform: translateX(-50%);
 	width: 250px;
 	height: 40px;
-	left: 200px;
+	left: 205px;
 	margin: 4px 0;
 	border: 0px;
 	border-radius: 0px;
@@ -115,7 +115,7 @@ body {
 
 #category {
 	position: absolute;
-	left: 6px;
+	left: 0px;
 	height: 40px;
 	margin: 4px;
 }

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import free.dto.BoardFile;
-import free.dto.FreeBoard;
-import free.dto.FreeReply;
+import free.dto.Free_board_attachment;
+import free.dto.Free_board;
+import free.dto.Free_board_reply;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 
@@ -29,13 +29,13 @@ public class FreeBoardViewController extends HttpServlet {
 		System.out.println("/free/view [GET]");
 		
 		//자유게시판 게시글 정보 가져오기
-		FreeBoard freeBoard = boardService.getFreeBoardDetail(req);
+		Free_board freeBoard = boardService.getFreeBoardDetail(req);
 		
 		//자유게시판 게시글에 해당하는 첨부파일 가져오기
-		BoardFile boardFile = boardService.getBoardFile(req);
+		Free_board_attachment boardFile = boardService.getBoardFile(req);
 		
 		//자유게시판 게시글에 달린 댓글 가져오기
-		List<FreeReply> freeReplyList = boardService.getReply(req);
+		List<Free_board_reply> freeReplyList = boardService.getReply(req);
 
 		
 		req.setAttribute("freeboard", freeBoard);

@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import free.dto.ShoppingBoard;
+import free.dto.Shopping_board;
+
 
 public interface ShoppingService {
 
@@ -13,13 +14,13 @@ public interface ShoppingService {
 	 * 
 	 * @return
 	 */
-	public List<ShoppingBoard> getList();
+	public List<Shopping_board> getList();
 
 	/**
 	 * req로 넘어온 category 값에 따른 list목록 반환
 	 * 
 	 * @param req
 	 */
-	public List<ShoppingBoard> getList(HttpServletRequest req);
+	public List<Shopping_board> getList(HttpServletRequest req);
 	
 }

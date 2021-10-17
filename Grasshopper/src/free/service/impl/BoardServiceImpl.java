@@ -18,18 +18,18 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import common.JDBCTemplate;
 import free.dao.face.BoardDao;
 import free.dao.face.MemberDao;
-import free.dao.impl.BoardDaoImpl;
+import free.dao.impl.Free_board_daoImpl;
 import free.dao.impl.MemberDaoImpl;
-import free.dto.BoardFile;
-import free.dto.FreeBoard;
-import free.dto.FreeReply;
-import free.dto.Member;
+import free.dto.Free_board;
+import free.dto.Free_board_attachment;
+import free.dto.Free_board_reply;
 import free.service.face.BoardService;
 import free.util.Paging;
+import member.dto.User_info;
 
 public class BoardServiceImpl implements BoardService {
 
-	private BoardDao boardDao = new BoardDaoImpl();
+	private BoardDao boardDao = new Free_board_daoImpl();
 	private MemberDao memberDao = new MemberDaoImpl();
 	
 	@Override
@@ -55,14 +55,14 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<FreeBoard> getList(Paging paging) {
+	public List<Free_board> getList(Paging paging) {
 		return boardDao.selectAll(JDBCTemplate.getConnection(), paging);
 	}
 
 	@Override
-	public FreeBoard getFreeBoardDetail(HttpServletRequest req) {
+	public Free_board getFreeBoardDetail(HttpServletRequest req) {
 
-		FreeBoard board = new FreeBoard();
+		Free_board board = new Free_board();
 
 		board.setFree_board_no(Integer.parseInt(req.getParameter("freeboardno")));
 		System.out.println("boardno: " + req.getParameter("freeboardno"));
@@ -88,8 +88,8 @@ public class BoardServiceImpl implements BoardService {
 
 		System.out.println("boardService.write()");
 
-		FreeBoard freeBoard = null;
-		BoardFile boardFile = null;
+		Free_board freeBoard = null;
+		Free_board_attachment boardFile = null;
 
 		boolean isMultipart = false;
 		isMultipart = ServletFileUpload.isMultipartContent(req);
@@ -100,7 +100,7 @@ public class BoardServiceImpl implements BoardService {
 			return; //write() 메소드 중단
 		}
 
-		freeBoard = new FreeBoard();
+		freeBoard = new Free_board();
 
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -179,7 +179,7 @@ public class BoardServiceImpl implements BoardService {
 					e.printStackTrace();
 				}
 
-				boardFile = new BoardFile();
+				boardFile = new Free_board_attachment();
 				boardFile.setOriginal_file_name(origin);
 				boardFile.setStored_file_name(stored);
 				boardFile.setFile_size( (int)item.getSize());
@@ -235,7 +235,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardFile getAttachment(BoardFile boardFile) {
+	public Free_board_attachment getAttachment(Free_board_attachment boardFile) {
 
 		return boardDao.getAttachmentByAttachNo(JDBCTemplate.getConnection(),boardFile);
 	}
@@ -244,8 +244,8 @@ public class BoardServiceImpl implements BoardService {
 	public void update(HttpServletRequest req) {
 		System.out.println("boardService.update()");
 
-		FreeBoard freeBoard = null;
-		BoardFile boardFile = null;
+		Free_board freeBoard = null;
+		Free_board_attachment boardFile = null;
 
 		boolean isMultipart = false;
 		isMultipart = ServletFileUpload.isMultipartContent(req);
@@ -256,7 +256,7 @@ public class BoardServiceImpl implements BoardService {
 			return; //write() 메소드 중단
 		}
 
-		freeBoard = new FreeBoard();
+		freeBoard = new Free_board();
 
 
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -335,7 +335,7 @@ public class BoardServiceImpl implements BoardService {
 					e.printStackTrace();
 				}
 
-				boardFile = new BoardFile();
+				boardFile = new Free_board_attachment();
 				boardFile.setOriginal_file_name(origin);
 				boardFile.setStored_file_name(stored);
 				boardFile.setFile_size( (int)item.getSize());
@@ -390,9 +390,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardFile getBoardFile(HttpServletRequest req) {
+	public Free_board_attachment getBoardFile(HttpServletRequest req) {
 		
-		BoardFile boardFile = new BoardFile();
+		Free_board_attachment boardFile = new Free_board_attachment();
 		boardFile.setFree_board_no(Integer.parseInt(req.getParameter("freeboardno")));
 		return boardDao.getFreeboardAttachmentByFreeBoardNo(JDBCTemplate.getConnection(), boardFile );
 	}
@@ -402,11 +402,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		FreeBoard freeBoard = new FreeBoard();
+		Free_board freeBoard = new Free_board();
 		
 		freeBoard.setFree_board_no(Integer.parseInt(req.getParameter("freeboardno")));
 		
-		BoardFile boardFile = new BoardFile();
+		Free_board_attachment boardFile = new Free_board_attachment();
 		boardFile.setFree_board_no(freeBoard.getFree_board_no());
 		boardFile = boardDao.getFreeboardAttachmentByFreeBoardNo(conn, boardFile);
 		
@@ -430,16 +430,16 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<FreeBoard> getList(Paging paging, HttpServletRequest req) {
+	public List<Free_board> getList(Paging paging, HttpServletRequest req) {
 		
 		paging.setStartNo(0);
 		paging.setEndNo(Integer.MAX_VALUE);
 		
-		List<FreeBoard> boardList = boardDao.selectAll(JDBCTemplate.getConnection(), paging);
+		List<Free_board> boardList = boardDao.selectAll(JDBCTemplate.getConnection(), paging);
 
-		List<FreeBoard> result_boardList = new ArrayList<>();
+		List<Free_board> result_boardList = new ArrayList<>();
 		
-		for(FreeBoard freeboard: boardList) {
+		for(Free_board freeboard: boardList) {
 			
 			String type = req.getParameter("type");
 			String search = req.getParameter("search");
@@ -462,7 +462,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertReply(HttpServletRequest req) {
 		
-		FreeReply freeReply = new FreeReply();
+		Free_board_reply freeReply = new Free_board_reply();
 		
 //		freeReply.setUser_no(Integer.parseInt(req.getParameter("user_no")));
 		freeReply.setUser_no((int)req.getSession().getAttribute("user_no"));
@@ -484,8 +484,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<FreeReply> getReply(HttpServletRequest req) {
-		FreeReply freeReply = new FreeReply();
+	public List<Free_board_reply> getReply(HttpServletRequest req) {
+		Free_board_reply freeReply = new Free_board_reply();
 		System.out.println("freeboardno: " + req.getParameter("freeboardno"));
 		int freeboardno = Integer.parseInt(req.getParameter("freeboardno"));
 		System.out.println("freeboardno:" + freeboardno);
@@ -497,7 +497,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void deleteComment(HttpServletRequest req) {
-		FreeReply freeReply = new FreeReply();
+		Free_board_reply freeReply = new Free_board_reply();
 		
 		System.out.println("req.getParameter(replyno)" + req.getParameter("free_reply_no"));
 		
@@ -518,12 +518,12 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public Member getuser_nickname(HttpServletRequest req) {
-		Member member = new Member();
+	public free.dto.User_info getuser_nickname(HttpServletRequest req) {
+		User_info member = new User_info();
 		member.setUser_no((Integer)req.getSession().getAttribute("user_no"));
 		
 		
-		return memberDao.selectMemberByUserid(JDBCTemplate.getConnection(), member);  
+		return memberDao.selectUser_nickByUserid(JDBCTemplate.getConnection(), member);  
 	}
 
 
@@ -537,7 +537,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		Connection conn = JDBCTemplate.getConnection();	
 
-		FreeBoard freeBoard = new FreeBoard();
+		Free_board freeBoard = new Free_board();
 		freeBoard.setFree_board_no(Integer.parseInt(req.getParameter("freeboardno")));
 		
 		if(req.getParameter("btnlike").equals("false")) {
@@ -555,8 +555,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public FreeBoard getVote(HttpServletRequest req) {
-		FreeBoard freeBoard = new FreeBoard();
+	public Free_board getVote(HttpServletRequest req) {
+		Free_board freeBoard = new Free_board();
 
 		return boardDao.getLike(JDBCTemplate.getConnection(), freeBoard);
 	}

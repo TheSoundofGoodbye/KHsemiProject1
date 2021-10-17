@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import free.dto.Member;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
+import member.dto.User_info;
 
 /**
  * Servlet implementation class FreeBoardWriteController
@@ -26,7 +26,7 @@ public class FreeBoardWriteController extends HttpServlet {
 		System.out.println("/free/write [GET]");
 		req.setCharacterEncoding("utf-8");
 		
-		Member member = boardService.getuser_nickname(req);
+		free.dto.User_info member = boardService.getuser_nickname(req);
 		
 		req.setAttribute("usernick", member.getUser_nickname());
 		

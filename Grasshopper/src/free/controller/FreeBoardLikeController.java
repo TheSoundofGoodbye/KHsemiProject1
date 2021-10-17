@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import free.dto.FreeBoard;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 

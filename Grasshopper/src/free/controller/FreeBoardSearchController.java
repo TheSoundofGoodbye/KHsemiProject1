@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import free.dto.FreeBoard;
+import free.dto.Free_board;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 import free.util.Paging;
@@ -31,7 +31,7 @@ public class FreeBoardSearchController extends HttpServlet {
 		Paging paging = boardService.getPaging(req);
 		System.out.println("freeboardlistController[GET] - " + paging);
 		
-		List<FreeBoard> boardList = boardService.getList(paging);
+		List<Free_board> boardList = boardService.getList(paging);
 		
 		
 		

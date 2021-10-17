@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import common.JDBCTemplate;
 import free.dao.face.ShoppingBoardDao;
 import free.dao.impl.ShoppingBoardDaoImpl;
-import free.dto.ShoppingBoard;
+import free.dto.Shopping_board;
 import free.service.face.ShoppingService;
 
 public class ShoppingServiceImpl implements ShoppingService {
@@ -16,16 +16,16 @@ public class ShoppingServiceImpl implements ShoppingService {
 	private ShoppingBoardDao shoppingdao = new ShoppingBoardDaoImpl();
 	
 	@Override
-	public List<ShoppingBoard> getList() {
+	public List<Shopping_board> getList() {
 		
 		return shoppingdao.getList(JDBCTemplate.getConnection());
 	}
 
 	@Override
-	public List<ShoppingBoard> getList(HttpServletRequest req) {
+	public List<Shopping_board> getList(HttpServletRequest req) {
 		String category = req.getParameter("category");
 		Connection conn = JDBCTemplate.getConnection();
-		List<ShoppingBoard> shoppingBoard = null;
+		List<Shopping_board> shoppingBoard = null;
 		
 		if(category.equals("alchol")) {
 			shoppingBoard = shoppingdao.getAlcholList(conn);

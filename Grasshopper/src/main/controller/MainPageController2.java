@@ -11,13 +11,13 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class MainController
  */
-@WebServlet("/main")
+@WebServlet("/main2")
 public class MainPageController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/main [GET]");
+		System.out.println("/main2 [GET]");
 		
 		boolean login = false;
 		
@@ -27,7 +27,7 @@ public class MainPageController2 extends HttpServlet {
 			session.setAttribute("login", login);
 		}
 		
-		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/main2.jsp").forward(req, resp);
 		
 	}
 	

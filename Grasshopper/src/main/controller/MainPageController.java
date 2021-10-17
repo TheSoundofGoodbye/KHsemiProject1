@@ -14,7 +14,7 @@ import custom.service.CustomServiceImpl;
 /**
  * Servlet implementation class MainController
  */
-@WebServlet("/main2")
+@WebServlet("/main")
 public class MainPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class MainPageController extends HttpServlet {
 			session.setAttribute("login", login);
 		}
 		
-		req.getRequestDispatcher("/WEB-INF/views/main2.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/main.jsp").forward(req, resp);
 		
 	}
 	

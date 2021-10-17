@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import free.dto.FreeReply;
+import free.dto.Free_board_reply;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 
@@ -33,7 +33,7 @@ public class FreeBoardReplyWriteController extends HttpServlet {
 		
 		boardService.insertReply(req);
 		
-		List<FreeReply> freeReplyList = boardService.getReply(req);
+		List<Free_board_reply> freeReplyList = boardService.getReply(req);
 		
 		
 		

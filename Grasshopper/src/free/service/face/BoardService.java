@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import free.dto.BoardFile;
-import free.dto.FreeBoard;
-import free.dto.FreeReply;
-import free.dto.Member;
+import free.dto.Free_board_attachment;
+import free.dto.Free_board;
+import free.dto.Free_board_reply;
+import free.dto.User_info;
 import free.util.Paging;
 
 public interface BoardService {
@@ -31,13 +31,13 @@ public interface BoardService {
 	 * @param paging - 페이징 정보 객체
 	 * @return List<FreeBoard> - 게시글 전체 조회 결과 리스트
 	 */
-	public List<FreeBoard> getList(Paging paging);
+	public List<Free_board> getList(Paging paging);
 
 	/**
 	 * boardno를 바탕으로 게시글 내용 반환
 	 * @param req
 	 */
-	public FreeBoard getFreeBoardDetail(HttpServletRequest req);
+	public Free_board getFreeBoardDetail(HttpServletRequest req);
 
 	/**
 	 * 자유게시판 게시글 작성
@@ -52,7 +52,7 @@ public interface BoardService {
 	 * 
 	 * @param boardFile - 결과값이 들어있는 dto객체
 	 */
-	public BoardFile getAttachment(BoardFile boardFile);
+	public Free_board_attachment getAttachment(Free_board_attachment boardFile);
 
 
 	/**
@@ -69,7 +69,7 @@ public interface BoardService {
 	 * @param req - 요청 정보 객체
 	 * @return - free.dto
 	 */
-	public BoardFile getBoardFile(HttpServletRequest req);
+	public Free_board_attachment getBoardFile(HttpServletRequest req);
 
 
 	/**
@@ -87,7 +87,7 @@ public interface BoardService {
 	 * @param req - 요청 객체
 	 * @return - 결과값 List
 	 */
-	public List<FreeBoard> getList(Paging paging, HttpServletRequest req);
+	public List<Free_board> getList(Paging paging, HttpServletRequest req);
 
 
 	/**
@@ -105,7 +105,7 @@ public interface BoardService {
 	 * 
 	 * @return - free.dto 타입의 arraylist
 	 */
-	public List<FreeReply> getReply(HttpServletRequest req);
+	public List<Free_board_reply> getReply(HttpServletRequest req);
 
 
 	/**
@@ -120,7 +120,7 @@ public interface BoardService {
 	 * @param req
 	 * @return
 	 */
-	public Member getuser_nickname(HttpServletRequest req);
+	public User_info getuser_nickname(HttpServletRequest req);
 
 
 
