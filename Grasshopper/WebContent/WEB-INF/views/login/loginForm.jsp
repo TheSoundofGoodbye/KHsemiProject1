@@ -2,14 +2,79 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
+<style>
+button, input, textarea {
+	font-size: 16px;
+	padding: 4px;
+	margin-bottom: 5px;
+	
+}
+
+.select {
+	margin-bottom: 50px; 
+}
+
+#useridchk {
+	border: none;
+	background-color: #FD9F28;
+	color: #fff;
+	border-radius: 4px;
+	padding: 5px 10px;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+	margin-left: 5px;
+}
+
+.btn-area {
+	margin-bottom: 20px;
+}
+
+#btnJoin, #btnCancel {
+	border: none;
+	background-color: #FD9F28;
+	color: #fff;
+	border-radius: 6px;
+	padding: 10px 40px;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+}
+
+button:focus, button:active, input:focus, input:active, textarea:focus,
+	textarea:active {
+	box-shadow: none;
+	outline: none;
+}
+
+label {
+	padding-bottom: 0px;
+}
+
+.submail {
+	margin-left: 5px;
+}
+
+form {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.formid {
+	display: flex;
+	flex-direction: row;
+}
+
+.form-control {
+    display: flex;
+    width: 80%;
+    padding: 10px 5px;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+</style>
 
 <h1>로그인 폼</h1>
 <hr>

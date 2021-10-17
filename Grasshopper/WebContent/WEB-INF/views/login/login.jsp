@@ -51,7 +51,7 @@ $(document).ready(function() {
 	margin-top: 85px;
 	}
 
-form {
+.login-form {
 	width: 400px;
 	margin: 0 auto;
 }
@@ -68,7 +68,7 @@ form {
 <section>
 <div class="container">
 
-<form action="/kh1/login" method="post" class="form-horizontal">
+<form action="/kh1/login" method="post" class="form-horizontal login-form">
 	
 	<div class="form-group">
 		<label for="user_email" class="control-label">이메일</label>

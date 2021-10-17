@@ -3,6 +3,79 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
+<style>
+button, input, textarea {
+	font-size: 16px;
+	padding: 4px;
+	margin-bottom: 5px;
+	
+}
+
+.select {
+	margin-bottom: 50px; 
+}
+
+#useridchk {
+	border: none;
+	background-color: #FD9F28;
+	color: #fff;
+	border-radius: 4px;
+	padding: 5px 10px;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+	margin-left: 5px;
+}
+
+.btn-area {
+	margin-bottom: 20px;
+}
+
+#btnJoin, #btnCancel {
+	border: none;
+	background-color: #FD9F28;
+	color: #fff;
+	border-radius: 6px;
+	padding: 10px 40px;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+}
+
+button:focus, button:active, input:focus, input:active, textarea:focus,
+	textarea:active {
+	box-shadow: none;
+	outline: none;
+}
+
+label {
+	padding-bottom: 0px;
+}
+
+.submail {
+	margin-left: 5px;
+}
+
+.form-join {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.formid {
+	display: flex;
+	flex-direction: row;
+}
+
+.form-control {
+    display: flex;
+    width: 80%;
+    padding: 10px 5px;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+</style>
+
 
 <script type="text/javascript">
 var duplicateId = true;
@@ -137,40 +210,46 @@ function inputIdChk() {
 </script>
 
 <div class="container">
-<div>
-<h3 id="big">회원가입</h3>
-</div>
+<br>
+<h3 style="text-align: center;">게시판 - 회원가입</h3>
+<hr>
 
 
-<form action="/member/join" method="POST" id="myform">
+
+<form class="form-join" action="/member/join" method="POST" id="myform">
+
 	<div class="form-group">
-		<label for="userid">아이디</label>
-		<input type="email" id="userid" name="userid" required placeholder="이메일 형식으로 입력"/>
+		<label for="userid">아이디</label><br>
+		<div class="formid">
+		<input type="email"  class="form-control" id="userid" name="userid" required placeholder="이메일 형식으로 입력"/>
 		<button type="button" value="중복확인" id="useridchk" onclick="inputIdChk()">중복확인</button>
+		</div>
 	</div>
 	<div class="form-group">
-		<label for="usernick" >닉네임</label>
-		<input type="text" id="usernick" name="usernick" required placeholder="닉네임 입력"/>
+		<label for="usernick" >닉네임</label><br>
+		<input type="text" class="form-control" id="usernick" name="usernick" required placeholder="닉네임 입력"/>
 		<span id="usernickChk"></span>
 	</div>
 	<div class="form-group">
-		<label for="userpw">패스워드</label>
-		<input type="text" id="userpw" name="userpw" required placeholder="패스워드 입력" />
+		<label for="userpw">패스워드</label><br>
+		<input type="text" class="form-control" id="userpw" name="userpw" required placeholder="패스워드 입력" />
 	</div>
 	<div class="form-group">
-		<label for="username" >이름</label>
-		<input type="text" id="username" name="username"  placeholder="이름 입력" />
+		<label for="username" >이름</label><br>
+		<input type="text" class="form-control" id="username" name="username"  placeholder="이름 입력" />
 	</div>
 	<div class="form-group">
-		<label for="userbirth" >생년월일</label>
-		<input type="date" id="userbirth" name="userbirth" />
+		<label for="userbirth" >생년월일</label><br>
+		<input type="date" class="form-control" id="userbirth" name="userbirth" />
 	</div>
 	<div class="form-group">
-		<label for="subsmail"  >홍보메일 수신 여부</label>
-		<input type="radio" name="subsmail" value="1" checked/>동의
-		<input type="radio" name="subsmail" value="0" />거부
+		<label for="subsmail"  >홍보메일 수신 여부</label><br>
+		<div class="select">
+		<input type="radio" class="submail" name="subsmail" value="1" checked/> 동의  
+		<input type="radio" class="submail"  name="subsmail" value="0" /> 거부
+		</div>
 	</div>
-	<div class="btn-area">
+	<div class="btn-area" style="text-align: center;">
 		<button type="button" id="btnJoin">가입</button>
 		<button type="button" id="btnCancel">취소</button>
 	</div>

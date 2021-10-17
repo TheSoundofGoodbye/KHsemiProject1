@@ -43,7 +43,7 @@
 					<li><a href="/custom/main">칵테일 제작</a></li>
 					<li><a href="/free/list">자유게시판</a></li>
 					<li><a href="/shopping/main">쇼핑</a></li>
-					<li>주변 BAR </li>
+					<li><a href="/searchbar">어디가서 마실까</a></li>
 					<li><a href="/qna/write">문의게시판</a></li>
 					<c:if test="${empty login or not login }">
 						<li>
