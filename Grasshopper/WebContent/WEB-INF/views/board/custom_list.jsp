@@ -61,11 +61,11 @@ $(document).ready(function() {
 	<c:forEach var="c" items="${list }">
 	<div class="card">
 	<div class="card_image" id="card_thumbnail${c.custom_board_no })">
-		<!-- 첨부파일이 이미지가 아니거나 없을 경우 -->
-		<img src="/resources/img/Dry Martini.jpg" />
+		<img src="/upload/${c.custom_board_attachment }" onerror="this.src='/resources/img/noimage_cup.jpg'" />
 	</div>
 	<div class="card_title">
 		<h3>${c.custom_board_title }</h3>
+		<h5>by ${c.user_nickname }</h5>
 	</div>
 	<div class="card_desc">
 		<p>${c.custom_board_content }</p>
@@ -73,7 +73,6 @@ $(document).ready(function() {
 	<div class="card_info">
 		<div>
 			<i class="material-icons">thumb_up</i> ${c.custom_board_vote }
-			<a>by ${c.user_nickname }</a>
 		</div>
 		<div>
 			<a class="card_link" href="/custom/view?custom_no=${c.custom_board_no }">Read More...</a>

@@ -179,9 +179,10 @@ public class CustomDaoImpl implements CustomDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "  SELECT ROWNUM rnum, O.* FROM (";
-		sql += "    SELECT custom_board_no, C.USER_NO, U.USER_NICKNAME, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, custom_board_date, custom_board_hit, custom_board_vote";
+		sql += "    SELECT C.custom_board_no, C.user_no, UI.user_nickname, CUSTOM_BOARD_TITLE, CUSTOM_BOARD_CONTENT, CUSTOM_BOARD_DATE, CUSTOM_BOARD_HIT, CUSTOM_BOARD_VOTE, CA.STORED_FILE_NAME";
 		sql += "	  FROM CUSTOM_BOARD C ";
-		sql += "	  JOIN USER_INFO U ON U.USER_NO = C.USER_NO ";
+		sql += "	  JOIN USER_INFO UI on C.USER_NO = UI.USER_NO ";
+		sql += "      LEFT OUTER JOIN CUSTOM_BOARD_ATTACHMENT CA ON C.CUSTOM_BOARD_NO = CA.CUSTOM_BOARD_NO ";
 		sql += "		WHERE 1=1";
 		sql += "		AND upper(custom_board_title) LIKE upper(?)";
 		sql += "		OR upper(custom_board_content) LIKE upper(?)";
@@ -213,6 +214,7 @@ public class CustomDaoImpl implements CustomDao{
 				custom.setCustom_board_date(rs.getDate("custom_board_date"));
 				custom.setCustom_board_hit(rs.getInt("custom_board_hit"));
 				custom.setCustom_board_vote(rs.getInt("custom_board_vote"));
+				custom.setCustom_board_attachment(rs.getString("STORED_FILE_NAME"));
 				
 				//리스트에 custom 객체로 저장
 				customList.add(custom);
