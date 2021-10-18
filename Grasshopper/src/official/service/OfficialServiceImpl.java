@@ -107,12 +107,13 @@ public class OfficialServiceImpl implements OfficialService{
 		
 		Connection connection = JDBCTemplate.getConnection();
 		
-		//[비활성] 조회수 증가 
-//		if( officialDao.updateHit(connection, official_no) == 1 ) {
-//			JDBCTemplate.commit(connection);
-//		} else {
-//			JDBCTemplate.rollback(connection);
-//		}
+		//조회수 증가 
+		if( officialDao.updateHit(connection, official_no) == 1 ) {
+			System.out.println("[TEST]Official - view() 로인한 조회수 증가 ");
+			JDBCTemplate.commit(connection);
+		} else {
+			JDBCTemplate.rollback(connection);
+		}
 		
 		//레시피 조회
 		Official official = officialDao.selectOfficialByOfficialno(connection, official_no);

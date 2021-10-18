@@ -30,9 +30,9 @@ public class CustomMainController extends HttpServlet {
     	System.out.println("[CONSOLE] /list로 리다이렉트합니다");
 
     	//세션 객체 생성
-		HttpSession session = req.getSession();
+//		HttpSession session = req.getSession();
 		//세션 Attribute에 user_no 임의로 지정 (테스트용)
-		session.setAttribute("user_no", 2);
+//		session.setAttribute("user_no", 2);
     	
     	resp.sendRedirect("/custom/list");
     	

@@ -28,15 +28,14 @@ private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/custom/write [GET]");
 		
-		
-		//로그인 되어있지 않으면 리다이렉트 (일단 disable)
-//		if( session.getAttribute("login")== null || !(boolean)session.getAttribute("login")) {
-//			resp.sendRedirect("/");
-//			return;
-//		}
-		
 		//세션 객체 생성
 		HttpSession session = req.getSession();
+		
+		//로그인 되어있지 않으면 리다이렉트
+		if( session.getAttribute("login")== null || !(boolean)session.getAttribute("login")) {
+			resp.sendRedirect("/");
+			return;
+		}
 		
 		//현재 session에 저장된 key, value모두 출력
 		Enumeration<String> attributes = req.getSession().getAttributeNames();

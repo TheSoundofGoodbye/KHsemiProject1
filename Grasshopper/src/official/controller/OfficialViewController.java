@@ -35,6 +35,9 @@ public class OfficialViewController extends HttpServlet {
 		//상세보기 결과 조회
 		Official viewOfficial = officialService.view(official_no);
 		
+		//조회수+1
+		
+		
 		//official 객체 전달 테스트
 //		System.out.println("[TEST] viewOFficial : " + viewOfficial);
 		

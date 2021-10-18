@@ -44,7 +44,7 @@ public class CustomViewController extends HttpServlet {
 		req.setAttribute("viewCustom", viewCustom);
 		
 		//데이터 값 체크
-		System.out.println("viewCustom.getUser_no() : " + viewCustom.getUser_no());
+		System.out.println("[게시자번호] viewCustom.getUser_no() : " + viewCustom.getUser_no());
 		
 		//닉네임 전달
 //		req.setAttribute("nick", customService.getNick(viewCustom));

@@ -33,8 +33,8 @@
 					value="${fn:split(viewOfficial.official_cocktail_name,',')}" />
 				${ cocktail_title[0]} | ${ cocktail_title[1]}
 			</h1>
-			<p class="title-sub-container">추천수 :
-				${viewOfficial.official_cocktail_vote }</p>
+			<p class="title-sub-container">조회수 :
+				${viewOfficial.official_cocktail_hit }</p>
 		</div>
 	</div>
 
@@ -46,28 +46,28 @@
 		<div class="body-container">
 			<br>
 			<br>
-			<h4 class="semi_title">재료</h4>
+			<a class="semi_title" style="font-size:16px;">재료</a><br>
 			<c:forEach var="split"
 				items="${fn:split(viewOfficial.official_cocktail_ingred,',') }">
 					${split } <br>
 			</c:forEach>
 			<br>
-			<h4 class="semi_title"></h4>
-			<p id="cocktail-detail"></p>
+			<a class="semi_title"></a><br>
+			<p class="detail-content" id="cocktail-detail"></p>
 			<br>
-			<h4 class="semi_title">제조법</h4>
-			<p id="cocktail-recipe"></p>
+			<a class="semi_title">제조법</a><br>
+			<p class="detail-content" id="cocktail-recipe"></p>
 			<br>
-			<h4 class="semi_title">가니쉬</h4>
-			<p id="cocktail-garnish"></p>
+			<a class="semi_title">가니쉬</a><br>
+			<p class="detail-content" id="cocktail-garnish"></p>
 			<br>
 		</div>
 
 		<div class="comment-container">
-			<div class="comment-input">
+			<div id="comment-main-input" class="comment-input comment-hide">
 				<form action="/official/comment/write" method="post" name="cmtForm">
 					<textarea name="content" id="textarea"
-						placeholder="내용을 입력해주세요 (200자)"></textarea>
+						placeholder="내용을 입력해주세요 (200자)" maxlength="200"></textarea>
 					<input type="hidden" name="board_no" value="${param.official_no }">
 					<button type="submit" name="" id="comment-write-button">댓글달기</button>
 				</form>
@@ -76,21 +76,25 @@
 				<c:forEach var="c" items="${comments }">
 					<div class="comment-list comment-show" id="comment-show${ c.official_reply_no }">
 						<div id="" style="display: none;">${c.user_no }</div>
-						<div class="popupOpen1">닉네임 : ${c.user_nickname }</div> 댓글내용:
-						${c.official_reply_content }<br> 작성일시:
-						${c.official_reply_date }<br>
+						<div class="popupOpen1">닉네임 : ${c.user_nickname }</div>
+						<div style="width:80%">작성일시: ${c.official_reply_date }</div>
+						<div style="width:88%;font-size:20px;word-break: break-all;">${c.official_reply_content }</div>
+						<form class="report-reply-form" action="/report/write" method="post" name="report_link">
+							<input type="hidden" name="reply_content" value="${ c.official_reply_no }번리플:${c.official_reply_content }"> 
+							<span id="report-reply-icon" class="material-icons report-reply-icon">
+							report_problem</span>
+						</form>
 						<c:if test="${c.user_no == sessionScope.user_no }">
 							<form action="/official/comment/delete" method="get">
-							<input type="hidden" name="official_reply_no" value="${c.official_reply_no }">
-							<button type="submit" class="comment-button">삭제하기</button>
+								<input type="hidden" name="official_reply_no" value="${c.official_reply_no }">
+								<button class="delete-button" type="submit" onclick="if(!confirm('댓글을 삭제하시겠습니까?')) {return false;}" style="width:0;height:0;"><span class="delete-icon material-icons">delete</span></button>
 							</form>
-							<button type="button" class="comment-button"
-								onclick="updateCommentShow('${c.official_reply_no}')">수정하기</button>
+							<span class="modify-icon material-icons" onclick="updateCommentShow('${c.official_reply_no}')">build</span>
 						</c:if>
 					</div>
 					<div class="comment-input comment-hide" id="comment-input${ c.official_reply_no }">
 						<form action="/official/comment/update" method="post" name="cmtUpdate">
-							<textarea name="official_reply_content" id="textarea">${c.official_reply_content }</textarea>
+							<textarea name="official_reply_content" id="textarea2" maxlength="200">${c.official_reply_content }</textarea>
 							<input type="hidden" name="official_reply_no" value="${c.official_reply_no }">
 							<button type="submit" class="comment-button" name="" id="comment-update-button">수정확인</button>
 							<button type="button" class="comment-button" name="" id="comment-cancel-button"
@@ -122,6 +126,11 @@
 		</div>
 	</form>
 </div>
+<style>
+footer {
+	position: sticky !important;
+}
+</style>
 <script>
 	$('.popupOpen1').on('click', function() {
 		$('.popupWrap1').removeClass('hide1');
@@ -135,14 +144,24 @@
 		$(this).parents("form").submit();
 // 		history.go(-1);
 	});
-</script>
-
-<script>
+	
 	//목록으로 버튼 function
 	document.getElementById("btnList").addEventListener("click", goList);
 	function goList() {
 		location.href = "/official/list";
 	}
+	
+	//신고버튼 동작
+	$(".report-icon").click(function(){
+		if (confirm("게시글을 신고하시겠습니까?")) {
+			$(".report-form").submit();
+		}
+	});
+	$(".report-reply-icon").click(function(){
+		if (confirm("댓글을 신고하시겠습니까?")) {
+			$(".report-reply-form").submit();
+		}
+	});
 
 	//코멘트 200자 이상일 시 스크립트
 	
@@ -197,9 +216,14 @@
 		return false;
 	}
 	
-	//칵테일 세부내역 나누기
+	
+	
 	window.onload = function() {
-
+		//로그인이 아닐 시 댓글창 감추기
+		if ("${login }" == "true"){
+			document.getElementById("comment-main-input").classList.remove("comment-hide");
+		}
+		//칵테일 세부내역 나누기
 		var details = "${viewOfficial.official_cocktail_detail }";
 		var paragraph1 = details.split('Recipe:');
 		detail = paragraph1[0];

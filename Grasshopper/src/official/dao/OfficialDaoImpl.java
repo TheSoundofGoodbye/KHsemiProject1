@@ -125,7 +125,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 	    sql += " SELECT ROWNUM rnum, O.* FROM (";
-	    sql += "    SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote";
+	    sql += "    SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_hit";
 	    sql += "     FROM OFFICIALCOCKTAIL ORDER BY official_cocktail_no ) O";
 	    sql += "   ) OFFICIALCOCKTAIL";
 	    sql += " WHERE rnum BETWEEN ? AND ?";
@@ -148,7 +148,7 @@ public class OfficialDaoImpl implements OfficialDao{
 				official.setOfficial_cocktail_name(rs.getString("official_cocktail_name"));
 				official.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
 				official.setOfficial_cocktail_ingred(rs.getString("official_cocktail_no"));
-				official.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
+				official.setOfficial_cocktail_hit(rs.getInt("official_cocktail_hit"));
 				
 				//리스트에 official 객체로 저장
 				officialList.add(official);
@@ -169,7 +169,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "	SELECT ROWNUM rnum, O.* FROM (";
-		sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote";	                        
+		sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_hit";	                        
 		sql += "		FROM OFFICIALCOCKTAIL";
 		sql += "		WHERE 1=1";
 		sql += "		AND upper(official_cocktail_name) LIKE upper(?)";
@@ -200,7 +200,7 @@ public class OfficialDaoImpl implements OfficialDao{
 				official.setOfficial_cocktail_name(rs.getString("official_cocktail_name"));
 				official.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
 				official.setOfficial_cocktail_ingred(rs.getString("official_cocktail_no"));
-				official.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
+				official.setOfficial_cocktail_hit(rs.getInt("official_cocktail_hit"));
 				
 				//리스트에 official 객체로 저장
 				officialList.add(official);
@@ -221,7 +221,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		String sql = ""; //SQL 작성
 		sql += "SELECT * FROM (";
 		sql += "	SELECT ROWNUM rnum, O.* FROM (";
-	    sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_vote";	                        
+	    sql += "		SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_hit";	                        
 	    sql += "		FROM OFFICIALCOCKTAIL";
 	    sql += "		WHERE 1=1";
 	    if( "name".equals(category) ) {
@@ -255,7 +255,7 @@ public class OfficialDaoImpl implements OfficialDao{
 				official.setOfficial_cocktail_name(rs.getString("official_cocktail_name"));
 				official.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
 				official.setOfficial_cocktail_ingred(rs.getString("official_cocktail_no"));
-				official.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
+				official.setOfficial_cocktail_hit(rs.getInt("official_cocktail_hit"));
 				
 				//리스트에 official 객체로 저장
 				officialList.add(official);
@@ -272,12 +272,12 @@ public class OfficialDaoImpl implements OfficialDao{
 	
 	
 	@Override 
-	public int updateHit(Connection connection, Official official_no) { // 더미데이터
+	public int updateHit(Connection connection, Official official_no) {
 
 		//SQL 작성
 		String sql = "";
 		sql += "UPDATE OFFICIALCOCKTAIL";
-		sql += " SET official_cocktail_view = official_cocktail_view + 1";
+		sql += " SET official_cocktail_hit = official_cocktail_hit + 1";
 		sql += " WHERE official_cocktail_no = ?";
 
 		int res = 0;
@@ -326,7 +326,7 @@ public class OfficialDaoImpl implements OfficialDao{
 				viewRecipe.setOfficial_cocktail_name(rs.getString("official_cocktail_name"));
 				viewRecipe.setOfficial_cocktail_detail(rs.getString("official_cocktail_detail"));
 				viewRecipe.setOfficial_cocktail_ingred(rs.getString("official_cocktail_ingred"));
-				viewRecipe.setOfficial_cocktail_vote(rs.getInt("official_cocktail_vote"));
+				viewRecipe.setOfficial_cocktail_hit(rs.getInt("official_cocktail_hit"));
 
 			}
 
