@@ -9,10 +9,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>오늘 뭐 마시지?</title>
 
 <!-- jQuery 2.2.4 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <!-- 구글 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,11 +20,11 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	
 
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 * {
@@ -33,9 +33,9 @@
 	color: #000;
 }
 
-html {
-	position: relative;
-}
+/* html { */
+/* 	position: relative; */
+/* } */
 
 .contents1 {
 	font-size: 20px;
@@ -137,7 +137,7 @@ html {
 }
 
 .nav>li:not(:first-child) {
-	margin-left: 80px;
+	margin-left: 50px;
 }
 
 .nav>li:first-child {
@@ -147,10 +147,13 @@ html {
 .nav>li>a {
 	color: #fff;
 	text-decoration: none !important;
+	font-size: 16px;
 }
 
 .nav>li>a:hover {
 	color: orange;
+	text-decoration: none;
+	background: none !important;
 }
 
 footer {
@@ -173,6 +176,7 @@ footer>div:first-child {
 footer>div:last-child {
 	flex: 9;
 	color: #fff;
+	margin-left: 270px;
 }
 
 footer>div:first-child>img {
@@ -304,63 +308,13 @@ footer>div:first-child>img {
 	font-size: 16px;
 	cursor: pointer;
 }
-
+.width1 {
+	width=""
+}
 </style>
+
 
 <script type="text/javascript" src="/resources/script/media_query.js"
 	defer></script>
 
 </head>
-<body>
-
-	<div class="wrap">
-		<div class="intro_bg2"
-			style="width: 100%; height: 200px; background: black;">
-			<div class="header">
-				<div class="header_logo">
-					<a href="/main"> <img width=100px;
-						src='/resources/img/header_logo2.png' />
-					</a>
-				</div>
-				<ul class="nav">
-					<li><a href="/official/main">칵테일 검색</a></li>
-					<li><a href="/custom/main">칵테일 제작</a></li>
-					<li><a href="/free/list">자유게시판</a></li>
-					<li><a href="/shopping/main">쇼핑</a></li>
-					<li><a href="/searchbar">어디가서 마실까</a></li>
-					<li><a href="/qna/write">문의게시판</a></li>
-				</ul>
-
-				<div class="navbar_togleBtn">
-					<button class="btn btn-success">MENU</button>
-				</div>
-
-				<c:if test="${empty login or not login }">
-					<div class="login">
-						<form>
-							<button type="reset" onclick='location.href="/mypage/main";'
-								class="btn btn-info">로그인</button>
-						</form>
-					</div>
-					<div class="join">
-						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
-					</div>
-				</c:if>
-
-				<c:if test="${login }">
-					<div class="mypage">
-						<button type="reset" onclick='location.href="/mypage/main";'
-							class="btn btn-info">마이페이지</button>
-					</div>
-					<div class="logout">
-						<form>
-							<button type="reset" class="btn btn-warning"
-								onclick='location.href="/kh1/logout";'>로그아웃</button>
-						</form>
-					</div>
-				</c:if>
-
-			</div>
-		</div>
-	</div>

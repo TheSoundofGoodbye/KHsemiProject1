@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
-<<script type="text/javascript">
+
+<script type="text/javascript">
 $(document).ready(function() {
 	$("#btnwrite").click(function() {
 		location.href="/free/write";
@@ -18,18 +19,74 @@ $(document).ready(function() {
 	})
 });
 </script>
+<body>
+	<div class="wrap">
+		<div class="intro_bg2"
+			style="width: 100%; height: 200px; background: black;">
+			<div class="header">
+				<div class="header_logo">
+					<a href="/main"> <img width=100px;
+						src='/resources/img/header_logo2.png' />
+					</a>
+				</div>
+				<ul class="nav">
+					<li><a href="/official/main">칵테일 검색</a></li>
+					<li><a href="/custom/main">칵테일 제작</a></li>
+					<li><a href="/free/list">자유게시판</a></li>
+					<li><a href="/shopping/main">쇼핑</a></li>
+					<li><a href="/searchbar">어디가서 마실까</a></li>
+					<li><a href="/qna/write">문의게시판</a></li>
+				</ul>
 
-<h1>자유게시판</h1>
-<h3>검색 결과</h3>
+				<div class="navbar_togleBtn">
+					<button class="btn btn-success">MENU</button>
+				</div>
+
+				<c:if test="${empty login or not login }">
+					<div class="login">
+						<form>
+							<button type="reset" onclick='location.href="/mypage/main";'
+								class="btn btn-info">로그인</button>
+						</form>
+					</div>
+					<div class="join">
+						<button type="reset" class="btn btn-warning"
+							onclick='location.href="/kh1/logout";'>회원가입</button>
+					</div>
+				</c:if>
+
+				<c:if test="${login }">
+					<div class="mypage">
+						<button type="reset" onclick='location.href="/mypage/main";'
+							class="btn btn-info">마이페이지</button>
+					</div>
+					<div class="logout">
+						<form>
+							<button type="reset" class="btn btn-warning"
+								onclick='location.href="/kh1/logout";'>로그아웃</button>
+						</form>
+					</div>
+				</c:if>
+
+			</div>
+		</div>
+	</div>
+	
+<div style="width:100%; height: 100%; position: relative;">
+<div style="width:60%; margin: 0 auto;">
+<h1>자유게시판 - 검색 결과</h1>
+
 <hr>
+</div>
 
+<div style="width:60%; margin: 0 auto;">
 <table class="table table-striped">
 <tr>
-	<th>글번호</th>
-	<th>제목</th>
-	<th>작성자</th>
-	<th>조회수</th>
-	<th>작성일</th>
+	<th style="width:6%; text-align:center;">글번호</th>
+	<th style="width:55%;">제목</th>
+	<th style="width:12%;">작성자</th>
+	<th style="width:6%;">조회수</th>
+	<th style="width:13%;">작성일</th>
 </tr>
 
 <div style="margin: auto 5%;">
@@ -49,10 +106,13 @@ $(document).ready(function() {
 
 </table>
 
-
 <button id="btnwrite" class="btn btn-info float-right" style="float:right">글 쓰기</button>
+<c:import url="/WEB-INF/views/layout/searchpaging.jsp"/>
 
-<c:import url="/WEB-INF/views/layout/freeboard_search_paging.jsp"/>
+
+
+
+
 
 <form action="<%=request.getContextPath() %>/free/search" method="get">
 <div style="text-align:center">
@@ -69,4 +129,7 @@ $(document).ready(function() {
 </form>
 
 </div>
+</div>
+
+</body>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
