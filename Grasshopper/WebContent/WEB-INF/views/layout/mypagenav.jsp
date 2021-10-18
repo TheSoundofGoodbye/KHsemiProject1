@@ -45,7 +45,7 @@ ul {
 }
 
 .menu {
-	width: 200px;
+	width: 230px;
 	text-align: right;
 	display: inline-block;
 }
@@ -86,13 +86,19 @@ ul {
 	color: #adb5bd;
 }
 
+.nav1 a:hover{
+	color: #000000;
+}
+
+.nav1 a {
+	color:  #000000;
+}
+
 table {
-width: 60%;
 }
 </style>
-<div style="min-height: 90vh;" >
 	<div class="nav1">
-		<h2>마이페이지</h2>
+		<h1><a href="/mypage/main">마이페이지</a></h1>
 	</div>
 	<div style="width: 250px; display: inline-block;">
 		<ul class="menu">
