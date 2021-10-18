@@ -116,7 +116,7 @@
 			if(${empty boardFile }) {
 				$("#beforeFile").hide();
 				$("#afterFile").show();
-			}
+			})
 
 			//파일 삭제 버튼(X) 처리
 			$("#delFile").click(function() {

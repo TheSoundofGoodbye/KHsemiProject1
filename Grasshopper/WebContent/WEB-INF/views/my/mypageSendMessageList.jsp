@@ -4,12 +4,12 @@
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
-<div style="display: inline-block; width: 700px;">
+<div style="display: inline-block; margin-left: 150px; margin-right: 150px; margin-bottom: 200px;" >
 
+<div class="container">
 <h1>내가 보낸 쪽지함</h1>
 <hr>
-
-<table class="table table-condensed">
+<table class="table table-condensed" style="display: inline-block;">
 	<tr>
 		<th>받은 사람</th>
 		<th>내용</th>
@@ -34,6 +34,6 @@
 		</c:forEach>
 	</c:forEach>
 </table>
-
+</div>
 </div>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -4,7 +4,10 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 <c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
-<div style="display: inline-block; width: 700px;">
+
+<div style="display: inline-block; width: 900px; margin-left: 150px; margin-right: 150px; margin-bottom: 200px;" >
+
+<div class="container">
 <h1>내가 쓴 댓글</h1>
 <hr>
 <h5>자유게시판 댓글</h5>
@@ -23,6 +26,7 @@
 		</tr>
 	</c:forEach>
 </table>
+
 <h5>커스텀게시판 댓글</h5>
 <table class="table table-hover table-condensed">
 	<tr>
@@ -55,5 +59,6 @@
 		</tr>
 	</c:forEach>
 </table>
+</div>
 </div>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -18,7 +18,7 @@
 }
 </style>
 
-<div class="container">
+<div class="container" style="margin-top:100px; margin-bottom: 150px;">
 
 	<h1>문의합니다</h1>
 	<hr>
@@ -39,7 +39,7 @@
 					<td class="info" colspan="2">문의 내용</td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea id="content" name="content"></textarea></td>
+					<td colspan="2"><textarea id="content" name="content" style="height: 300px;"></textarea></td>
 				</tr>
 			</table>
 
@@ -49,8 +49,8 @@
 	</div>
 
 	<div class="text-center">
-		<button type="button" id="btnWrite" class="btn btn-info">작성</button>
-		<button type="button" id="btnCancel" class="btn btn-danger">취소</button>
+		<button type="button" id="btnWrite" class="btn btn-primary me-md-2">작성</button>
+		<button type="button" id="btnCancel" class="btn btn-primary ml-1">취소</button>
 	</div>
 
 	<!-- .container -->

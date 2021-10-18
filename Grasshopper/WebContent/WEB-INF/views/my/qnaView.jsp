@@ -6,7 +6,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
-<div style="display: inline-block; width: 700px;">
+<div style="display: inline-block; width: 900px; margin-left: 150px; margin-right: 150px; margin-bottom: 200px;" >
 
 <div class="container">
 
@@ -86,7 +86,7 @@
 				<textarea class="form-control" rows="5" id="commentContent"
 					name="commentContent"></textarea>
 				<br>
-				<button type="submit" class="btn pull-left">등록</button>
+				<button type="submit" class="btn pull-right">등록</button>
 			</div>
 		</form>
 		<hr>

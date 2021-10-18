@@ -9,9 +9,10 @@
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 
-<h3 class="mt-4" style="text-align: center;">내 정보 수정하기</h3>
+<h3 style="text-align: center; margin-top: 100px;">내 정보 수정하기</h3>
 <form class="form-horizontal row justify-content-md-center m1"
-	action="/mypage/update" method="post" enctype="multipart/form-data">
+	action="/mypage/update" method="post" enctype="multipart/form-data"
+	id="form">
 	<div class="col-md-auto mt-2 mb-5">
 		<input type="hidden" name="user_no" value="${user_info.user_no }" />
 		<div class="form-group">
@@ -54,14 +55,17 @@
 			<div id="beforeFile">
 				기존 첨부파일: <a href="/upload/${attachmentFile.profile_name}"
 					download="${attachmentFile.profile_name }">${attachmentFile.profile_name }</a>
+				<span id="delFile"
+					style="color: red; font-weight: bold; cursor: pointer;">X</span>
 			</div>
 
 			<div id="afterFile">
 				새 첨부파일: <input type="file" name="file" />
 			</div>
 		</div>
-		<div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 15px;">
-			<button class="btn btn-primary me-md-2">수정</button>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-center"
+			style="margin-top: 15px; margin-bottom: 60px;">
+			<button type="button" class="btn btn-primary me-md-2" id="btnUpdate">수정</button>
 			<button type="button" id="btnCancel" class="btn btn-primary ml-1">취소</button>
 		</div>
 	</div>
@@ -106,13 +110,27 @@
 		$("#btnCancel").click(function() {
 			history.go(-1);
 		});
-		
+
 		$(document).ready(function() {
 			//페이지 첫 접속 시 입력창으로 포커스 이동
 			$("input").eq(0).focus();
 		});
-		
-		
+
+		$("#btnUpdate").click(function() {
+			if ($("#inputPassword").val() == '') {
+				alert('비밀번호를 입력해주세요');
+				$('#inputPassword').focus();
+			} else {
+				$("#form").submit();
+			}
+
+		});
+
+		//파일 삭제 버튼(X) 처리
+		$("#delFile").click(function() {
+			$("#beforeFile").toggle();
+		})
+
 	});
 </script>
 

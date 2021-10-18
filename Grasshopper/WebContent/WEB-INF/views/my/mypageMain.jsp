@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
-
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -21,7 +20,8 @@ ul {
 }
 
 .nav1 {
-	padding: 50px 50px 30px; display : flex;
+	padding: 50px 50px 30px;
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	display: flex;
@@ -46,7 +46,7 @@ ul {
 }
 
 .menu {
-	width: 200px;
+	width: 238px;
 	text-align: right;
 }
 
@@ -85,10 +85,18 @@ ul {
 .menu a:hover {
 	color: #adb5bd;
 }
+
+.nav1 a:hover {
+	color: #000000;
+}
+
+.nav1 a {
+	color: #000000;
+}
 </style>
-<div style="min-height:90vh;">
+<div style="min-height: 90vh;">
 	<div class="nav1">
-		<h2>마이페이지</h2>
+		<h1><a href="/mypage/main">마이페이지</a></h1>
 		<ul>
 			<li><c:if test="${empty attachmentFile.profile_name }">
 					<img src="/resources/img/기본프로필.jpg" />
