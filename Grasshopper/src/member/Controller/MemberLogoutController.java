@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/kh1/logout")
 public class MemberLogoutController extends HttpServlet {
@@ -16,8 +17,16 @@ public class MemberLogoutController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		System.out.println("/kh1/logout [GET]");
 		//세션 해제
 		req.getSession().invalidate();
+				
+		HttpSession session = req.getSession();
+//		session.setAttribute("login", login);
+//		session.setAttribute("userno", member.getUser_no());
+//		session.setAttribute("user_no", member.getUser_no());
+////		session.setAttribute("userid", member.getUser_email());
+//		session.setAttribute("usernick", member.getUser_nickname());
 		
 		//현재 session에 저장된 key, value모두 출력
 		Enumeration<String> attributes = req.getSession().getAttributeNames();

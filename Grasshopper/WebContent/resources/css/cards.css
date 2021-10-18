@@ -19,6 +19,8 @@ body {
 .card {
 	box-shadow: 2px 2px 10px black;
 	height: 500px;
+	position: relative;
+	background-color: ghostwhite;
 }
 
 .card_image {
@@ -38,8 +40,7 @@ body {
 .card_title {
 	text-align: center;
 	padding: 5px;
-/* 	font-size: calc(4vw + 4vh + 2vmin); */
-	font-size: 1.4vw !important;
+	font-size: 1.5em;
 }
 
 .card_desc {
@@ -47,8 +48,14 @@ body {
 	line-height: 2.5ex;
 	height: 7.5ex; 
 	overflow: hidden;
-/* 	font-size: calc(4vw + 4vh + 2vmin); */
-	font-size: 0.9vw;
+	font-size: 1em;
+	position: absolute;
+    bottom: 40px;
+}
+
+.card_viewcount{
+	display: flex;
+    align-items: center;
 }
 
 .card_desc p {
@@ -143,8 +150,17 @@ body {
 }
 
 #btnwrite {
-	left: calc(50% + 425px);
-	position: fixed;
+    left: calc(50% + 352px);
+    top: 211px;
+	position: absolute;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 150px;
+    font-size: 20px;
+    border: 1px solid;
+    background-color: ghostwhite;
+    margin-top: 10px;
 }
 
 .highlight {

@@ -1,6 +1,7 @@
 package member.Controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,9 +48,15 @@ public class MemberLoginController extends HttpServlet {
 			session.setAttribute("login", login);
 			session.setAttribute("userno", member.getUser_no());
 			session.setAttribute("user_no", member.getUser_no());
-//			session.setAttribute("userid", member.getUser_email());
 			session.setAttribute("usernick", member.getUser_nickname());
 		}
+		
+		//현재 session에 저장된 key, value모두 출력
+		Enumeration<String> attributes = req.getSession().getAttributeNames();
+		while (attributes.hasMoreElements()) {
+			String attribute = (String) attributes.nextElement();
+			System.out.println(attribute+" : "+req.getSession().getAttribute(attribute));
+		}	
 		
 		//메인페이지로 리다이렉트
 		resp.sendRedirect("/main");

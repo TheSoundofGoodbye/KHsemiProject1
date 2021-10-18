@@ -266,10 +266,10 @@ public class CustomServiceImpl implements CustomService{
 		if(custom != null) {
 			
 			//작성자 user_no 입력 
-			//테스트용 임시데이터 사용중
-//			custom.setUser_no( (Integer)req.getSession().getAttribute("user_no") );
-			int user_no = 2;
-			custom.setUser_no( user_no );
+			custom.setUser_no( (Integer)req.getSession().getAttribute("user_no") );
+			//테스트용 임시데이터
+//			int user_no = 2;
+//			custom.setUser_no( user_no );
 
 			custom.setCustom_board_no(customno); //게시글 번호 입력 (PK)
 			

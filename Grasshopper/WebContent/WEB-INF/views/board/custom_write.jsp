@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 	</div>
 
-	<div class="content-container">
+	<div class="content-container" style="margin-top:30px;">
 		<form action="/custom/write" method="post" name="cmtForm"
 			enctype="multipart/form-data" >
 			<div class="title-container">
@@ -94,7 +94,11 @@ $(document).ready(function() {
 
 	</div>
 </div>
-
+<style>
+footer {
+	position: sticky !important;
+}
+</style>
 <script>
 	//목록으로 버튼 function
 	document.getElementById("btnList").addEventListener("click", goList);

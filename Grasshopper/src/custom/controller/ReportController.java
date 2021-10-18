@@ -12,10 +12,10 @@ import custom.service.CustomService;
 import custom.service.CustomServiceImpl;
 
 /**
- * Servlet implementation class CustomReportController
+ * Servlet implementation class ReportController
  */
-@WebServlet("/custom/report")
-public class CustomReportController extends HttpServlet {
+@WebServlet("/report/write")
+public class ReportController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	CustomService customService = new CustomServiceImpl();
@@ -28,7 +28,7 @@ public class CustomReportController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/custom/report [POST]");
+		System.out.println("/report/write [POST]");
 		
 		//입력 문자 인코딩 한글처리
 		req.setCharacterEncoding("UTF-8");

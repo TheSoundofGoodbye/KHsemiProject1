@@ -8,15 +8,15 @@ public class Official {
 	private String official_cocktail_name; //칵테일이름
 	private String official_cocktail_detail; //설명
 	private String official_cocktail_ingred; //재료 String ,로 구분해서 처리해야함
-	private int official_cocktail_vote; //추천수
+	private int official_cocktail_hit; //조회수
 	private Date official_write_date; //최초작성일
 		
 	@Override
 	public String toString() {
 		return "Official [official_cocktail_no=" + official_cocktail_no + ", official_cocktail_name="
 				+ official_cocktail_name + ", official_cocktail_detail=" + official_cocktail_detail
-				+ ", official_cocktail_ingred=" + official_cocktail_ingred + ", official_cocktail_vote="
-				+ official_cocktail_vote + ", official_write_date=" + official_write_date + "]";
+				+ ", official_cocktail_ingred=" + official_cocktail_ingred + ", official_cocktail_hit="
+				+ official_cocktail_hit + ", official_write_date=" + official_write_date + "]";
 	}
 	public int getOfficial_cocktail_no() {
 		return official_cocktail_no;
@@ -42,11 +42,11 @@ public class Official {
 	public void setOfficial_cocktail_ingred(String official_cocktail_ingred) {
 		this.official_cocktail_ingred = official_cocktail_ingred;
 	}
-	public int getOfficial_cocktail_vote() {
-		return official_cocktail_vote;
+	public int getOfficial_cocktail_hit() {
+		return official_cocktail_hit;
 	}
-	public void setOfficial_cocktail_vote(int official_cocktail_vote) {
-		this.official_cocktail_vote = official_cocktail_vote;
+	public void setOfficial_cocktail_hit(int official_cocktail_hit) {
+		this.official_cocktail_hit = official_cocktail_hit;
 	}
 	public Date getOfficial_write_date() {
 		return official_write_date;

@@ -46,8 +46,8 @@
 		<p>${o.official_cocktail_detail }</p>
 	</div>
 	<div class="card_info">
-		<div>
-			<i class="material-icons">thumb_up</i> ${o.official_cocktail_vote }
+		<div class="card_viewcount">
+			<span class="material-icons">visibility</span><a style="margin-left:5px;">${o.official_cocktail_hit }</a>
 		</div>
 		<div>
 			<a class="card_link" href="/official/view?official_no=${o.official_cocktail_no }">Read More...</a>
@@ -58,41 +58,10 @@
 </div>
 </div>
 <div class="space" style="height:20px;display:inline-block;"></div>
-<%-- 맨위로 버튼 --%>
-<!-- <button id="topButton" onclick="toTheTop()">맨 위로</button> -->
-
-<!-- 최상단으로 버튼 스크립트 -->
-<script type="text/javascript">
-var topButton = document.getElementById("topButton");
-//스크롤 시 scrollFunction 동작
-window.onscroll = function() {
-	scrollFunction()	
-};
-//버튼이 나타나게 함
-function scrollFunction(){
-	console.log("[TEST] You are scrolling!") //테스트용
-	//스크롤을 통해 20줄 이상 내려가면 
-	if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
-		topButton.style.display = "block";	
-	} else {
-		topButton.style.display = "none";
-	}
+<style>
+footer {
+	position: sticky !important;
 }
-//화면 최상단으로 보내는 기능
-function toTheTop(){
-	window.scrollTo(0,0);
-}
-
-window.onload = function() {
-
-	var details = "${viewOfficial.official_cocktail_detail }";
-	var paragraph1 = details.split(',');
-
-	document.getElementById('cocktail-detail').innerHTML = detail;
-	document.getElementById('cocktail-recipe').innerHTML = recipe;
-	document.getElementById('cocktail-garnish').innerHTML = garnish;
-};
-</script>
-
+</style>
 <c:import url="/WEB-INF/views/layout/official_paging.jsp" />
 <c:import url="/WEB-INF/views/layout/footer.jsp" />    

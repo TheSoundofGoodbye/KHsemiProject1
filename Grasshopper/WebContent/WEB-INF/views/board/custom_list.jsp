@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 <body>
 <br><br><br>
-<button id="btnwrite" class="btn btn-info" style="">글 쓰기</button>
+<button id="btnwrite" class="btn viewButton" style="">글 쓰기</button>
 <br><br>
 <!-- 검색창 -->
 <div class="search-bar">
@@ -71,8 +71,8 @@ $(document).ready(function() {
 		<p>${c.custom_board_content }</p>
 	</div>
 	<div class="card_info">
-		<div>
-			<i class="material-icons">thumb_up</i> ${c.custom_board_vote }
+		<div class="card_viewcount">
+			<span class="material-icons">visibility</span><a style="margin-left:5px;">${c.custom_board_hit }</a>
 		</div>
 		<div>
 			<a class="card_link" href="/custom/view?custom_no=${c.custom_board_no }">Read More...</a>
@@ -82,7 +82,11 @@ $(document).ready(function() {
 	</c:forEach>
 </div>
 </div>
-
+<style>
+footer {
+	position: sticky !important;
+}
+</style>
 </body>
 
 <c:import url="/WEB-INF/views/layout/custom_paging.jsp" />

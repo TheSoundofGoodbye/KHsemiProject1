@@ -33,11 +33,9 @@ public class OfficialMainController extends HttpServlet {
     	
 //    	resp.sendRedirect("/official/list");
     	
-		//세션 객체 생성
-		HttpSession session = req.getSession();
-		
-		//세션 Attribute에 user_no 임의로 지정 (테스트용)
-		session.setAttribute("user_no", 2);
+		//세션 객체 생성, 세션 Attribute에 user_no 임의로 지정 (테스트용)
+//		HttpSession session = req.getSession();
+//		session.setAttribute("user_no", 2);
 
 		//현재 session에 저장된 key, value모두 출력
 		Enumeration<String> attributes = req.getSession().getAttributeNames();

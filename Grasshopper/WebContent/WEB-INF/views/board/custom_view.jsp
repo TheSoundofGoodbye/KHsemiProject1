@@ -7,8 +7,9 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/offcusstyle.css">
+	
+<link rel="stylesheet" type="text/css" href="/resources/css/offcusstyle.css">
+
 <link rel="stylesheet" type="text/css" href="/resources/css/messagePopup.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -23,7 +24,7 @@
 			<span class="close">&times;</span>
 			<h3>코멘트 입력 실패</h3>
 			<br>
-			<p>코멘트 글자수가 200자 이상입니다.</p>
+			<p>코멘트가 없거나 글자수가 200자 이상입니다.</p>
 		</div>
 
 	</div>
@@ -34,7 +35,7 @@
 			<div class="title-sub-container popupOpen1" style="display:inline-block;">작성자 : ${viewCustom.user_nickname }
 				| 조회수 : ${viewCustom.custom_board_hit }</div>
 			<!-- 신고 아이콘 -->
-			<form class="report-form" action="/custom/report" method="post" name="report_link">
+			<form class="report-form" action="/report/write" method="post" name="report_link">
 			<input type="hidden" name="board_title" value="${viewCustom.custom_board_title }">
 			<span id="report-icon" class="material-icons report-icon">
 			report_problem</span>
@@ -52,16 +53,10 @@
 	<div>
 		<div class="body-container">
 			<h3 class="semi_title"></h3>
-			<!-- custom_board_content 에서 키워드로 parsing해서 아래나눠서넣어야함 -->
-			${viewCustom.custom_board_content }
-			<!-- 			<h3 class="semi_title">재료</h3> -->
-			<%-- 			<c:forEach var="split" --%>
-			<%-- 				items="${fn:split(viewCustom.custom_cocktail_ingred,',') }"> --%>
-			<%-- 					${split } <br> --%>
-			<%-- 			</c:forEach> --%>
+			<div>${viewCustom.custom_board_content }</div>
 			<!-- 첨부파일 -->
 			<div class="attachment">
-				<h5 class="semi_title">첨부파일</h5>
+				<a class="">첨부파일 : </a>
 				<c:if test="${not empty customFile }">
 					<a href="/upload/${customFile.stored_file_name }"
 						download="${customFile.original_file_name }">
@@ -71,10 +66,10 @@
 		</div>
 
 		<div class="comment-container">
-			<div class="comment-input comment-show">
+			<div id="comment-main-input" class="comment-input comment-hide">
 				<form action="/custom/comment/write" method="post" name="cmtForm">
 					<textarea name="content" id="textarea"
-						placeholder="내용을 입력해주세요 (200자)"></textarea>
+						placeholder="내용을 입력해주세요 (200자)"  maxlength="200"></textarea>
 					<input type="hidden" name="board_no" value="${param.custom_no }">
 					<button type="submit" name="" id="comment-write-button">댓글달기</button>
 				</form>
@@ -85,28 +80,26 @@
 						id="comment-show${ c.custom_reply_no }">
 						<div id="" style="display: none;">${c.user_no }</div>
 						<div class="popupOpen1" style="width: fit-content;">닉네임 : ${c.user_nickname }</div>
-						댓글내용: ${c.custom_reply_content }<br>
-						작성일시: ${c.custom_reply_date }<br>
-						<form class="report-reply-form" action="/custom/report" method="post" name="report_link">
+						<div style="width:80%">작성일시: ${c.custom_reply_date }</div><br>
+						<div style="width:88%;font-size:20px;word-break: break-all;">${c.custom_reply_content }</div>
+						<form id="comment-reply-form" class="report-reply-form comment-hide" action="/report/write" method="post" name="report_link">
 							<input type="hidden" name="reply_content" value="${ c.custom_reply_no }번리플:${c.custom_reply_content }"> 
 							<span id="report-reply-icon" class="material-icons report-reply-icon">
 							report_problem</span>
 						</form>
 						<c:if test="${c.user_no == sessionScope.user_no }">
-							<form action="/custom/comment/delete" method="get">
-								<input type="hidden" name="custom_reply_no"
-									value="${c.custom_reply_no }">
-								<button type="submit" class="comment-button">삭제하기</button>
+							<form name="delete-form" action="/custom/comment/delete" method="get">
+								<input type="hidden" name="custom_reply_no"	value="${c.custom_reply_no }">
+								<button class="delete-button" type="submit" onclick="if(!confirm('댓글을 삭제하시겠습니까?')) {return false;}" style="width:0;height:0;"><span class="delete-icon material-icons">delete</span></button>
 							</form>
-							<button type="button" class="comment-button"
-								onclick="updateCommentShow('${c.custom_reply_no}')">수정하기</button>
+							<span class="modify-icon material-icons" onclick="updateCommentShow('${c.custom_reply_no}')">build</span>
 						</c:if>
 					</div>
 					<div class="comment-input comment-hide"
 						id="comment-input${ c.custom_reply_no }">
 						<form action="/custom/comment/update" method="post"
 							name="cmtUpdate">
-							<textarea name="custom_reply_content" id="textarea">${c.custom_reply_content }</textarea>
+							<textarea name="custom_reply_content" id="textarea2" maxlength="200">${c.custom_reply_content }</textarea>
 							<input type="hidden" name="custom_reply_no"
 								value="${c.custom_reply_no }">
 							<button type="submit" class="comment-button" name=""
@@ -121,9 +114,9 @@
 		</div>
 
 		<div class="bottom-buttons text-center">
-			<button id="btnUpdate" class="btn">수정하기</button>
-			<button id="btnList" class="btn">목록으로</button>
-			<button id="btnDelete" class="btn btn-danger">삭제</button>
+			<button id="btnUpdate" class="btn viewButton">수정하기</button>
+			<button id="btnList" class="btn viewButton">목록으로</button>
+			<button id="btnDelete" class="btn viewButton">삭제</button>
 		</div>
 	</div>
 </div>
@@ -143,7 +136,12 @@
 		</div>
 	</form>
 </div>
-<script>
+<style>
+footer {
+	position: sticky !important;
+}
+</style>
+<script type="text/javascript">
 	$('.popupOpen1').on('click', function() {
 		$('.popupWrap1').removeClass('hide1');
 	});
@@ -156,15 +154,11 @@
 		$(this).parents("form").submit();
 // 		history.go(-1);
 	});
-</script>
-
-
-<script type="text/javascript">
+	
 //버튼 function
 $(document).ready(function() {
 						
-	//목록버튼 동작
-				
+	//게시글 목록버튼 동작
 	$("#btnList").click(function() {
 		$(location).attr("href", "/custom/list");
 	});
@@ -207,11 +201,12 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
-	if (document.getElementById("textarea").value.length >= 200) {
+	if (document.getElementById("textarea").value.length >= 200 || document.getElementById("textarea").value.length < 1) {
 		modal.style.display = "block";
 		return false;
 	}
 }
+
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -224,6 +219,7 @@ window.onclick = function(event) {
 		modal.style.display = "none";
 	}
 }
+
 
 function updateCommentShow(custom_reply_no) {
 	var show = "comment-show" + custom_reply_no;
@@ -245,6 +241,15 @@ function cancelCommentUpdate(custom_reply_no) {
 	document.getElementById(input).classList.remove("comment-show");
 	document.getElementById(input).classList.add("comment-hide");
 	return false;
+}
+
+window.onload = function() {
+	//로그인이 아닐 시 댓글창 감추기
+	if ("${login }" == "true"){
+		document.getElementById("comment-main-input").classList.remove("comment-hide");
+		document.getElementById("comment-reply-form").classList.remove("comment-hide");
+		
+	}
 }
 </script>
 
