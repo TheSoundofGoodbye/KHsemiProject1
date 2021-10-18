@@ -29,7 +29,7 @@ body {
 	width: 230px;
 	height: 300px;
 	align-self: center;
-
+	margin: auto;
 }
 
 .card_image img{
@@ -44,13 +44,13 @@ body {
 }
 
 .card_desc {
-	padding: 4px;
-	line-height: 2.5ex;
-	height: 7.5ex; 
-	overflow: hidden;
-	font-size: 1em;
-	position: absolute;
-    bottom: 40px;
+    padding: 4px;
+    line-height: 2.5ex;
+    height: 9.5ex;
+    overflow: hidden;
+    font-size: 1em;
+    position: absolute;
+    bottom: 48px;
 }
 
 .card_viewcount{

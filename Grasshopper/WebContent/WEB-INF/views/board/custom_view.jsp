@@ -13,7 +13,59 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/messagePopup.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+<body>
 
+	<div class="wrap">
+		<div class="intro_bg2"
+			style="width: 100%; height: 200px; background: black;">
+			<div class="header">
+				<div class="header_logo">
+					<a href="/main"> <img width=100px;
+						src='/resources/img/header_logo2.png' />
+					</a>
+				</div>
+				<ul class="nav">
+					<li><a href="/official/main">칵테일 검색</a></li>
+					<li><a href="/custom/main">칵테일 제작</a></li>
+					<li><a href="/free/list">자유게시판</a></li>
+					<li><a href="/shopping/main">쇼핑</a></li>
+					<li><a href="/searchbar">어디가서 마실까</a></li>
+					<li><a href="/qna/write">문의게시판</a></li>
+				</ul>
+
+				<div class="navbar_togleBtn">
+					<button class="btn btn-success">MENU</button>
+				</div>
+
+				<c:if test="${empty login or not login }">
+					<div class="login">
+						<form>
+							<button type="reset" onclick='location.href="/mypage/main";'
+								class="btn btn-info">로그인</button>
+						</form>
+					</div>
+					<div class="join">
+						<button type="reset" class="btn btn-warning"
+							onclick='location.href="/kh1/logout";'>회원가입</button>
+					</div>
+				</c:if>
+
+				<c:if test="${login }">
+					<div class="mypage">
+						<button type="reset" onclick='location.href="/mypage/main";'
+							class="btn btn-info">마이페이지</button>
+					</div>
+					<div class="logout">
+						<form>
+							<button type="reset" class="btn btn-warning"
+								onclick='location.href="/kh1/logout";'>로그아웃</button>
+						</form>
+					</div>
+				</c:if>
+
+			</div>
+		</div>
+	</div>
 
 <div class="container">
 	<!-- The Modal -->
@@ -114,9 +166,9 @@
 		</div>
 
 		<div class="bottom-buttons text-center">
-			<button id="btnUpdate" class="btn viewButton">수정하기</button>
+			<button id="btnUpdate" class="btn viewButton comment-hide">수정하기</button>
 			<button id="btnList" class="btn viewButton">목록으로</button>
-			<button id="btnDelete" class="btn viewButton">삭제</button>
+			<button id="btnDelete" class="btn viewButton comment-hide">삭제</button>
 		</div>
 	</div>
 </div>
@@ -244,10 +296,12 @@ function cancelCommentUpdate(custom_reply_no) {
 }
 
 window.onload = function() {
-	//로그인이 아닐 시 댓글창 감추기
+	//로그인이 아닐 시 감추기
 	if ("${login }" == "true"){
 		document.getElementById("comment-main-input").classList.remove("comment-hide");
 		document.getElementById("comment-reply-form").classList.remove("comment-hide");
+		document.getElementById("btnUpdate").classList.remove("comment-hide");
+		document.getElementById("btnDelete").classList.remove("comment-hide");
 		
 	}
 }
