@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
-
+<c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
+<div style="display: inline-block; width: 700px;">
 <h1>내가 받은 쪽지함</h1>
 <hr>
 
 
-<table class="table table-striped">
+<table class="table table-condensed">
 	<tr>
 		<th>보낸 사람</th>
 		<th>내용</th>
-		<th>읽음표시</th>
 		<th>날짜</th>
 	</tr>
 	<c:forEach items="${message }" var="message">
@@ -21,13 +21,12 @@
 				<tr>
 					<td>${user_info.user_nickname }</td>
 					<td>${message.msg_content }</td>
-					<td>${message.msg_check }</td>
 					<td>${message.send_date }</td>
 				</tr>
 			</c:if>
 		</c:forEach>
 	</c:forEach>
 </table>
-
+</div>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

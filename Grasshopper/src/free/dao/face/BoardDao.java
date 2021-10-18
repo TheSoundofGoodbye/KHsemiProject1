@@ -203,7 +203,7 @@ public interface BoardDao {
 	 * @param freeBoard - free.dto
 	 * @return - update가 반영된 행의 수 반환
 	 */
-	public int PlusLike(Connection conn, Free_board freeBoard);
+	public int PlusVote(Connection conn, Free_board freeBoard);
 
 	
 	/**
@@ -213,7 +213,7 @@ public interface BoardDao {
 	 * @param freeBoard - free.dto
 	 * @return - update가 반영된 행의 수 반환
 	 */
-	public int MinusLike(Connection conn, Free_board freeBoard);
+	public int MinusVote(Connection conn, Free_board freeBoard);
 
 	/**
 	 * 게시글의 좋아요 수 반환
@@ -224,6 +224,40 @@ public interface BoardDao {
 	 */
 	public Free_board getLike(Connection conn, Free_board freeBoard);
 
+
+	/**
+	 * attachment_seq 시퀀스로 생성된 no와 free_board_no만  free_board_attachment 테이블에 새롭게 삽입하는 메소드
+	 * 사용자가 먼저 글을 올린 이후에 update를 하면서 첨부 파일 추가시 해당 첨부파일을 추가할 자리를 미리 만들어 둔다
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param boardFile - dto객체
+	 */
+	public int createByAttachno(Connection conn, Free_board_attachment boardFile);
+
+
+	/**
+	 * 타입에 따른 검색 결과를 반환하는 메소드
+	 * 
+	 * @param connection - DB 연결 객체
+	 * @param type - 검색 타입
+	 * @return - 검색 결과 수
+	 */
+	public int selectCntByCategory(Connection connection, String type, String search);
+
+
+	/**
+	 * 타입에 따른 검색 결과를 dto리스트로 반환하는 메소드
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param paging - 페이징
+	 * @param type - 검색 타입
+	 * @param search - 검색 내용
+	 * @return - 반환 리스트
+	 */
+	public List<Free_board> selectSearchList(Connection conn,Paging paging, String type, String search);
+
+	
+	
 
 
 

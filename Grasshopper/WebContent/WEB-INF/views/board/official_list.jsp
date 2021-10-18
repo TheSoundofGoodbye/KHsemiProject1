@@ -39,8 +39,8 @@
 	</div>
 	<div class="card_title">
 		<c:set var="cocktail_title" value="${fn:split(o.official_cocktail_name,',')}" />
-		<h3>${ cocktail_title[0]}</h3>
-		<h4>${ cocktail_title[1]}</h4>
+		<a class="card_title_eng">${ cocktail_title[0]}</a><br>
+		<a class="card_title_kor">${ cocktail_title[1]}</a>
 	</div>
 	<div class="card_desc">
 		<p>${o.official_cocktail_detail }</p>
@@ -57,7 +57,7 @@
 	</c:forEach>
 </div>
 </div>
-
+<div class="space" style="height:20px;display:inline-block;"></div>
 <%-- 맨위로 버튼 --%>
 <!-- <button id="topButton" onclick="toTheTop()">맨 위로</button> -->
 

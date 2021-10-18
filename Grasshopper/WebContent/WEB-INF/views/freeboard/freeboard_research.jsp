@@ -10,6 +10,10 @@ $(document).ready(function() {
 	});
 	
 	$("#btnSearch").click(function(){
+		if( $("#btnSearch").val() == null){
+			alert("검색어를 입력하세요");
+			return ;
+		}
 		location.href="/free/search";
 	})
 });
@@ -28,6 +32,7 @@ $(document).ready(function() {
 	<th>작성일</th>
 </tr>
 
+<div style="margin: auto 5%;">
 <c:forEach items="${boardList }" var="board">
 <tr>
 	<td>${board.free_board_no }</td>
@@ -45,10 +50,9 @@ $(document).ready(function() {
 </table>
 
 
-
 <button id="btnwrite" class="btn btn-info float-right" style="float:right">글 쓰기</button>
 
-<%-- <c:import url="/WEB-INF/views/layout/searchpaging.jsp" /> --%>
+<c:import url="/WEB-INF/views/layout/freeboard_search_paging.jsp"/>
 
 <form action="<%=request.getContextPath() %>/free/search" method="get">
 <div style="text-align:center">
@@ -59,7 +63,10 @@ $(document).ready(function() {
 </select>
 <input type="text" id="search" name="search"/>
 <button type="submit" class="btn btn-default btn-sm" id="btnSearch">검색</button>
+<input type="hidden" id="searchvalue" value="${searchvalue }"/>
+<input type="hidden" id="typevalue" value="${typevalue }"/>
 </div>
 </form>
 
+</div>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -31,6 +31,8 @@ public class MypageRecMessageList extends HttpServlet {
 
 		int user_no = (int) session.getAttribute("user_no");
 
+		mypageService.msgCheck(user_no);
+
 		List<Message> message = mypageService.recMessageSelect(user_no);
 
 		session.setAttribute("message", message);
@@ -38,6 +40,7 @@ public class MypageRecMessageList extends HttpServlet {
 		List<User_info> user_info = mypageService.getList();
 		
 		session.setAttribute("user_info", user_info);
+		
 		
 		
 

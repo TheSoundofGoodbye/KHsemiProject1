@@ -1,6 +1,7 @@
 package mypage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import mypage.dto.Qna_board;
 import mypage.dto.Qna_board_attachment;
+import mypage.dto.Qna_board_reply;
 import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
@@ -41,6 +43,13 @@ public class MypageQnaViewController extends HttpServlet {
 		User_info user_info = mypageService.getUserInfo(user_no);
 
 		req.setAttribute("user_info", user_info);
+		
+		List<Qna_board_reply> qna_board_reply = mypageService.getReply();
+		
+		req.setAttribute("qna_board_reply", qna_board_reply);
+		
+		
+		
 
 		req.getRequestDispatcher("/WEB-INF/views/my/qnaView.jsp").forward(req, resp);
 

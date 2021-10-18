@@ -10,15 +10,22 @@ $(document).ready(function() {
 	$("#btnwrite").click(function() {
 		if( '${login }' == false ){
 			alert("로그인을 해야지 글을 등록할 수 있습니다");
-			return;
+			return false;
 		}
 		location.href="/free/write";
 		
 	});
 	
 	$("#btnSearch").click(function(){
-		location.href="/free/search";
-	})
+		if( $("#search").val() == "" || $("#search").val() == null){
+			alert("검색어를 입력하세요");
+			location.href="/free/list";
+			return false;
+		}
+		
+		location.href="/free/search?type="+$("#type").val() + "&search="+$("#search").val();
+		
+	});
 });
 </script>
 
@@ -39,7 +46,7 @@ $(document).ready(function() {
 <tr>
 	<td>${board.free_board_no }</td>
 	<td>
-		<a href="/free/view?freeboardno=${board.free_board_no }">
+		<a href="/free/view?type=free&freeboardno=${board.free_board_no }">
 		${board.free_board_title }
 		</a>
 	</td>
@@ -55,7 +62,7 @@ $(document).ready(function() {
 
 <button id="btnwrite" class="btn btn-info float-right" style="float:right">글 쓰기</button>
 
-<c:import url="/WEB-INF/views/layout/listpaging.jsp" />
+<c:import url="/WEB-INF/views/layout/free_board_list.jsp" />
 
 <form action="<%=request.getContextPath() %>/free/search" method="get">
 <div style="text-align:center">

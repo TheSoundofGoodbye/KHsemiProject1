@@ -33,22 +33,15 @@ public class MypageUnregisterController extends HttpServlet {
 
 		String password = req.getParameter("password");
 
-		System.out.println(password);
-
 		HttpSession session = req.getSession();
-		
-		int user_no = (int)session.getAttribute("user_no");
+
+		int user_no = (int) session.getAttribute("user_no");
 
 		User_info user_info = mypageService.getUserInfoAll(user_no);
 
-		System.out.println(user_info);
-
 		mypageService.unregister(user_info, password);
-		
 
-		System.out.println(user_info);
-
-		if (user_info.getUser_email() == null ) {
+		if (user_info.getUser_email() == null) {
 
 			// 세션 해제
 			req.getSession().invalidate();
@@ -56,7 +49,7 @@ public class MypageUnregisterController extends HttpServlet {
 		};
 
 		// 메인페이지로 리다이렉트
-		resp.sendRedirect("/mypage/main");
+		resp.sendRedirect("/main");
 
 	}
 

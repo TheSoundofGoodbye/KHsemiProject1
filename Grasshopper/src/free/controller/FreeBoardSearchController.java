@@ -28,16 +28,19 @@ public class FreeBoardSearchController extends HttpServlet {
 		System.out.println("/free/search [GET]");
 		req.setCharacterEncoding("utf-8");
 		
-		Paging paging = boardService.getPaging(req);
+		
+		
+		Paging paging = boardService.getSearchPaging(req);
 		System.out.println("freeboardlistController[GET] - " + paging);
 		
-		List<Free_board> boardList = boardService.getList(paging);
+		List<Free_board> boardList = boardService.getSearchList(paging, req);
 		
 		
 		
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("paging", paging);
-		
+		req.setAttribute("search", req.getParameter("search"));
+		req.setAttribute("type", req.getParameter("type"));
 		req.getRequestDispatcher("/WEB-INF/views/freeboard/freeboard_research.jsp").forward(req, resp);
 		
 	}

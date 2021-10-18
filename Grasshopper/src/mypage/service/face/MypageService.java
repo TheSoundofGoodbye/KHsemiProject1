@@ -13,6 +13,7 @@ import mypage.dto.Message;
 import mypage.dto.Official_reply;
 import mypage.dto.Qna_board;
 import mypage.dto.Qna_board_attachment;
+import mypage.dto.Qna_board_reply;
 import mypage.dto.User_admin;
 import mypage.dto.User_info;
 
@@ -273,6 +274,18 @@ public interface MypageService {
 	
 	public void CustomBoardInsertMessage(HttpServletRequest req, Custom_board custom_board, int user_no);
 
+	
+	/**
+	 * 관리자 답변 등록
+	 * 
+	 * @param qna_board_reply
+	 */
+	public void writeQnaReply(Qna_board_reply qna_board_reply);
+
+	
+	public List<Qna_board_reply> getReply();
+	
+	public void msgCheck(int user_no);
 	
 	
 	
