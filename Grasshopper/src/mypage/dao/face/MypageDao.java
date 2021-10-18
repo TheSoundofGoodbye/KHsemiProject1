@@ -12,6 +12,7 @@ import mypage.dto.Message;
 import mypage.dto.Official_reply;
 import mypage.dto.Qna_board;
 import mypage.dto.Qna_board_attachment;
+import mypage.dto.Qna_board_reply;
 import mypage.dto.User_admin;
 import mypage.dto.User_info;
 
@@ -303,5 +304,21 @@ public interface MypageDao {
 	public Free_board getFreeBoardByFreeBoardNo(Connection conn, int boardno);
 	
 	
+	
+	public int getNextQnaReplyNo(Connection conn);
+	
+	
+	/**
+	 * 코멘트 정보를 데이터베이스에 입력한다 
+	 * 
+	 * @param conn
+	 * @param qna_board_reply
+	 */
+	int insertQnaReply(Connection conn, Qna_board_reply qna_board_reply);
+	
+	
+	public List<Qna_board_reply> selectQnaBoardReply(Connection conn);
+	
+	public int updateMsgCheck(Connection conn, int user_no);
 	
 }// class

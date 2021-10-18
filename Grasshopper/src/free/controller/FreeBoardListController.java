@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import free.dto.Free_board;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 import free.util.Paging;
-import free.dto.Free_board;
 
 /**
  * Servlet implementation class FreeBoardViewController

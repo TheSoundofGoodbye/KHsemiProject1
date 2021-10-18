@@ -6,12 +6,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>  
 
+<c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
+<div style="display: inline-block; width: 700px;">
+
 <div class="container">
 
 	<h1>내가 쓴 문의 내역</h1>
 	<hr>
 
-	<table class="table table-striped table-hover table-condensed">
+	<table class="table table-hover table-condensed">
 		<tr>
 			<th>글번호</th>
 			<th>제목</th>
@@ -35,7 +38,7 @@
 
 	<!-- .container -->
 </div>
-
+</div>
 
 
 <script type="text/javascript">

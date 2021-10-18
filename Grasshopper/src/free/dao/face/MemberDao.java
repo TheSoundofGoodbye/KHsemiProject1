@@ -26,16 +26,5 @@ public interface MemberDao {
 	 * @param member - free.dto
 	 * @return - dto반환
 	 */
-	public User_info selectUser_nickByUserid(Connection connection, member.dto.User_info member);
-	
-	/**
-	 * user_no를 바탕으로 조회한 user_nickname결과를 포함하는 dto를 반환
-	 * 
-	 * @param conn - DB 연결 객체
-	 * @param member - free.dto
-	 * @return - dto반환
-	 */
-	User_info selectUser_nickByUserid(Connection conn, User_info member);
-
-
+	public User_info selectUser_nickByUserid(Connection conn, User_info member);
 }

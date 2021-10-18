@@ -8,8 +8,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title></title>
+<meta charset="EUC-KR">
+<title>오늘 뭐 마시지 - 통합검색</title>
 
 <!-- 구글 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,14 +18,14 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 
+<!-- CSS -->
+
+
 <!-- 부트스트랩 -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-
-<!-- jQuery 2.2.4 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <style type="text/css">
 * {
@@ -404,3 +404,135 @@ footer>.footer_content {
 			</div>
 		</div>
 	</div>
+
+
+
+	<div class="main" style=" margin: 0 auto;" >
+
+
+		<div style="margin: 0 auto; margin-top: 100px; width: 45%; height: 100px; text-align: center;">
+			<h3>공식 칵테일</h3>
+			<hr>
+		</div>
+		<!-- 카드보드형태 -->
+		<div class="cards" id="card">
+			<c:forEach var="o" items="${list }">
+				<div class="card"
+					style="display: block; width: 50%; height: 360px;  margin: 0 auto;">
+					<div class="card_image"
+						style="float: left; width: 350px; height: 350px;">
+						<img width="350px" height="350px"
+							src="/resources/img/${o.official_cocktail_name }.jpg" />
+					</div>
+					<div class="card_content"
+						style="float: left; width: 400px; height: 350px;  margin: 0 auto;">
+						<div class="card_title" style="text-align: center;">
+							<h3>${o.official_cocktail_name }</h3>
+						</div>
+						<div class="card_desc" style="text-align: center;">
+							<p>${o.official_cocktail_detail }</p>
+						</div>
+						<div class="card_info" style="text-align: center;">
+							<div>
+								<i class="material-icons">thumb_up</i>
+								${o.official_cocktail_vote }
+							</div>
+							<div>
+								<a class="card_link"
+									href="/official/view?official_no=${o.official_cocktail_no }">Read
+									More...</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+
+	<!-- 카드보드형태 -->
+	<div class="cards" id="card" >
+
+		<div style="margin: 0 auto; margin-top: 100px; width: 45%; text-align: center;">
+			<h3>커스텀 칵테일</h3>
+			<hr>
+		</div>
+
+		<c:forEach var="c" items="${list2 }">
+			<div class="card"
+				style="display: block; width: 50%; height: 360px;  margin: 0 auto;">
+				<div class="card_image"
+					style="float: left; width: 350px; height: 350px; margin: 0 auto;"
+					id="card_thumbnail${c.custom_board_no })">
+					<!-- 첨부파일이 이미지가 아니거나 없을 경우 -->
+					<img width="350px" height="350px"
+						src="/resources/img/Dry Martini.jpg" />
+				</div>
+				<div class="card_content"
+					style="float: left; width: 400px; height: 350px;  margin: 0 auto;">
+					<div class="card_title" style="text-align: center;">
+						<h3>${c.custom_board_title }</h3>
+					</div>
+					<div class="card_desc" style="text-align: center;">
+						<p>${c.custom_board_content }</p>
+					</div>
+					<div class="card_info" style="text-align: center;">
+						<div>
+							<i class="material-icons">thumb_up</i> ${c.custom_board_vote } <a>by
+								${c.user_nickname }</a>
+						</div>
+						<div style="text-align: center;">
+							<a class="card_link"
+								href="/custom/view?custom_no=${c.custom_board_no }">Read
+								More...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+
+
+
+	<div>
+		<div style="margin: auto 5%;">
+
+			<div style="margin: 0 auto;  margin-top: 100px; width: 45%; text-align: center;">
+				<h3>자유게시판</h3>
+				<hr>
+			</div>
+
+			<table class="table table-striped">
+				<tr>
+					<th>글번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+					<th>작성일</th>
+				</tr>
+
+				<c:forEach items="${boardList }" var="board">
+					<tr>
+						<td>${board.free_board_no }</td>
+						<td><a href="/free/view?freeboardno=${board.free_board_no }">
+								${board.free_board_title } </a></td>
+						<td>${board.user_nickname}</td>
+						<td>${board.free_board_hit }</td>
+						<td>${board.free_board_date }</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+</body>
+
+<footer>
+	<div class="footer_logo">
+		<img width=100px; src='/resources/img/header_logo2.png' />
+	</div>
+	<div class="footer_content">
+		COMPANY. 오늘 뭐 마시지 <br> TEAM. 강건, 김준홍, 박정서, 이다영, 조여진, 홍의표<br>
+		COPYRIGHT 2021. 오늘 뭐 마시지. ALL RIGHTS RESERVED.
+	</div>
+</footer>
+
+</html>

@@ -39,7 +39,7 @@ body {
 	text-align: center;
 	padding: 5px;
 /* 	font-size: calc(4vw + 4vh + 2vmin); */
-	font-size: 1.5vw;
+	font-size: 1.4vw !important;
 }
 
 .card_desc {
@@ -48,7 +48,7 @@ body {
 	height: 7.5ex; 
 	overflow: hidden;
 /* 	font-size: calc(4vw + 4vh + 2vmin); */
-	font-size: 1vw;
+	font-size: 0.9vw;
 }
 
 .card_desc p {

@@ -9,8 +9,8 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import free.dao.face.BoardDao;
-import free.dto.Free_board_attachment;
 import free.dto.Free_board;
+import free.dto.Free_board_attachment;
 import free.dto.Free_board_reply;
 import free.util.Paging;
 
@@ -605,10 +605,10 @@ public class Free_board_daoImpl implements BoardDao{
 	}
 
 	@Override
-	public int PlusLike(Connection conn, Free_board freeBoard) {
+	public int PlusVote(Connection conn, Free_board freeBoard) {
 		String sql = "";
 		sql += "UPDATE free_board";
-		sql += " SET free_board_hit = free_board_hit + 1";
+		sql += " SET free_board_vote = free_board_vote + 1";
 		sql += " WHERE free_board_no = ?";
 		
 		int res = -1;
@@ -631,10 +631,10 @@ public class Free_board_daoImpl implements BoardDao{
 	}
 
 	@Override
-	public int MinusLike(Connection conn, Free_board freeBoard) {
+	public int MinusVote(Connection conn, Free_board freeBoard) {
 		String sql = "";
 		sql += "UPDATE free_board";
-		sql += " SET free_board_hit = free_board_hit - 1";
+		sql += " SET free_board_vote = free_board_vote - 1";
 		sql += " WHERE free_board_no = ?";
 		
 		int res = -1;
@@ -683,14 +683,127 @@ public class Free_board_daoImpl implements BoardDao{
 
 
 
-	
+	@Override
+	public int createByAttachno(Connection conn, Free_board_attachment boardFile) {
+		String sql = "";
+		sql += "INSERT INTO free_board_attachment( attach_no, free_board_no)";
+		sql += " VALUES ( ?, ?)";
+		
+		int res=-1;
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, boardFile.getAttach_no());
+			ps.setInt(2, boardFile.getFree_board_no());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
 
 
 
+	@Override
+	public int selectCntByCategory(Connection conn, String type, String search) {
+		
+		String sql = "";
+		sql += "SELECT count(*) ";
+		sql += " FROM free_board fr, user_info ui";
+		sql += " WHERE fr.user_no = ui.user_no AND " + type + " LIKE ?";
+		
+		int res = -1;
+		search = "%"+search+"%";
+		System.out.println("type="+type);
+		System.out.println("search="+search);
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1,search);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				res = rs.getInt(1);
+			}
+			
+			System.out.println("res:" + res);
+			
+			System.out.println("selectCntByCategory res:" + res);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 
 
 
+	@Override
+	public List<Free_board> selectSearchList(Connection conn, Paging paging, String type, String search) {
+		System.out.println("selectSearchList");
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "		SELECT fr.free_board_no, fr.free_board_title, ui.user_nickname, fr.free_board_date, fr.free_board_hit";
+		sql += " 		FROM free_board fr, user_info ui";
+		sql += " 		WHERE fr.user_no = ui.user_no AND " + type + " LIKE ?";
+		sql += "		ORDER BY free_board_no DESC";
+		sql += "	) B";
+		sql += " ) BOARD";
+		sql += " WHERE rnum BETWEEN ? AND ?";
+		
+		List<Free_board> freeboardlist = new ArrayList<>();
+		
+		System.out.println("type:" + type);
+		System.out.println("search:" + search);
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%"+search+"%");
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
+			
+			
+			rs = ps.executeQuery();
+		
+			
+			while(rs.next()) {
+				Free_board tmp = new Free_board();
+				
+				tmp.setFree_board_no(rs.getInt("free_board_no"));
+				tmp.setFree_board_title(rs.getString("free_board_title"));
+				tmp.setUser_nickname(rs.getString("user_nickname"));
+				tmp.setFree_board_hit(rs.getInt("free_board_hit"));
+				tmp.setFree_board_date(rs.getDate("free_board_date"));
+				
+				freeboardlist.add(tmp);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return freeboardlist;
+	}
 
-	
+
 
 }

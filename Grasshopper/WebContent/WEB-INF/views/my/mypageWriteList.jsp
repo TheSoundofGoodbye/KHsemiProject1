@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>    
-
+<c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
+<div style="display: inline-block; width: 700px;">
 <h1>내가 쓴 글</h1>
 <hr>
-
-<table class="table table-striped">
-	<caption>커스텀게시판</caption>
+<h5>커스텀게시판</h5>
+<table class="table table-hover table-condensed">
 	<tr>
 		<th>글번호</th>
 		<th>글제목</th>
@@ -20,15 +20,15 @@
 	<c:forEach items="${customBoardList }" var="custom">
 		<tr>
 			<td>${custom.custom_board_no }</td>
-			<td>${custom.custom_board_title }</td>
+			<td><a href="/custom/view?custom_no=${custom.custom_board_no }">${custom.custom_board_title }</a></td>
 			<td>${custom.custom_board_date }</td>
 			<td>${custom.custom_board_hit }</td>
 			<td>${custom.custom_board_vote }</td>
 		</tr>
 	</c:forEach>
 </table>
-<table class="table table-striped">
-	<caption>자유게시판</caption>
+<h5>자유게시판</h5>
+<table class="table table-hover table-condensed">
 	<tr>
 		<th>글번호</th>
 		<th>글제목</th>
@@ -39,7 +39,7 @@
 	<c:forEach items="${freeBoardList }" var="free">
 		<tr>
 			<td>${free.free_board_no }</td>
-			<td>${free.free_board_title }</td>
+			<td><a href="/free/view?freeboardno=${free.free_board_no }">${free.free_board_title }</a></td>
 			<td>${free.free_board_date }</td>
 			<td>${free.free_board_hit }</td>
 			<td>${free.free_board_vote }</td>
@@ -47,5 +47,5 @@
 	</c:forEach>
 
 </table>
-
+</div>
 <c:import url="/WEB-INF/views/layout/footer.jsp" /> 

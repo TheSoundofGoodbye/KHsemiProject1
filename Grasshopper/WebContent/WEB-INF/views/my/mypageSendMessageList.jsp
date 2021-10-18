@@ -3,12 +3,13 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-
+<c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
+<div style="display: inline-block; width: 700px;">
 
 <h1>내가 보낸 쪽지함</h1>
 <hr>
 
-<table class="table table-striped">
+<table class="table table-condensed">
 	<tr>
 		<th>받은 사람</th>
 		<th>내용</th>
@@ -21,7 +22,12 @@
 				<tr>
 					<td>${user_info.user_nickname }</td>
 					<td>${message.msg_content }</td>
-					<td>${message.msg_check }</td>
+					<c:if test="${message.msg_check eq 'n' }">
+					<td style="color: #dc3545;">읽지않음</td>
+					</c:if>
+					<c:if test="${message.msg_check eq 'y' }">
+					<td style="color: #138458;">읽음</td>
+					</c:if>
 					<td>${message.send_date }</td>
 				</tr>
 			</c:if>
@@ -29,5 +35,5 @@
 	</c:forEach>
 </table>
 
-
+</div>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

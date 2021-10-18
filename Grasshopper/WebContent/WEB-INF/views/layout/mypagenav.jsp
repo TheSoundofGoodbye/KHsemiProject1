@@ -3,8 +3,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
-
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -21,7 +19,8 @@ ul {
 }
 
 .nav1 {
-	padding: 50px 50px 30px; display : flex;
+	padding: 50px 50px 30px;
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	display: flex;
@@ -48,6 +47,7 @@ ul {
 .menu {
 	width: 200px;
 	text-align: right;
+	display: inline-block;
 }
 
 .menu h4 {
@@ -85,21 +85,16 @@ ul {
 .menu a:hover {
 	color: #adb5bd;
 }
+
+table {
+width: 60%;
+}
 </style>
-<div style="min-height:90vh;">
+<div style="min-height: 90vh;" >
 	<div class="nav1">
 		<h2>마이페이지</h2>
-		<ul>
-			<li><c:if test="${empty attachmentFile.profile_name }">
-					<img src="/resources/img/기본프로필.jpg" />
-				</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-					<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
-				</c:if></li>
-			<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
-		</ul>
 	</div>
-
-	<div class="content">
+	<div style="width: 250px; display: inline-block;">
 		<ul class="menu">
 			<li>
 				<h4>프로필 설정</h4>
@@ -139,36 +134,5 @@ ul {
 					<a href="/mypage/unregister">회원 탈퇴</a>
 				</h4>
 			</li>
-			<!-- li 형식 반복 -->
 		</ul>
-		<div class="contentAreaWrap">
-			<div class="profileWrap">
-
-				<c:if test="${empty login or not login }">
-					<img
-						src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20201110_157%2F1604988552132g3niM_JPEG%2F6124385887958596_1519189238.jpg&type=sc960_832"
-						alt="엘모" />
-				</c:if>
-				<c:if test="${not empty login and login }">
-					<c:if test="${not empty attachmentFile.profile_name }">
-						<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
-					</c:if>
-					<c:if test="${empty attachmentFile.profile_name }">
-						<img src="/resources/img/기본프로필.jpg" />
-					</c:if>
-				</c:if>
-
-				<p>
-					<span><strong>${user_info.user_nickname }</strong></span>
-				</p>
-				<button type="button" class="btn btn-light"
-					"
-			onclick='location.href="/mypage/update";'>내 정보 수정하기</button>
-				<!-- 페이지 이동이면 <a><span>내 정보 수정하기</span></a> -->
-			</div>
-		</div>
 	</div>
-</div>
-</div>
-</div>
-<c:import url="/WEB-INF/views/layout/footer.jsp" />

@@ -99,6 +99,11 @@
 			history.go(-1);
 		});
 
+		$(document).ready(function() {
+			//페이지 첫 접속 시 입력창으로 포커스 이동
+			$("input").eq(0).focus();
+		});
+
 	});
 </script>
 

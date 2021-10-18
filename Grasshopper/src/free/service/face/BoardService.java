@@ -123,26 +123,23 @@ public interface BoardService {
 	public User_info getuser_nickname(HttpServletRequest req);
 
 
+	/**
+	 * 카테고리 검색 결과 paging을 반환하는 메소드
+	 * 
+	 * @param req - 요청 객체 
+	 * 
+	 * @return - 검색 결과 페이징
+	 */
+	public Paging getSearchPaging(HttpServletRequest req);
 
-	
 
-
-	
-//	/**
-//	 * 게시글 좋아요 증감 메소드
-//	 * 
-//	 */
-//	public void updateLike(HttpServletRequest req);
-//
-//
-//	/**
-//	 * 게시글 좋아요를 포함함 dto를 반환하는 메소드
-//	 * 
-//	 * @param req
-//	 * @return - free.dto
-//	 */
-//	public FreeBoard getVote(HttpServletRequest req);
-
-	
+	/**
+	 * 검색 결과를 토대로 페이징한 리스트를 뽑아 반환하는 메소드
+	 * 
+	 * @param paging - paging
+	 * @param req - 요청 객체
+	 * @return - 검색 결과 리스트
+	 */
+	public List<Free_board> getSearchList(Paging paging, HttpServletRequest req);
 
 }

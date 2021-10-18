@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import free.dto.Free_board_attachment;
 import free.dto.Free_board;
+import free.dto.Free_board_attachment;
 import free.dto.Free_board_reply;
+import free.dto.User_info;
 import free.service.face.BoardService;
 import free.service.impl.BoardServiceImpl;
 
@@ -23,6 +24,7 @@ public class FreeBoardViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private BoardService boardService = new BoardServiceImpl();
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,10 +39,16 @@ public class FreeBoardViewController extends HttpServlet {
 		//자유게시판 게시글에 달린 댓글 가져오기
 		List<Free_board_reply> freeReplyList = boardService.getReply(req);
 
+		if(req.getSession().getAttribute("user_no") != null) {
+			User_info user_info = boardService.getuser_nickname(req);
+			req.setAttribute("usernickname", user_info.getUser_nickname());
+		}
+		
 		
 		req.setAttribute("freeboard", freeBoard);
 		req.setAttribute("boardFile", boardFile);		
 		req.setAttribute("replyList", freeReplyList);
+		
 		
 		
 		req.getRequestDispatcher("/WEB-INF/views/freeboard/freeboard_view.jsp").forward(req, resp);
