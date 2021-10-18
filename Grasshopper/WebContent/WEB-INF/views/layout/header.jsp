@@ -18,33 +18,18 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 
-<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-
-<!-- jQuery 2.2.4 -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 * {
-	font-family: 'Noto Sans KR', sans-serif !important;
-	list-style: none;
-	text-decoration: none !important;
-	border-collapse: collapse;
 	margin: 0px;
 	padding: 0px;
 	color: #000;
 }
 
-div {
-	border: hidden !important;
-}
-
-h1 {
-	font-size: 48px;
-	font-weight: 100;
+html {
+	position: relative;
 }
 
 .contents1 {
@@ -88,8 +73,12 @@ h1 {
 	margin: auto;
 	height: 86px;
 	background: rgba(0, 0, 0, 0.4);
+	/* 	background: black; */
 	position: fixed;
 	z-index: 3;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	list-style: none;
+	border-collapse: collapse;
 }
 
 .header_logo {
@@ -107,7 +96,12 @@ h1 {
 	margin-top: 25px;
 	margin-left: 110px;
 	padding: 5px;
-	border-radius: 1;
+	background: rgba(112, 205, 213, 1.0);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	cursor: pointer;
 }
 
 .join {
@@ -119,33 +113,11 @@ h1 {
 	font-size: 16px;
 	margin-top: 25px;
 	padding: 5px;
-	border-radius: 1;
-}
-
-.search_area {
-	width: 600px;
-	height: 50px;
-	background: rgba(255, 255, 255, 0.9);
-	border-radius: 8px;
-	position: absolute;
-	left: 50%;
-	top: 14%;
-	transform: translateX(-50%);
-}
-
-.search_area>form>input {
+	color: white;
 	border: none;
-	width: 550px;
-	height: 50px;
-	background: rgba(0, 0, 0, 0.0);
-	color: black;
-	padding-left: 10px;
-}
-
-.search_area>form>span {
-	width: 50px;
-	color: rgba(100, 100, 100, 0.8);
-	font-weight: bold;
+	border-radius: 5px;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	background: orange;
 	cursor: pointer;
 }
 
@@ -156,10 +128,11 @@ h1 {
 	width: calc(1280px - 400px);
 	padding-left: 0px;
 	margin-left: 310px;
+	list-style: none;
 }
 
 .nav>li:not(:first-child) {
-	margin-left: 84px;
+	margin-left: 80px;
 }
 
 .nav>li:first-child {
@@ -168,6 +141,7 @@ h1 {
 
 .nav>li>a {
 	color: #fff;
+	text-decoration: none !important;
 }
 
 .nav>li>a:hover {
@@ -178,6 +152,10 @@ footer {
 	display: flex;
 	background: #1f1f1f;
 	padding: 30px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
 }
 
 footer>div:first-child {
@@ -199,10 +177,6 @@ footer>div:first-child>img {
 	width: 100px;
 }
 
-footer>.footer_content {
-	margin-left: 270px;
-}
-
 .navbar_togleBtn {
 	display: none;
 	position: fixed;
@@ -213,26 +187,15 @@ footer>.footer_content {
 	margin: 25px;
 	padding: 5px;
 	font-size: 16px;
-	border-radius: 1;
+	background: green;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	font-size: 16px;
+	cursor: pointer;
 }
 
-/* .mypage > button { */
-/* 	color: #fff; */
-/* 	font-size: 16px; */
-/* 	margin-top: 25px; */
-/* 	margin-left: 110px; */
-/* 	padding: 5px; */
-/* 	border-radius: 1; */
-/* } */
-
-/* .logout > form > button { */
-/* 	color: #fff; */
-/* 	font-size: 16px; */
-/* 	margin-top: 25px; */
-/* 	padding: 5px; */
-/* 	border-radius: 1; */
-
-/* } */
 @media screen and (max-width: 1450px ) {
 	.intro_bg {
 		height: 100%;
@@ -269,7 +232,7 @@ footer>.footer_content {
 	}
 	.login {
 		position: fixed;
-		right: 91px;
+		right: 89px;
 	}
 	.login>form {
 		padding: 0;
@@ -285,14 +248,7 @@ footer>.footer_content {
 	.navbar_togleBtn {
 		display: block;
 	}
-	.search_area {
-		width: 60%;
-	}
-	.search_area>form>input {
-		width: 90%;
-		margin: auto;
-		margin-top: auto;
-	}
+
 	.main_text0 {
 		margin-top: 0;
 	}
@@ -316,28 +272,34 @@ footer>.footer_content {
 .mypage>button {
 	margin-top: 25px;
 	padding: 5px;
+	/* 	background: skyblue; */
+	background: rgba(112, 205, 213, 1.0);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 .logout {
 	position: fixed;
-	right: 20px;
+	right: 22px;
 }
 
 .logout>form>button {
 	color: #fff;
 	margin-top: 25px;
 	padding: 5px;
+	background: orange;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Noto Sans KR', sans-serif !important;
+	font-size: 16px;
+	cursor: pointer;
 }
 
-@media screen and (max-width: 768px ) {
-	.search_area {
-		position: absolute;
-		top: 150px;
-	}
-	.search_area>form>input {
-		width: 80%;
-	}
-}
 </style>
 
 <script type="text/javascript" src="/resources/script/media_query.js"
@@ -349,13 +311,6 @@ footer>.footer_content {
 	<div class="wrap">
 		<div class="intro_bg2"
 			style="width: 100%; height: 200px; background: black;">
-			<div class="search_area">
-				<form action="/main/total_search" method="get">
-					<input name="search" type="search" placeholder="오늘 뭐 마시지"
-						value="${search }" /> <span style="cursor: hand"
-						onclick="document.forms[0].submit()">검색</span>
-				</form>
-			</div>
 			<div class="header">
 				<div class="header_logo">
 					<a href="/main"> <img width=100px;

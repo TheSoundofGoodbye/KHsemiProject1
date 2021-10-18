@@ -1,7 +1,7 @@
 
 		var myPopup = document.querySelector('.popup'),
 			checkbox = document.querySelector('#popup'),
-			popupClose = document.querySelector('.close');
+			popupClose = document.querySelector('#close');
 		
 		//		쿠키 생성
 		function setCookie(name, value, day) {
