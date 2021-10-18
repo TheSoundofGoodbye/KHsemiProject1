@@ -49,11 +49,8 @@ CREATE TABLE officialcocktail (
     official_cocktail_name VARCHAR2(100), --칵테일이름
     official_cocktail_detail VARCHAR2(2000), --칵테일설명
     official_cocktail_ingred VARCHAR2(2000), --칵테일재료
-    official_cocktail_vote NUMBER default 0--추천수
+    official_cocktail_hit NUMBER default 0--조회수
 );
-
-SELECT * FROM OFFICIALCOCKTAIL;
-SELECT * FROM OFFICIALCOCKTAIL;
 
 DROP SEQUENCE officailcocktail_seq;
 CREATE SEQUENCE officailcocktail_seq; --오피셜칵테일 번호 시퀀스
