@@ -80,7 +80,7 @@ $(document).ready(function() {
 		
 		
 		
-		<button type="button" class="btn btn-default"><a href="<%=request.getContextPath() %>/kh1/join">회원 가입</a></button>
+		<button type="button" class="btn btn-default"><a href="<%=request.getContextPath() %>/member/join">회원 가입</a></button>
 		<button type="button" class="btn btn-default"><a href="<%=request.getContextPath() %>/kh1/login/find">비밀번호 찾기</a></button>
 
 		<hr>
