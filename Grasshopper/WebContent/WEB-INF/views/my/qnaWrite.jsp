@@ -17,41 +17,6 @@
 	width: 98%;
 }
 
-<<<<<<< HEAD
-<div class="container" style="margin-top:100px; margin-bottom: 150px;">
-
-	<h1>문의합니다</h1>
-	<hr>
-
-	<div>
-		<form action="/qna/write" method="post" enctype="multipart/form-data">
-
-			<table class="table table-bordered">
-				<tr>
-					<td class="info">닉네임</td>
-					<td>${user_info.user_nickname }</td>
-				</tr>
-				<tr>
-					<td class="info">제목</td>
-					<td><input type="text" name="title" style="width: 100%" /></td>
-				</tr>
-				<tr>
-					<td class="info" colspan="2">문의 내용</td>
-				</tr>
-				<tr>
-					<td colspan="2"><textarea id="content" name="content" style="height: 300px;"></textarea></td>
-				</tr>
-			</table>
-
-			첨부파일 <input type="file" name="file" />
-
-		</form>
-	</div>
-
-	<div class="text-center">
-		<button type="button" id="btnWrite" class="btn btn-primary me-md-2">작성</button>
-		<button type="button" id="btnCancel" class="btn btn-primary ml-1">취소</button>
-=======
 a:link {
 	text-decoration: none;
 }
@@ -149,7 +114,6 @@ a:link {
 		</div>
 
 		<!-- .container -->
->>>>>>> 2e5218fb827e0207bd99190147417ebabd2f1af1
 	</div>
 
 	<!-- <textarea>태그에 스마트에디터2 적용하는 스크립트 -->

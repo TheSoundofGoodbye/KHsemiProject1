@@ -5,13 +5,6 @@
 
 <%-- <c:import url="/WEB-INF/views/layout/mypagehd.jsp" /> --%>
 <c:import url="/WEB-INF/views/layout/header.jsp" />
-<<<<<<< HEAD
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<c:import url="/WEB-INF/views/layout/mypagenav.jsp" />
-<div style="display: inline-block; width: 900px; margin-left: 150px; margin-right: 150px; margin-bottom: 200px;" >
-=======
->>>>>>> 2e5218fb827e0207bd99190147417ebabd2f1af1
 
 <link rel="stylesheet" type="text/css" href="/resources/css/mypage.css">
 <style type="text/css">
@@ -226,25 +219,5 @@ a:link {
 								});
 			</script>
 		</div>
-<<<<<<< HEAD
-	</c:if>
-</c:forEach>
-
-<c:if test="${user_info.user_no eq 2 }">
-	<div class="container replyWrite">
-		<hr>
-		<form class="form-horizontal" action="/qna/reply" method="post">
-			<div class="form-group">
-				<input type="hidden" name="board_no"
-					value="${viewBoard.qna_board_no }">
-				<textarea class="form-control" rows="5" id="commentContent"
-					name="commentContent"></textarea>
-				<br>
-				<button type="submit" class="btn pull-right">등록</button>
-			</div>
-		</form>
-		<hr>
-=======
->>>>>>> 2e5218fb827e0207bd99190147417ebabd2f1af1
 	</div>
 	<c:import url="/WEB-INF/views/layout/footer.jsp" />

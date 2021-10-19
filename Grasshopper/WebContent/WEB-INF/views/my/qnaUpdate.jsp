@@ -149,13 +149,6 @@ a:link {
 			//에디터의 내용을 #content에 반영해준다
 			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 
-<<<<<<< HEAD
-			//파일이 있을 경우
-			if(${empty boardFile }) {
-				$("#beforeFile").hide();
-				$("#afterFile").show();
-			})
-=======
 			try {
 				//<form>태그의 submit을 수행한다
 				elClickedObj.form.submit();
@@ -163,7 +156,6 @@ a:link {
 			}
 		}
 	</script>
->>>>>>> 2e5218fb827e0207bd99190147417ebabd2f1af1
 
 	<script type="text/javascript">
 		$(document).ready(function() {

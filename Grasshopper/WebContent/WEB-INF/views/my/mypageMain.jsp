@@ -5,81 +5,6 @@
 
 <%-- <c:import url="/WEB-INF/views/layout/mypagehd.jsp" /> --%>
 <c:import url="/WEB-INF/views/layout/header.jsp" />
-<<<<<<< HEAD
-<!-- jQuery 2.2.4 -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-
-<style>
-* {
-	text-decoration: none;
-}
-
-ul {
-	list-style: none;
-	padding: 0;
-}
-
-.nav1 {
-	padding: 50px 50px 30px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	display: flex;
-}
-
-.nav1 ul {
-	display: flex;
-	align-items: center;
-}
-
-.nav1 ul img {
-	margin-right: 10px;
-	width: 35px;
-	height: 35px;
-	border-radius: 50%;
-}
-
-.content {
-	display: flex;
-	align-content: center;
-	align-items: center;
-}
-
-.menu {
-	width: 238px;
-	text-align: right;
-}
-
-.menu h4 {
-	font-weight: bold;
-	font-size: 20px;
-}
-
-.menu span {
-	display: block;
-}
-
-.contentAreaWrap {
-	width: calc(100% - 200px);
-}
-
-.profileWrap {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.profileWrap img {
-	border-radius: 50%;
-	width: 150px;
-	height: 150px;
-}
-=======
 <link rel="stylesheet" type="text/css" href="/resources/css/mypage.css">
 <style type="text/css">
 a:link {
@@ -122,7 +47,6 @@ a:link {
 							onclick='location.href="/kh1/logout";'>회원가입</button>
 					</div>
 				</c:if>
->>>>>>> 2e5218fb827e0207bd99190147417ebabd2f1af1
 
 				<c:if test="${login }">
 					<div class="mypage">
@@ -137,34 +61,8 @@ a:link {
 					</div>
 				</c:if>
 
-<<<<<<< HEAD
-.menu a:hover {
-	color: #adb5bd;
-}
-
-.nav1 a:hover {
-	color: #000000;
-}
-
-.nav1 a {
-	color: #000000;
-}
-</style>
-<div style="min-height: 90vh;">
-	<div class="nav1">
-		<h1><a href="/mypage/main">마이페이지</a></h1>
-		<ul>
-			<li><c:if test="${empty attachmentFile.profile_name }">
-					<img src="/resources/img/기본프로필.jpg" />
-				</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-					<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
-				</c:if></li>
-			<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
-		</ul>
-=======
 			</div>
 		</div>
->>>>>>> 2e5218fb827e0207bd99190147417ebabd2f1af1
 	</div>
 
 	<div style="min-height: 90vh;">
