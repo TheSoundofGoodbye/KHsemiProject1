@@ -40,7 +40,6 @@ $(document).ready(function() {
 		history.go(-1);
 	});
 	
-	console.log(${boardFile.file_size })
 	
 	//파일이 없을 경우
 	if(${boardFile.file_size }  == 0 ) {

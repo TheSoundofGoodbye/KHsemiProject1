@@ -59,40 +59,17 @@ function deleteCmt(free_reply_no){
 }
 $(document).ready(function(){
 	
+	if("${login}" == false){
+		$("#form").hide();
+	}else{
+		$("#form").show();
+	}
+	
 	$("#btnDelete").click(function(){
 		if(window.confirm("글을 삭제하시겠습니까?")){
 			window.location.replace("/free/delete?freeboardno=${freeboard.free_board_no}");
 		}
 	})
-	
-	$("#btnlike").click(function(){
-		if( "${login }" == false){
-			alert("로그인이 필요합니다");
-			return false;
-		}
-		
-		$.ajax({
-			type:'post',
-			url: '/free/likey',
-			data: {
-				'type': 'free_board',
-				'freeboardno': '${freeboard.free_board_no}',
-				'btnlike': $("#btnlike").val()
-			},
-			dataType: 'json', 
-			success: function(data){
-				
-				if(data == "true"){
-					$("#btnlike").val() = "true";
-					$("#btnlike").attr("disabled", true);
-				}else{
-					$("#btnlike").val() = "false";
-					$("#btnlike").attr("disabled", false);
-				}
-				
-			}
-		})
-	});
 	
 	$("#writereply").click(function(){
 		if( "${login }" == false){
@@ -124,13 +101,6 @@ $(document).ready(function(){
 			alert("댓글은 200자 내로 작성해야합니다");
 		}
 	});
-	//신고버튼 동작
-	$("#btnreport").click(function(){
-		if (confirm("게시글을 신고하시겠습니까?")) {
-			$(".report-form").submit();
-		}
-	});
-	
 });
 
 
@@ -216,11 +186,8 @@ $(document).ready(function(){
 			<tr>
 				<!-- <td class="info">제목</td> -->
 				<td colspan="3" style="font-size: 30px; color: brown;">${freeboard.free_board_title }
-					<form class="report-form" action="/report/write" method="post" name="report_link">
-					<input type="hidden" name="board_title" value="${freeboard.free_board_title }">
 					<button id="btnreport" style="float: right;"
 						class="btn btn-danger btn-xs">신고하기</button>
-					</form>
 				</td>
 
 			</tr>
