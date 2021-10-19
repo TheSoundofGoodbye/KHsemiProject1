@@ -54,7 +54,7 @@ function send_mail(){
 <form action="/kh1/login/find" method="post" class="form-horizontal">
 
 			<div class="form-group">
-		<label for="user_email" class="control-label" style="color:white">비밀번호를 찾으려는 이메일 입력</label>
+		<label for="user_email" class="control-label" style="color:black">비밀번호를 찾으려는 이메일 입력</label>
 		<input type="email" id="user_email" name="user_email" class="form-control"/>
 	</div>
 			

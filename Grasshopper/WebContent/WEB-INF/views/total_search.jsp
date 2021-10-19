@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>오늘 뭐 마시지 - 통합검색</title>
 
 <!-- 구글 폰트 -->
@@ -36,10 +36,6 @@
 	margin: 0px;
 	padding: 0px;
 	color: #000;
-}
-
-div {
-	border: hidden !important;
 }
 
 h1 {
@@ -87,7 +83,7 @@ h1 {
 	width: 100%;
 	margin: auto;
 	height: 86px;
-	background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.5);
 	position: fixed;
 	z-index: 3;
 }
@@ -129,7 +125,7 @@ h1 {
 	border-radius: 8px;
 	position: absolute;
 	left: 50%;
-	top: 14%;
+	top: 40%;
 	transform: translateX(-50%);
 }
 
@@ -216,23 +212,55 @@ footer>.footer_content {
 	border-radius: 1;
 }
 
-/* .mypage > button { */
-/* 	color: #fff; */
-/* 	font-size: 16px; */
-/* 	margin-top: 25px; */
-/* 	margin-left: 110px; */
-/* 	padding: 5px; */
-/* 	border-radius: 1; */
-/* } */
+.main {
+	text-align: center;
+	margin-top: 100px;
+}
 
-/* .logout > form > button { */
-/* 	color: #fff; */
-/* 	font-size: 16px; */
-/* 	margin-top: 25px; */
-/* 	padding: 5px; */
-/* 	border-radius: 1; */
+.main_header {
+	margin: 0 auto;
+	margin-top: 100px;
+	width: 45%;
+	height: 100px;
+	text-align: center;
+}
 
-/* } */
+.cards {
+	margin: 0 auto;
+}
+
+.cards > ul {
+	margin: 0 auto;
+	width: 760px;
+	height: 350px;
+	margin-bottom: 50px;
+}
+
+.cards > ul > li > .card_image {
+	float: left;
+	width: 350px;
+	height: 350px;
+}
+
+.cards > ul > li > .card_content {
+	float: left;
+	width: 400px;
+	height: 350px;
+}
+
+.card_title {
+	text-align: center;
+}
+
+.card_desc {
+	text-align: center;
+}
+
+.card_info {
+	text-align: center;
+}
+
+
 @media screen and (max-width: 1450px ) {
 	.intro_bg {
 		height: 100%;
@@ -348,7 +376,7 @@ footer>.footer_content {
 
 	<div class="wrap">
 		<div class="intro_bg2"
-			style="width: 100%; height: 200px; background: black;">
+			style="width: 100%; height: 500px; background-position: center; background-position: top; background-repeat: no-repeat; background-image: url('/resources/img/cocktailbar.jpg')">
 			<div class="search_area">
 				<form action="/main/total_search" method="get">
 					<input name="search" type="search" placeholder="오늘 뭐 마시지"
@@ -407,32 +435,33 @@ footer>.footer_content {
 
 
 
-	<div class="main" style=" margin: 0 auto;" >
-
-
-		<div style="margin: 0 auto; margin-top: 100px; width: 45%; height: 100px; text-align: center;">
+	<div class="main" >
+		<div style="text-align: center; margin-top: 100px">
+			<h3>' ${search} ' 에 대한 검색 결과</h3>
+		</div>
+		<div class="main_header">
 			<h3>공식 칵테일</h3>
 			<hr>
 		</div>
 		<!-- 카드보드형태 -->
 		<div class="cards" id="card">
 			<c:forEach var="o" items="${list }">
-				<div class="card"
-					style="display: block; width: 50%; height: 360px;  margin: 0 auto;">
-					<div class="card_image"
-						style="float: left; width: 350px; height: 350px;">
+				<ul>
+					<li>
+					<div class="card_image">
 						<img width="350px" height="350px"
-							src="/resources/img/${o.official_cocktail_name }.jpg" />
+							src="/resources/img/official_cocktail/official_cocktail_${o.official_cocktail_no }.jpg" />
 					</div>
-					<div class="card_content"
-						style="float: left; width: 400px; height: 350px;  margin: 0 auto;">
-						<div class="card_title" style="text-align: center;">
+					</li>
+					<li>
+					<div class="card_content">
+						<div class="card_title">
 							<h3>${o.official_cocktail_name }</h3>
 						</div>
-						<div class="card_desc" style="text-align: center;">
+						<div class="card_desc">
 							<p>${o.official_cocktail_detail }</p>
 						</div>
-						<div class="card_info" style="text-align: center;">
+						<div class="card_info">
 							<div>
 								<i class="material-icons">thumb_up</i>
 								${o.official_cocktail_vote }
@@ -444,83 +473,89 @@ footer>.footer_content {
 							</div>
 						</div>
 					</div>
-				</div>
+					</li>
+				</ul>
 			</c:forEach>
 		</div>
 	</div>
 
 	<!-- 카드보드형태 -->
-	<div class="cards" id="card" >
+	<div class="cards" id="card">
 
-		<div style="margin: 0 auto; margin-top: 100px; width: 45%; text-align: center;">
+		<div
+			style="margin: 0 auto; margin-top: 100px; width: 45%; text-align: center;">
 			<h3>커스텀 칵테일</h3>
 			<hr>
 		</div>
 
 		<c:forEach var="c" items="${list2 }">
-			<div class="card"
-				style="display: block; width: 50%; height: 360px;  margin: 0 auto;">
-				<div class="card_image"
-					style="float: left; width: 350px; height: 350px; margin: 0 auto;"
-					id="card_thumbnail${c.custom_board_no })">
-					<!-- 첨부파일이 이미지가 아니거나 없을 경우 -->
-					<img width="350px" height="350px"
-						src="/resources/img/Dry Martini.jpg" />
-				</div>
-				<div class="card_content"
-					style="float: left; width: 400px; height: 350px;  margin: 0 auto;">
-					<div class="card_title" style="text-align: center;">
-						<h3>${c.custom_board_title }</h3>
+			<ul style="margin: 0 auto; width: 760px; height: 350px; margin-bottom: 50px;">
+				<li>
+					<div class="card_image" id="card_thumbnail${c.custom_board_no })">
+						<!-- 첨부파일이 이미지가 아니거나 없을 경우 -->
+						<img width="350px" height="350px"
+							src="/upload/${c.custom_board_attachment }"
+							onerror="this.src='/resources/img/noimage_cup.jpg'" />
 					</div>
-					<div class="card_desc" style="text-align: center;">
-						<p>${c.custom_board_content }</p>
-					</div>
-					<div class="card_info" style="text-align: center;">
-						<div>
-							<i class="material-icons">thumb_up</i> ${c.custom_board_vote } <a>by
-								${c.user_nickname }</a>
+				</li>
+				<li>
+					<div class="card_content">
+						<div class="card_title">
+							<h3>${c.custom_board_title }</h3>
 						</div>
-						<div style="text-align: center;">
-							<a class="card_link"
-								href="/custom/view?custom_no=${c.custom_board_no }">Read
-								More...</a>
+						<div class="card_desc">
+							<p>${c.custom_board_content }</p>
+						</div>
+						<div class="card_info">
+							<div>
+								<i class="material-icons">thumb_up</i> ${c.custom_board_vote } <a>by
+									${c.user_nickname }</a>
+							</div>
+							<div style="text-align: center;">
+								<a class="card_link"
+									href="/custom/view?custom_no=${c.custom_board_no }">Read
+									More...</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</c:forEach>
 	</div>
 
 
 
 	<div>
-		<div style="margin: auto 5%;">
+		<div style="margin: auto 5%; margin-bottom: 100px;">
 
-			<div style="margin: 0 auto;  margin-top: 100px; width: 45%; text-align: center;">
+			<div
+				style="margin: 0 auto; margin-top: 100px; width: 45%; text-align: center;">
 				<h3>자유게시판</h3>
 				<hr>
 			</div>
 
-			<table class="table table-striped">
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>조회수</th>
-					<th>작성일</th>
-				</tr>
-
-				<c:forEach items="${boardList }" var="board">
+			<c:if test="not empty ${boardList }">
+				<table class="table table-striped">
 					<tr>
-						<td>${board.free_board_no }</td>
-						<td><a href="/free/view?freeboardno=${board.free_board_no }">
-								${board.free_board_title } </a></td>
-						<td>${board.user_nickname}</td>
-						<td>${board.free_board_hit }</td>
-						<td>${board.free_board_date }</td>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>조회수</th>
+						<th>작성일</th>
 					</tr>
-				</c:forEach>
-			</table>
+
+					<c:forEach items="${boardList }" var="board">
+						<tr>
+							<td>${board.free_board_no }</td>
+							<td><a href="/free/view?freeboardno=${board.free_board_no }">
+									${board.free_board_title } </a></td>
+							<td>${board.user_nickname}</td>
+							<td>${board.free_board_hit }</td>
+							<td>${board.free_board_date }</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
 		</div>
 	</div>
 </body>

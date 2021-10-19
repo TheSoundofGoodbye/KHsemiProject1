@@ -47,24 +47,6 @@
 
 }
 
-/* .mypage > button { */
-/* 	color: #fff; */
-/* 	font-size: 16px; */
-/* 	margin-top: 25px; */
-/* 	margin-left: 110px; */
-/* 	padding: 5px; */
-/* 	border-radius: 1; */
-/* } */
-
-/* .logout > form > button { */
-/* 	color: #fff; */
-/* 	font-size: 16px; */
-/* 	margin-top: 25px; */
-/* 	padding: 5px; */
-/* 	border-radius: 1; */
-
-/* } */
-
 @media screen and (max-width: 1450px ) {
 
 	.intro_bg {
@@ -256,7 +238,7 @@
 				
 			</div>
 		</div>
-	</div>
+	
 	
 	<div class="main_text0">
 		<h1>ABOUT US.</h1>
@@ -455,7 +437,7 @@
 			<button id="close" class="btn btn-info">닫기</button>
 		</div>
 	</div>
-
+</div>
 	<!-- 팝업 스크립트 -->
 	<script type="text/javascript" src="/resources/script/popup_cookie.js"></script>
 
@@ -470,6 +452,7 @@
 		COPYRIGHT 2021. 오늘 뭐 마시지. ALL RIGHTS RESERVED.
 	</div>
 </footer>
+
 
 </html>
 
