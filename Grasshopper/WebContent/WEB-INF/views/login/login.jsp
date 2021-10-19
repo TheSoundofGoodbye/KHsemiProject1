@@ -1,19 +1,11 @@
-<style type="text/css">
-content_area {
-	margin-top: 85px;
-	}
-</style>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/views/layout/header.jsp" />
-
 
 <%@page import="java.math.BigInteger"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.security.SecureRandom"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -55,13 +47,10 @@ $(document).ready(function() {
 	width: 400px;
 	margin: 0 auto;
 }
-/* content_area {
-	width: 100px;
-	margin: 100px;
-	padding: 100px;
-} */
+
 
 </style>
+
 
 <div class="space"></div>
 
@@ -109,7 +98,6 @@ $(document).ready(function() {
 </form>
 </div>
 </section>
-
 
 
 
