@@ -8,7 +8,6 @@ import common.JDBCTemplate;
 import member.dao.face.ReportDao;
 import member.dao.impl.ReportDaoImpl;
 import member.dto.Report;
-import member.dto.User_info;
 import member.service.face.ReportService;
 import member.util.Paging;
 
@@ -19,7 +18,7 @@ public class ReportServiceImpl implements ReportService {
 	
 	@Override
 	public Report report(Report report) {
-		return reportDao.selectReportByReport_no(JDBCTemplate.getConnection(), report);
+		return reportDao.selectReportByReportNo(JDBCTemplate.getConnection(), report);
 	}
 	
 	@Override
