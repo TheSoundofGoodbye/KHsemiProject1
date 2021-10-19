@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import free.dto.Shopping_board;
 import free.service.face.ShoppingService;
 import free.service.impl.ShoppingServiceImpl;
+import free.util.Paging;
 
 /**
  * Servlet implementation class ShoppingSearchController
@@ -23,25 +24,26 @@ import free.service.impl.ShoppingServiceImpl;
 public class ShoppingSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ShoppingService shoppingService = new ShoppingServiceImpl();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/shopping/search [GET]");
-		
+
 		resp.setContentType("application/json; charset=utf-8");
-		
+
 		List<Shopping_board> searchList =  shoppingService.Search(req);
 		
 		
+	
 		PrintWriter out = resp.getWriter();
-		
+
 		out.println(new Gson().toJson(searchList));
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/shopping/search [POST]");
-		
+
 		doGet(req,resp);
 	}
 

@@ -32,10 +32,29 @@
 	padding: 0px;
 	color: #000;
 }
+html {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+}
+body {
 
-/* html { */
-/* 	position: relative; */
-/* } */
+    min-height: 100%;
+
+}
+footer {
+    background: #1f1f1f;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0;
+}
+
+
 
 .contents1 {
 	font-size: 20px;
@@ -156,15 +175,7 @@
 	background: none !important;
 }
 
-footer {
-	display: flex;
-	background: #1f1f1f;
-	padding: 30px;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-}
+
 
 footer>div:first-child {
 	flex: 3;

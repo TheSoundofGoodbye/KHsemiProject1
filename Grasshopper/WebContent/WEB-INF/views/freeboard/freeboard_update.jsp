@@ -10,7 +10,19 @@
  src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
 <!-- <form>태그의 submit을 수행하면 editor에 작성한 내용을 <textarea>에 반영 -->
-
+<script type="text/javascript">
+function submitContents( elClickedObj ) {
+	
+	//에디터의 내용을 #content에 반영한다
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		// <form>태그의 submit 수행
+		elClickedObj.form.submit();
+	} catch(e) {}
+	
+}
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -18,7 +30,8 @@ $(document).ready(function() {
 	//수정버튼 동작
 	$("#btnUpdate").click(function() {
 		
-		//<form> submit
+		submitContents( $("#btnUpdate") );
+		
 		$("form").submit();
 	});
 	
@@ -27,16 +40,13 @@ $(document).ready(function() {
 		history.go(-1);
 	});
 	
-	
+	console.log(${boardFile.file_size })
 	
 	//파일이 없을 경우
-	if(${not empty boardFile}) {
+	if(${boardFile.file_size }  == 0 ) {
 		$("#beforeFile").show();
 		$("#afterFile").hide();
-	}
-	
-	//파일이 있을 경우
-	if(${empty boardFile}) {
+	}else{
 		$("#beforeFile").hide();
 		$("#afterFile").show();
 	}
@@ -99,4 +109,13 @@ $(document).ready(function() {
 <!-- .container -->
 </div>
 
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "content", //에디터가 적용될 <textarea>의 id를 입력
+	sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+	fCreator: "createSEditor2"
+})
+</script>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
