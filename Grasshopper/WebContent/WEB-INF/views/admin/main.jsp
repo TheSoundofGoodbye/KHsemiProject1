@@ -35,8 +35,8 @@ String name = request.getParameter("user_nickname");
 	response.sendRedirect("../login/login.jsp");
 } */
 %>
-<h2><%=id %>님 환영합니다.</h2>
-<%=name %><br>
+<h2>/* <%=id %> */ 관리자님 환영합니다.</h2>
+/* <%=name %> */ <br>
 
 <input type="button" class="btn btn-default" value="회원정보관리" onclick="location.href='/kh1/admin/member'">
 <input type="button" class="btn btn-default" value="커스텀칵테일관리" onclick="location.href='/kh1/admin/custom'">
