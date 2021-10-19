@@ -44,7 +44,7 @@ a:link {
 					</div>
 					<div class="join">
 						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -71,9 +71,9 @@ a:link {
 			</h1>
 			<ul>
 				<li><c:if test="${empty attachmentFile.profile_name }">
-						<img src="/resources/img/기본프로필.jpg" />
+						<a href="/mypage/update"><img src="/resources/img/기본프로필.jpg" /></a>
 					</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-						<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
+						<a href="/mypage/update"><img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" /></a>
 					</c:if></li>
 				<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
 			</ul>
@@ -89,7 +89,7 @@ a:link {
                 컨텐츠 넣는 영역이야~ 쪽지함이면 쪽지 리스트~ 문의하기면 문의하기 폼 영역 이런거
             
             ***********************************-->
-				<div class="container">
+				<div class="container" style="margin-bottom: 100px;">
 					<h1>
 						<strong>내가 쓴 댓글</strong>
 					</h1>
@@ -98,13 +98,13 @@ a:link {
 					<table class="table table-hover table-condensed">
 						<tr>
 							<th>글번호</th>
-							<th>댓글내용</th>
+							<th style="padding-left: 150px;">댓글내용</th>
 							<th>작성일</th>
 						</tr>
 						<c:forEach items="${freeBoardReply }" var="freeReply">
 							<tr>
 								<td>${freeReply.free_board_no }</td>
-								<td><a
+								<td style="padding-left: 150px;"><a
 									href="/free/view?freeboardno=${freeReply.free_board_no }"><span
 										class="ellipsis2">${freeReply.free_reply_content }</span></a></td>
 								<td>${freeReply.free_reply_date }</td>
@@ -116,17 +116,17 @@ a:link {
 					<table class="table table-hover table-condensed">
 						<tr>
 							<th>글번호</th>
-							<th>댓글내용</th>
+							<th style="padding-left: 150px;">댓글내용</th>
 							<th>작성일</th>
 						</tr>
 						<c:forEach items="${customReply }" var="customReply">
 							<tr>
 								<td>${customReply.custom_board_no }</td>
-								<td><a
+								<td style="padding-left: 150px;"><a
 									href="/custom/view?custom_no=${customReply.custom_board_no }">
 										<span class="ellipsis2">${customReply.custom_reply_content }</span>
 								</a></td>
-								<td>${customReply.comment_date }</td>
+								<td>${customReply.custom_reply_date }</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -135,13 +135,13 @@ a:link {
 					<table class="table table-hover table-condensed">
 						<tr>
 							<th>글번호</th>
-							<th>댓글내용</th>
+							<th style="padding-left: 150px;">댓글내용</th>
 							<th>작성일</th>
 						</tr>
 						<c:forEach items="${officialReply }" var="officialReply">
 							<tr>
 								<td>${officialReply.official_board_no }</td>
-								<td><a
+								<td style="padding-left: 150px;"><a
 									href="/official/view?official_no=${officialReply.official_board_no }"><span
 										class="ellipsis2">${officialReply.official_reply_content }</span></a></td>
 								<td>${officialReply.official_reply_date }</td>

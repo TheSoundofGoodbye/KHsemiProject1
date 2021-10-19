@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mypage.dto.Attachment_profile;
-import mypage.dto.User_admin;
 import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
@@ -56,19 +55,6 @@ public class MypageMainController extends HttpServlet {
 
 				} 
 					
-
-				// 전달파라미터 얻기 - 로그인 정보
-				User_admin user_admin = mypageService.getLoginAdmin_info(req);
-				
-				// 로그인 인증
-				boolean loginAdmin = mypageService.login(user_admin);
-
-				if( loginAdmin ) {
-					
-					HttpSession session = req.getSession();
-
-					session.setAttribute("loginAdmin", loginAdmin);
-				}
 				
 				req.getRequestDispatcher("/WEB-INF/views/my/mypageMain.jsp").forward(req, resp);
 

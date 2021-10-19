@@ -8,12 +8,12 @@ public class Custom_reply {
 	private int custom_board_no;
 	private int user_no;
 	private String custom_reply_content;
-	private Date comment_date;
+	private Date custom_reply_date;
 	@Override
 	public String toString() {
 		return "Custom_reply [custom_reply_no=" + custom_reply_no + ", custom_board_no=" + custom_board_no
-				+ ", user_no=" + user_no + ", custom_reply_content=" + custom_reply_content + ", comment_date="
-				+ comment_date + "]";
+				+ ", user_no=" + user_no + ", custom_reply_content=" + custom_reply_content + ", custom_reply_date="
+				+ custom_reply_date + "]";
 	}
 	public int getCustom_reply_no() {
 		return custom_reply_no;
@@ -39,13 +39,13 @@ public class Custom_reply {
 	public void setCustom_reply_content(String custom_reply_content) {
 		this.custom_reply_content = custom_reply_content;
 	}
-	public Date getComment_date() {
-		return comment_date;
+	public Date getCustom_reply_date() {
+		return custom_reply_date;
 	}
-	public void setComment_date(Date comment_date) {
-		this.comment_date = comment_date;
+	public void setCustom_reply_date(Date custom_reply_date) {
+		this.custom_reply_date = custom_reply_date;
 	}
-	
+
 	
 	
 	

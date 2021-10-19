@@ -44,7 +44,7 @@ a:link {
 					</div>
 					<div class="join">
 						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -71,9 +71,9 @@ a:link {
 			</h1>
 			<ul>
 				<li><c:if test="${empty attachmentFile.profile_name }">
-						<img src="/resources/img/기본프로필.jpg" />
+						<a href="/mypage/update"><img src="/resources/img/기본프로필.jpg" /></a>
 					</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-						<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
+						<a href="/mypage/update"><img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" /></a>
 					</c:if></li>
 				<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
 			</ul>
@@ -83,7 +83,7 @@ a:link {
 			<!-- 여기가 메뉴 영역이ㅇ여요 -->
 			<%@ include file="../layout/mypagenav.jsp"%>
 			<div class="contentAreaWrap">
-				<div class="container">
+				<div class="container" style="margin-bottom: 100px;">
 					<h1>
 						<strong>내가 보낸 쪽지함</strong>
 					</h1>
@@ -91,7 +91,7 @@ a:link {
 					<table class="table table-hover table-condensed">
 						<tr>
 							<th>받은 사람</th>
-							<th>내용</th>
+							<th style="padding-left: 150px;">내용</th>
 							<th>읽음표시</th>
 							<th>날짜</th>
 						</tr>
@@ -100,7 +100,7 @@ a:link {
 								<c:if test="${userinfo.user_no eq message.msg_rec }">
 									<tr>
 										<td>${userinfo.user_nickname }</td>
-										<td><span class="ellipsis2">${message.msg_content }</span></td>
+										<td style="padding-left: 150px;"><span class="ellipsis2">${message.msg_content }</span></td>
 										<c:if test="${message.msg_check eq 'n' }">
 											<td style="color: #dc3545;">읽지않음</td>
 										</c:if>

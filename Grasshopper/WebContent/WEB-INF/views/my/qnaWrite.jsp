@@ -53,8 +53,8 @@ a:link {
 						</form>
 					</div>
 					<div class="join">
-						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+					<button type="reset" class="btn btn-warning"
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -87,15 +87,15 @@ a:link {
 
 				<table class="table table-bordered">
 					<tr>
-						<td class="info">닉네임</td>
+						<td class="">닉네임</td>
 						<td>${user_info.user_nickname }</td>
 					</tr>
 					<tr>
-						<td class="info">제목</td>
+						<td class="">제목</td>
 						<td><input type="text" name="title" style="width: 100%" /></td>
 					</tr>
 					<tr>
-						<td class="info" colspan="2">문의 내용</td>
+						<td class="" colspan="2">문의 내용</td>
 					</tr>
 					<tr>
 						<td colspan="2"><textarea id="content" name="content"

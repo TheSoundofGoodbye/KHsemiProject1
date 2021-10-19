@@ -291,34 +291,27 @@ public interface MypageDao {
 	 */
 	public List<Message> recMessageByUserno(Connection conn, int user_no);
 
-	
-	
-	
 	/**
 	 * FreeBoard 게시글 조회
-	 *  
-	 * @param conn - DB 연결 객체
+	 * 
+	 * @param conn    - DB 연결 객체
 	 * @param boardno
 	 * @return - dto타입 반환
 	 */
 	public Free_board getFreeBoardByFreeBoardNo(Connection conn, int boardno);
-	
-	
-	
+
 	public int getNextQnaReplyNo(Connection conn);
-	
-	
+
 	/**
-	 * 코멘트 정보를 데이터베이스에 입력한다 
+	 * 코멘트 정보를 데이터베이스에 입력한다
 	 * 
 	 * @param conn
 	 * @param qna_board_reply
 	 */
 	int insertQnaReply(Connection conn, Qna_board_reply qna_board_reply);
-	
-	
+
 	public List<Qna_board_reply> selectQnaBoardReply(Connection conn);
-	
+
 	public int updateMsgCheck(Connection conn, int user_no);
-	
+
 }// class

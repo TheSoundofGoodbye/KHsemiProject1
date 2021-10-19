@@ -486,7 +486,7 @@ public class MypageDaoImpl implements MypageDao {
 				viewBoard.setCustom_board_no(rs.getInt("custom_board_no"));
 				viewBoard.setUser_no(rs.getInt("user_no"));
 				viewBoard.setCustom_reply_content(rs.getString("custom_reply_content"));
-				viewBoard.setComment_date(rs.getDate("comment_date"));
+				viewBoard.setCustom_reply_date(rs.getDate("custom_reply_date"));
 
 				BoardList.add(viewBoard);
 
