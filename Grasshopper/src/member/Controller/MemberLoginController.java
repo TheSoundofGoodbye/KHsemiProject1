@@ -39,32 +39,46 @@ public class MemberLoginController extends HttpServlet {
 		//로그인 인증
 		boolean login = memberService.login(member);
 		
+		
 		if(login) {
+			//세션정보 저장하기
+			HttpSession session = req.getSession();
+			
 			//로그인 사용자의 정보 얻어오기
 			member = memberService.info(member);
 			
-			//세션정보 저장하기
-			HttpSession session = req.getSession();
 			session.setAttribute("login", login);
 			session.setAttribute("userno", member.getUser_no());
-			session.setAttribute("user_no", member.getUser_no());
+			session.setAttribute("userid", member.getUser_email());
 			session.setAttribute("usernick", member.getUser_nickname());
-		}
-		
-		//현재 session에 저장된 key, value모두 출력
+			
+			//현재 session에 저장된 key, value모두 출력
 		Enumeration<String> attributes = req.getSession().getAttributeNames();
 		while (attributes.hasMoreElements()) {
 			String attribute = (String) attributes.nextElement();
 			System.out.println(attribute+" : "+req.getSession().getAttribute(attribute));
-		}	
-		
-		//메인페이지로 리다이렉트
-		resp.sendRedirect("/main");
+		}
+			String id = (String)session.getAttribute("userid");
+			
+//			System.out.println(id.equals("projectkhwork@gmail.com"));
+			
+			if(id.equals("projectkhwork@gmail.com")) {
+				resp.sendRedirect("/kh1/admin");
+			
+			} else {
+			
+			//메인페이지로 리다이렉트
+			resp.sendRedirect("/main");
+			}
 		
 	}
 	
-
-
 }
+		
+}
+	
+
+
+
 	
 
