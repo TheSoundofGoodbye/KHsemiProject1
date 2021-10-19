@@ -11,7 +11,7 @@ import free.dao.face.ShoppingBoardDao;
 import free.dao.impl.ShoppingBoardDaoImpl;
 import free.dto.Shopping_board;
 import free.service.face.ShoppingService;
-import free.util.Paging;
+import free.util.ShoppingPaging;
 
 public class ShoppingServiceImpl implements ShoppingService {
 
@@ -24,7 +24,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 
 	@Override
-	public List<Shopping_board> getList(HttpServletRequest req, Paging paging) {
+	public List<Shopping_board> getList(HttpServletRequest req, ShoppingPaging paging) {
 		String category = req.getParameter("category");
 		Connection conn = JDBCTemplate.getConnection();
 		List<Shopping_board> shoppingBoard = null;
@@ -45,7 +45,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 	}
 
 	@Override
-	public Paging getPaging(HttpServletRequest req) {
+	public ShoppingPaging getPaging(HttpServletRequest req) {
 		System.out.println("ShoppingServiceImpl.getPaging()");
 		
 		String param = req.getParameter("curPage");
@@ -56,9 +56,21 @@ public class ShoppingServiceImpl implements ShoppingService {
 			System.out.println("[WARNING] curPage값이 null이거나 비어있습니다");
 		}
 		
-		int totalCount = shoppingdao.selectCntAll(JDBCTemplate.getConnection());
+		String category = req.getParameter("category");
+		System.out.println("category: " + category);
 		
-		Paging paging = new Paging(totalCount, curPage);
+		if(category.equals("food")) {
+			category = "FOOD";
+		}else if(category.equals("tool")) {
+			category = "TO";
+		}else {
+			category = "AL";
+		}
+		
+		int totalCount = shoppingdao.selectCntAll(JDBCTemplate.getConnection(), category);
+		System.out.println("totalCount: " + totalCount);
+		
+		ShoppingPaging paging = new ShoppingPaging(totalCount, curPage);
 		
 		return paging;
 	}
@@ -79,7 +91,7 @@ public class ShoppingServiceImpl implements ShoppingService {
 		}else if(category.equals("tool")) {
 			category = "TO";
 		}else {
-			category = "AL%";
+			category = "AL";
 		}
 		
 		List<Shopping_board> list = null;

@@ -124,6 +124,13 @@ $(document).ready(function(){
 			alert("댓글은 200자 내로 작성해야합니다");
 		}
 	});
+	//신고버튼 동작
+	$("#btnreport").click(function(){
+		if (confirm("게시글을 신고하시겠습니까?")) {
+			$(".report-form").submit();
+		}
+	});
+	
 });
 
 
@@ -209,8 +216,11 @@ $(document).ready(function(){
 			<tr>
 				<!-- <td class="info">제목</td> -->
 				<td colspan="3" style="font-size: 30px; color: brown;">${freeboard.free_board_title }
+					<form class="report-form" action="/report/write" method="post" name="report_link">
+					<input type="hidden" name="board_title" value="${freeboard.free_board_title }">
 					<button id="btnreport" style="float: right;"
 						class="btn btn-danger btn-xs">신고하기</button>
+					</form>
 				</td>
 
 			</tr>

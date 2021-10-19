@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import free.dto.Shopping_board;
 import free.service.face.ShoppingService;
 import free.service.impl.ShoppingServiceImpl;
-import free.util.Paging;
+import free.util.ShoppingPaging;
 
 
 /**
@@ -28,7 +28,7 @@ public class ShoppingListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/shopping/list [GET]");
 		
-		Paging paging = shoppingService.getPaging(req);
+		ShoppingPaging paging = shoppingService.getPaging(req);
 		
 		List<Shopping_board> shoppingBoardList = shoppingService.getList(req, paging);
 		

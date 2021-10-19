@@ -126,7 +126,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		sql += "SELECT * FROM (";
 	    sql += " SELECT ROWNUM rnum, O.* FROM (";
 	    sql += "    SELECT official_cocktail_no, official_cocktail_name, official_cocktail_detail, official_cocktail_ingred, official_cocktail_hit";
-	    sql += "     FROM OFFICIALCOCKTAIL ORDER BY official_cocktail_no ) O";
+	    sql += "     FROM OFFICIALCOCKTAIL ORDER BY official_cocktail_hit DESC) O";
 	    sql += "   ) OFFICIALCOCKTAIL";
 	    sql += " WHERE rnum BETWEEN ? AND ?";
 	    
@@ -175,7 +175,7 @@ public class OfficialDaoImpl implements OfficialDao{
 		sql += "		AND upper(official_cocktail_name) LIKE upper(?)";
 		sql += "		OR upper(official_cocktail_detail) LIKE upper(?)";
 		sql += "		OR upper(official_cocktail_ingred) LIKE upper(?)";
-		sql += "		ORDER BY official_cocktail_no ) O";
+		sql += "		ORDER BY official_cocktail_hit DESC) O";
 		sql += " 		) OFFICIALCOCKTAIL";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 		
@@ -232,7 +232,7 @@ public class OfficialDaoImpl implements OfficialDao{
 			sql += "		AND upper(official_cocktail_ingred) ";
 		}
 	    sql += " 			LIKE upper(?)";
-	    sql += "		ORDER BY official_cocktail_no ) O";
+	    sql += "		ORDER BY official_cocktail_hit DESC) O";
 		sql += " 		) OFFICIALCOCKTAIL";
 		sql += " WHERE rnum BETWEEN ? AND ?";
 	    

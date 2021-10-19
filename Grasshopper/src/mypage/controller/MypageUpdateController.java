@@ -31,7 +31,7 @@ public class MypageUpdateController extends HttpServlet {
 		int user_no = (int) session.getAttribute("user_no");
 
 		User_info user_info = mypageService.getUserInfo(user_no);
-
+	
 		req.setAttribute("user_info", user_info);
 
 		Attachment_profile attachmentFile = mypageService.getFile(user_no);

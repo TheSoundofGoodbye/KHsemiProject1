@@ -59,8 +59,7 @@ $(document).ready(function() {
 <body>
 
 	<div class="wrap">
-		<div class="intro_bg2"
-			style="width: 100%; height: 200px; background: black;">
+		<div class="intro_bg2" style="width: 100%; height: 500px; background-position: top; background-positoin: center; background-repeat: no-repeat; background-image: url('/resources/img/cocktailbar.jpg');">
 			<div class="header">
 				<div class="header_logo">
 					<a href="/main"> <img width=100px;

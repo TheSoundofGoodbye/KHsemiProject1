@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import free.dto.Shopping_board;
 import free.util.Paging;
+import free.util.ShoppingPaging;
 
 
 public interface ShoppingService {
@@ -22,7 +23,7 @@ public interface ShoppingService {
 	 * 
 	 * @param paging
 	 */
-	public List<Shopping_board> getList(HttpServletRequest req, Paging paging);
+	public List<Shopping_board> getList(HttpServletRequest req, ShoppingPaging paging);
 
 	
 	/**
@@ -31,7 +32,7 @@ public interface ShoppingService {
 	 * @param req - 요청 객체
 	 * @return - 페이징 결과 반환
 	 */
-	public Paging getPaging(HttpServletRequest req);
+	public ShoppingPaging getPaging(HttpServletRequest req);
 
 	/**
 	 * 선택한 기준으로 order한 dto리스트를 반환하는 메소드

@@ -5,10 +5,26 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
 
+<!-- 스마트에디터 2 -->
+<script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+function submitContents(elClickedObj) {
+	
+	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+	
+	try {
+		elClickedObj.form.submit();
+	} catch(e) {}
+}
+</script>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	
 	$("#btnWrite").click(function(){
+		
+		submitContents( $("#btnWrite") )
 		
 		$("form").submit();
 	})
@@ -54,6 +70,16 @@ $(document).ready(function(){
 
 <!-- .container -->
 </div>
+<!-- <textarea>태그에 스마트에디터2 적용하는 스크립트 -->
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "content",
+	sSkinURI: "/resources/se2/SmartEditor2Skin.html",
+	fCreator: "createSEditor2"
+});
+</script>
 
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

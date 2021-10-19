@@ -11,6 +11,7 @@ import common.JDBCTemplate;
 import free.dao.face.ShoppingBoardDao;
 import free.dto.Shopping_board;
 import free.util.Paging;
+import free.util.ShoppingPaging;
 
 public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 
@@ -55,11 +56,11 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public List<Shopping_board> getAlcholList(Connection conn, Paging paging) {
+	public List<Shopping_board> getAlcholList(Connection conn, ShoppingPaging paging) {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, sp.* FROM shopping_board sp";
-		sql += " 	WHERE shopping_category LIKE ?";
+		sql += " 	WHERE shopping_category = ?";
 		sql += ") WHERE rnum BETWEEN ? AND ?";
 		
 		Shopping_board shoppingBoard = null;
@@ -67,7 +68,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, "AL_%");
+			ps.setString(1, "AL");
 			ps.setInt(2, paging.getStartNo());
 			ps.setInt(3, paging.getEndNo());
 			
@@ -99,7 +100,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public List<Shopping_board> getToolList(Connection conn, Paging paging) {
+	public List<Shopping_board> getToolList(Connection conn, ShoppingPaging paging) {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, sp.* FROM shopping_board sp";
@@ -143,7 +144,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public List<Shopping_board> getFoodList(Connection conn, Paging paging) {
+	public List<Shopping_board> getFoodList(Connection conn, ShoppingPaging paging) {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += "	SELECT rownum rnum, sp.* FROM shopping_board sp";
@@ -187,14 +188,16 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	}
 
 	@Override
-	public int selectCntAll(Connection conn) {
+	public int selectCntAll(Connection conn, String category) {
 		String sql = "";
 		sql += "SELECT count(*) FROM shopping_board";
+		sql += " WHERE shopping_category = ?";
 		
-		int count = 0;
+		int count = -1;
 		
 		try {
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, category);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -216,7 +219,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 	public List<Shopping_board> getOrderedListByProductTitle(Connection conn, String category, String col, String orderby) {
 		String sql = "";
 		sql += "SELECT * FROM shopping_board";
-		sql += " WHERE shopping_category LIKE ?";
+		sql += " WHERE shopping_category = ?";
 		sql += " ORDER BY " + col + " " + orderby;
 		
 		List<Shopping_board> shopping_list = new ArrayList<>();
@@ -264,7 +267,7 @@ public class ShoppingBoardDaoImpl implements ShoppingBoardDao {
 		
 		String sql = "";
 		sql += "SELECT * FROM shopping_board";
-		sql += " WHERE shopping_category LIKE ?";
+		sql += " WHERE shopping_category = ?";
 		sql += " ORDER BY " + col + " " + orderby;
 		
 		List<Shopping_board> shopping_list = new ArrayList<>();

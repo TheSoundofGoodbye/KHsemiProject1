@@ -25,6 +25,16 @@ public class MypageUnregisterController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		HttpSession session = req.getSession();
+
+		int user_no = (int) session.getAttribute("user_no");
+
+		User_info user_info = mypageService.getUserInfoAll(user_no);
+
+		req.setAttribute("user_info", user_info);
+
+		session.setAttribute("user_info", user_info);
+
 		req.getRequestDispatcher("/WEB-INF/views/my/mypageUnregister.jsp").forward(req, resp);
 	}
 
@@ -41,12 +51,8 @@ public class MypageUnregisterController extends HttpServlet {
 
 		mypageService.unregister(user_info, password);
 
-		if (user_info.getUser_email() == null) {
-
-			// 세션 해제
-			req.getSession().invalidate();
-
-		};
+		// 세션 해제
+		req.getSession().invalidate();
 
 		// 메인페이지로 리다이렉트
 		resp.sendRedirect("/main");
