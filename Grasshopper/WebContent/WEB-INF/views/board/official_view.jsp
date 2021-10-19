@@ -281,7 +281,10 @@ footer {
 		var paragraph2 = paragraph1[1].split('Garnish:');
 		recipe = paragraph2[0];
 		garnish = paragraph2[1];
-
+		
+		if(garnish == undefined){
+			garnish = '없음';
+		}
 		document.getElementById('cocktail-detail').innerHTML = detail;
 		document.getElementById('cocktail-recipe').innerHTML = recipe;
 		document.getElementById('cocktail-garnish').innerHTML = garnish;

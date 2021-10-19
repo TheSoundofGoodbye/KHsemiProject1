@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
 import member.dao.face.ReportDao;
 import member.dto.Report;
-import member.dto.User_info;
 import member.util.Paging;
 
 public class ReportDaoImpl implements ReportDao {
@@ -88,22 +88,101 @@ public class ReportDaoImpl implements ReportDao {
 		return count;
 	}
 
+
 	@Override
-	public Report selectReportByReport_no(Connection Conn, Report report) {
+	public List<Report> selectAll(Connection Conn) {
+		//SQL 작성
+		String sql = "";
+		sql += "SELECT * FROM report_board";
+		sql += " ORDER BY report_no";
+				
+		//결과 저장할 List
+		List<Report> reportList = new ArrayList<>();
+				
+		try {
+			ps = Conn.prepareStatement(sql); //SQL수행 객체
+					
+			rs = ps.executeQuery(); //SQL 수행 및 결과집합 저장
+					
+			//조회 결과 처리
+			while(rs.next()) {
+						
+				Report result = new Report();
+					
+				result.setReport_no( rs.getInt("report_no") );
+				result.setReport_board_link(rs.getString("report_board_link"));
+				result.setReport_board_title(rs.getString("report_board_title"));
+				result.setReport_board_done(rs.getInt("report_board_done"));
+						
+								
+				//리스트에 결과값 저장
+				reportList.add(result);
+			}
+						
+					
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					//DB객체 닫기
+					JDBCTemplate.close(rs);
+					JDBCTemplate.close(ps);
+				}
+				
+				//최종 결과 반환
+				return reportList;
 		
-		return null;
 	}
 
 	@Override
-	public List<Report> selectAll(Connection connection) {
-		return null;
+	public List<Report> selectAll(Connection Conn, Paging paging) {
 		
-	}
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, B.* FROM (";
+		sql += "		SELECT";
+		sql += "			report_no, report_board_link, report_board_title, report_board_done";
+		sql += "		FROM report_board";
+		sql += "		ORDER BY report_no DESC";
+		sql += "	) B";
+		sql += " ) User_info";
+		sql += " WHERE rnum BETWEEN ? AND ?";
 
-	@Override
-	public List<Report> selectAll(Connection connection, Paging paging) {
-		return null;
-	}
+		//결과 저장할 List
+		List<Report> reportList = new ArrayList<>(); 
+		
+		try {
+			ps = Conn.prepareStatement(sql);
+			ps.setInt(1, paging.getStartNo());
+			ps.setInt(2, paging.getEndNo());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				Report result = new Report();
+				
+				result.setReport_no( rs.getInt("report_no") );
+				result.setReport_board_link(rs.getString("report_board_link"));
+				result.setReport_board_title(rs.getString("report_board_title"));
+				result.setReport_board_done(rs.getInt("report_board_done"));
+						
+								
+				//리스트에 결과값 저장
+				reportList.add(result);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return reportList;
+	}		
+	
 
 	
 }

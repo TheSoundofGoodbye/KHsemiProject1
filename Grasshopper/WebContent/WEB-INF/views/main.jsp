@@ -220,7 +220,7 @@
 					</div>
 					<div class="join">
 						<button type="reset" class="btn btn-warning"
-									onclick='location.href="/kh1/logout";'>회원가입</button>
+									onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
