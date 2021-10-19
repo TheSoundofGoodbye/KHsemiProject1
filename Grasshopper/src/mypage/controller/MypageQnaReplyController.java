@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mypage.dto.Attachment_profile;
 import mypage.dto.Qna_board_reply;
+import mypage.dto.User_info;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
@@ -30,6 +32,17 @@ public class MypageQnaReplyController extends HttpServlet {
 		//세션 객체 생성
 		HttpSession session = req.getSession();
 
+		int user_no = (int)session.getAttribute("user_no");
+
+		User_info user_info = mypageService.getUserInfo(user_no);
+
+		req.setAttribute("user_info", user_info);
+
+		Attachment_profile attachmentFile = mypageService.getFile(user_no);
+
+//		System.out.println("MyPageMainController - " + attachmentFile);
+		req.setAttribute("attachmentFile", attachmentFile);
+		
 		//입력 문자 인코딩 한글처리
 		req.setCharacterEncoding("UTF-8");
 
@@ -40,8 +53,6 @@ public class MypageQnaReplyController extends HttpServlet {
 		String content = req.getParameter("commentContent"); //댓글 내용
 		int board_no = Integer.parseInt(req.getParameter("board_no")); //댓글을 달 게시글 번호
 
-		int user_no = (int) session.getAttribute("user_no");
-		
 		Qna_board_reply qna_board_reply = new Qna_board_reply();
 		
 		qna_board_reply.setQna_board_no(board_no);

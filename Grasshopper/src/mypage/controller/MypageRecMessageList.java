@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mypage.dto.Attachment_profile;
 import mypage.dto.Message;
 import mypage.dto.User_info;
 import mypage.service.face.MypageService;
@@ -30,6 +31,15 @@ public class MypageRecMessageList extends HttpServlet {
 		HttpSession session = req.getSession();
 
 		int user_no = (int) session.getAttribute("user_no");
+		
+		User_info user_info = mypageService.getUserInfo(user_no);
+
+		req.setAttribute("user_info", user_info);
+
+		Attachment_profile attachmentFile = mypageService.getFile(user_no);
+
+//		System.out.println("MyPageMainController - " + attachmentFile);
+		req.setAttribute("attachmentFile", attachmentFile);
 
 		mypageService.msgCheck(user_no);
 
@@ -37,9 +47,9 @@ public class MypageRecMessageList extends HttpServlet {
 
 		session.setAttribute("message", message);
 		
-		List<User_info> user_info = mypageService.getList();
+		List<User_info> userinfo = mypageService.getList();
 		
-		session.setAttribute("user_info", user_info);
+		session.setAttribute("userinfo", userinfo);
 		
 		
 		

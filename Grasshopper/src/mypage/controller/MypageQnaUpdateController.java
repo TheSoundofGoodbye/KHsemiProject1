@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mypage.dto.Attachment_profile;
 import mypage.dto.Qna_board;
 import mypage.dto.Qna_board_attachment;
 import mypage.dto.User_info;
@@ -34,6 +35,12 @@ public class MypageQnaUpdateController extends HttpServlet {
 		User_info user_info = mypageService.getUserInfo(user_no);
 
 		req.setAttribute("user_info", user_info);
+		
+		Attachment_profile attachmentFile = mypageService.getFile(user_no);
+
+//		System.out.println("MyPageMainController - " + attachmentFile);
+		req.setAttribute("attachmentFile", attachmentFile);
+		
 
 		Qna_board boardno = mypageService.getBoardno(req);
 

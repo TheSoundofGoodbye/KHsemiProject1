@@ -2,17 +2,21 @@
 	text-decoration: none;
 }
 
+a {
+	text-decoration: none
+}
+
 ul {
 	list-style: none;
 	padding: 0;
 }
 
 .nav1 {
-	background-color: #eeeeee;
+	padding: 50px 50px 30px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 100px;
+	display: flex;
 }
 
 .nav1 ul {
@@ -22,19 +26,19 @@ ul {
 
 .nav1 ul img {
 	margin-right: 10px;
-	width: 25px;
-	height: 25px;
+	width: 35px;
+	height: 35px;
 	border-radius: 50%;
 }
 
 .content {
 	display: flex;
 	align-content: center;
-	align-items: center;
 }
 
 .menu {
-	width: 200px;
+	width: 238px;
+	text-align: right;
 }
 
 .menu h4 {
@@ -46,8 +50,12 @@ ul {
 	display: block;
 }
 
-.profileWrap {
+.contentAreaWrap {
 	width: calc(100% - 200px);
+}
+
+.profileWrap {
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -57,6 +65,39 @@ ul {
 
 .profileWrap img {
 	border-radius: 50%;
-	width: 110px;
-	height: 110px;
+	width: 150px;
+	height: 150px;
+}
+
+.menu a {
+	color: #000000;
+}
+
+.menu a:hover {
+	color: #adb5bd;
+}
+
+.nav1 a:hover {
+	color: #000000;
+}
+
+.nav1 a {
+	color: #000000;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+.ellipsis2 {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2em;
+	max-height: 1.2em;
+	word-wrap: break-word;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	width: 500px;
 }
