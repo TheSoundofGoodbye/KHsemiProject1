@@ -8,7 +8,11 @@
 	href="/resources/css/messagePopup.css">
 </script>
 <script type="text/javascript">
-
+function btndeleteclick(){
+	if(window.confirm("글을 삭제하시겠습니까?")){
+		window.location.replace("/free/delete?freeboardno=${freeboard.free_board_no}");
+	}		
+}
 function refreshComment(data){
 	var page_html="";
 	
@@ -57,14 +61,8 @@ function deleteCmt(free_reply_no){
 		}
 	})
 }
-$(document).ready(function(){
-	
-	$("#btnDelete").click(function(){
-		if(window.confirm("글을 삭제하시겠습니까?")){
-			window.location.replace("/free/delete?freeboardno=${freeboard.free_board_no}");
-		}
-	})
-	
+
+$(document).ready(function(){	
 	$("#btnlike").click(function(){
 		if( "${login }" == false){
 			alert("로그인이 필요합니다");
@@ -230,10 +228,11 @@ $(document).ready(function(){
 				</label>&nbsp; | &nbsp; ${freeboard.free_board_date }&nbsp;&nbsp;조회수
 					${freeboard.free_board_hit } <c:choose>
 						<c:when test="${user_no eq  freeboard.user_no}">
-							<a href="/free/update?freeboardno=${freeboard.free_board_no }"><button
-									style="float: right;" class="btn btn-info btn-xs">수정하기</button></a>
-							<button id="btnDelete" style="float: right;"
-								class="btn btn-primary btn-xs">삭제하기</button>
+							
+							<button id="btnDelete" style="float: right;" class="btn btn-primary btn-xs" onclick="btndeleteclick();">삭제하기</button>
+							&nbsp;
+							<a href="/free/update?freeboardno=${freeboard.free_board_no }"><button class="btn btn-info btn-xs" style="float:right;">수정하기</button></a>
+							
 						</c:when>
 					</c:choose></td>
 
@@ -257,11 +256,9 @@ $(document).ready(function(){
 						첨부파일 없음
 					</c:when>
 					<c:when test="${boardFile.file_size gt 0}">
-						<td class="info" >첨부파일</td>
-						<td colspan="3"><a
-							href="/upload/${boardFile.stored_file_name }"
-							download="${boardFile.original_file_name }">${boardFile.original_file_name }</a>
-						</td>
+						<td >첨부파일 | <a href="/upload/${boardFile.stored_file_name }" download="${boardFile.original_file_name }">${boardFile.original_file_name }</a></td>
+						
+						
 					</c:when>
 				</c:choose>
 			</tr>

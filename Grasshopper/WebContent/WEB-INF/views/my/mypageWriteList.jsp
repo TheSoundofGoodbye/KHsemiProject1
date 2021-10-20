@@ -43,8 +43,8 @@ a:link {
 						</form>
 					</div>
 					<div class="join">
-						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+				<button type="reset" class="btn btn-warning"
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -71,10 +71,10 @@ a:link {
 				<a href="/mypage/main"><strong>마이페이지</strong></a>
 			</h1>
 			<ul>
-				<li><c:if test="${empty attachmentFile.profile_name }">
-						<img src="/resources/img/기본프로필.jpg" />
+			<li><c:if test="${empty attachmentFile.profile_name }">
+						<a href="/mypage/update"><img src="/resources/img/기본프로필.jpg" /></a>
 					</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-						<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
+						<a href="/mypage/update"><img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" /></a>
 					</c:if></li>
 				<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
 			</ul>
@@ -87,10 +87,9 @@ a:link {
 				<!-- ******************************
             
                 페이지 별로 컨텐츠 내용 넣는 영역 ^^ 
-                컨텐츠 넣는 영역이야~ 쪽지함이면 쪽지 리스트~ 문의하기면 문의하기 폼 영역 이런거
             
             ***********************************-->
-				<div class="container">
+				<div class="container" style="margin-bottom: 100px;">
 					<h1>
 						<strong>내가 쓴 게시글</strong>
 					</h1>
@@ -99,7 +98,7 @@ a:link {
 					<table class="table table-hover table-condensed">
 						<tr>
 							<th>글번호</th>
-							<th>글제목</th>
+							<th style="padding-left: 150px;">글제목</th>
 							<th>작성일</th>
 							<th>조회수</th>
 							<th>추천수</th>
@@ -108,7 +107,7 @@ a:link {
 						<c:forEach items="${customBoardList }" var="custom">
 							<tr>
 								<td>${custom.custom_board_no }</td>
-								<td><a
+								<td style="padding-left: 150px;"><a
 									href="/custom/view?custom_no=${custom.custom_board_no }"><span
 										class="ellipsis2">${custom.custom_board_title }</span></a></td>
 								<td>${custom.custom_board_date }</td>
@@ -121,7 +120,7 @@ a:link {
 					<table class="table table-hover table-condensed">
 						<tr>
 							<th>글번호</th>
-							<th>글제목</th>
+							<th style="padding-left: 150px;">글제목</th>
 							<th>작성일</th>
 							<th>조회수</th>
 							<th>추천수</th>
@@ -129,7 +128,7 @@ a:link {
 						<c:forEach items="${freeBoardList }" var="free">
 							<tr>
 								<td>${free.free_board_no }</td>
-								<td><a href="/free/view?freeboardno=${free.free_board_no }"><span
+								<td style="padding-left: 150px;"><a href="/free/view?freeboardno=${free.free_board_no }"><span
 										class="ellipsis2">${free.free_board_title }</span></a></td>
 								<td>${free.free_board_date }</td>
 								<td>${free.free_board_hit }</td>

@@ -13,14 +13,18 @@
 
 <script type="text/javascript">
 
-/* $(document).ready(function() {
-	
-	//글쓰기 버튼 누르면 이동
-	$("#btnWrite").click(function() {
-		location.href="/board/write";
+//버튼 전부선택
+$(function(){
+	$('#selectAll').click(function(){
+		//만약에 최상단 체크박스가 체크되면
+		if($(this).prop("checked")){
+			$('input[name=select_tch]').prop("checked",true); //전체 선택
+		}else{ //아니면
+			$('input[name=select_tch]').prop("checked",false); //전체 해제
+		}
 	});
-	
-}); */
+
+});
 
 </script>
 
@@ -32,32 +36,27 @@
 <thead>
 <table class="table table-striped table-hover table-condensed">
 <tr>
-	<th scope="col"><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-	<th scope="col">회원번호</th>
-	<th scope="col">이메일</th>
-	<th scope="col">이름</th>
-	<th scope="col">활동명</th>
-	<th scope="col">제목</th>
+	<th scope="col"><input id="selectAll" type="checkbox" value="selectAll"/></th>
+	<th scope="col">신고글번호</th>
+	<th scope="col">게시글링크</th>
+	<th scope="col">게시글제목</th>
+	<th scope="col">처리여부</th>
 	
 	
 </tr>
 
 
-<c:forEach items="${memberList }" var="member">
+<c:forEach items="${reportList }" var="report">
 <tr>
-	<td class="chk"><input﻿ id="RowCheck" type="checkbox" value="${member.user_no}"/></td>
+	<td><input type="checkbox" name="select_tch" id="select_tch" value="${report.report_no}"></td>
 	<td>
-		<a href="/member/view?user_no=${member.user_no }">
-		${member.user_no }
+		<a href="/report/view?user_no=${report.report_no }">
+		${report.report_no }
 		</a>
 	</td>
-	<td>${member.user_email }</td>
-	<td>${member.user_password }</td>
-	<td>${member.user_point }</td>
-	<td>${member.user_name }</td>
-	<td>${member.user_birth }</td>
-	<td>${member.user_check }</td>
-	<td>${member.user_nickname }</td>
+	<td>${report.report_board_link }</td>
+	<td>${report.report_board_title }</td>
+	<td>${report.report_board_done }</td>
 </tr>
 </c:forEach>
 
@@ -85,6 +84,6 @@
 <!-- .container -->
 </div>
 
-<c:import url="/WEB-INF/views/layout/pagingMemberList.jsp" />
+<c:import url="/WEB-INF/views/layout/pagingReportList.jsp" />
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

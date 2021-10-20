@@ -44,7 +44,7 @@ a:link {
 					</div>
 					<div class="join">
 						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -72,9 +72,10 @@ a:link {
 			</h1>
 			<ul>
 				<li><c:if test="${empty attachmentFile.profile_name }">
-						<img src="/resources/img/기본프로필.jpg" />
+						<a href="/mypage/update"><img src="/resources/img/기본프로필.jpg" /></a>
 					</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-						<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
+						<a href="/mypage/update"><img
+							src="/upload/${attachmentFile.profile_name }" alt="프로필사진" /></a>
 					</c:if></li>
 				<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
 			</ul>

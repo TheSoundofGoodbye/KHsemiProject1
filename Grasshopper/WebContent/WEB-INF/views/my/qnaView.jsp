@@ -44,8 +44,8 @@ a:link {
 						</form>
 					</div>
 					<div class="join">
-						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+				<button type="reset" class="btn btn-warning"
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -72,9 +72,9 @@ a:link {
 			</h1>
 			<ul>
 				<li><c:if test="${empty attachmentFile.profile_name }">
-						<img src="/resources/img/기본프로필.jpg" />
+						<a href="/mypage/update"><img src="/resources/img/기본프로필.jpg" /></a>
 					</c:if> <c:if test="${not empty attachmentFile.profile_name }">
-						<img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" />
+						<a href="/mypage/update"><img src="/upload/${attachmentFile.profile_name }" alt="프로필사진" /></a>
 					</c:if></li>
 				<li><strong>${user_info.user_nickname }님, 환영합니다</strong></li>
 			</ul>
@@ -93,18 +93,18 @@ a:link {
 
 					<table class="table table-bordered">
 						<tr>
-							<td class="info">닉네임</td>
+							<td class="">닉네임</td>
 							<td colspan="3">${user_info.user_nickname }</td>
 						</tr>
 
 
 						<tr>
-							<td class="info">글번호</td>
+							<td class="">글번호</td>
 							<td colspan="3">${viewBoard.qna_board_no }</td>
 						</tr>
 
 						<tr>
-							<td class="info">제목</td>
+							<td class="">제목</td>
 							<td colspan="3">${viewBoard.qna_board_title }</td>
 						</tr>
 
@@ -115,7 +115,7 @@ a:link {
 
 
 						<tr>
-							<td class="info" colspan="4">본문</td>
+							<td class="" colspan="4">본문</td>
 						</tr>
 
 						<tr>
@@ -123,7 +123,7 @@ a:link {
 						</tr>
 
 						<tr>
-							<td class="info">작성일</td>
+							<td class="">작성일</td>
 							<td>${viewBoard.qna_board_date }</td>
 						</tr>
 
@@ -146,12 +146,12 @@ a:link {
 						<div class="container">
 							<div class="card"
 								style="background-color: #ededed; margin-top: 40px;">
-								<div class="card-body" style="height: 200px;">
+								<div class="card-body" style="height: 200px; border: 1px solid #ccc;" >
 									<p class="h5">
-										<br> <strong><h4>답변 드립니다.</h4></strong>
+										<h3>문의 사항 답변입니다.</h3>
 									</p>
 									<h4>
-										<strong>${qna_board_reply.qna_reply_content }</strong>
+										${qna_board_reply.qna_reply_content }
 									</h4>
 								</div>
 							</div>
@@ -159,7 +159,7 @@ a:link {
 					</c:if>
 				</c:forEach>
 
-				<c:if test="${user_info.user_no eq 2 }">
+				<c:if test="${user_info.user_email eq 'projectkhwork@gmail.com'  }">
 					<div class="container replyWrite">
 						<hr>
 						<form class="form-horizontal" action="/qna/reply" method="post">

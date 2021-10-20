@@ -17,13 +17,10 @@ public interface ReportDao {
 	 */
 	public Report selectReportByReportNo(Connection Conn, Report report);
 
-	public int selectCntAll(Connection conn);
+	public List<Report> selectAll(Connection Conn, Paging paging);
 
-	public Report selectReportByReport_no(Connection Conn, Report report);
-
-	public List<Report> selectAll(Connection connection, Paging paging);
-
-	public List<Report> selectAll(Connection connection);
+	public List<Report> selectAll(Connection Conn);
 	
+	public int selectCntAll(Connection conn);
 	
 }

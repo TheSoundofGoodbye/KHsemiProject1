@@ -25,7 +25,7 @@ public interface ReportService {
 	public Paging getPaging(HttpServletRequest req);
 
 	/**
-	 * 회원 전체 조회
+	 * 신고 전체 조회
 	 * 	페이징 처리 추가
 	 * 
 	 * @param paging - 페이징 정보 객체

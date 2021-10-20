@@ -53,7 +53,7 @@ a:link {
 					</div>
 					<div class="join">
 						<button type="reset" class="btn btn-warning"
-							onclick='location.href="/kh1/logout";'>회원가입</button>
+							onclick='location.href="/member/join";'>회원가입</button>
 					</div>
 				</c:if>
 
@@ -120,7 +120,7 @@ a:link {
 						<p class="form-control-static">${user_info.user_birth }</p>
 					</div>
 				</div>
-				<div>
+				<div style="margin-left: 25px;">
 					<div id="beforeFile">
 						기존 첨부파일: <a href="/upload/${attachmentFile.profile_name}"
 							download="${attachmentFile.profile_name }">${attachmentFile.profile_name }</a>
